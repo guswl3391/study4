@@ -2,6 +2,11 @@ package kr.co.edu.vo;
 
 import java.util.Date;
 
+/**
+ * 설문 조사 제목과 상세 정보들(LIST에 뿌려줄 애들)
+ * @author 82104
+ *
+ */
 public class SurveyVO {
 
 	/**
