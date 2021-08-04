@@ -81,5 +81,25 @@ public class HomeController {
 		return "redirect:/"; // redirect 하는 이유는 작성이 끝나고 나서 어떠한 화면으로 가야 하기 때문에
 	}
 	
+	/**
+	 * 설문조사에 참여자가 응답하는 화면
+	 * 설문조사 제목 1개(sur_seq)가 출력이 되고 문항들이 여러 개(리스트로) 출력이 되어야 함
+	 * @param sur_seq -> 설문조사 제목 번호  {@link SurveyVO}
+	 */
+	@RequestMapping(value = "/researchView", method = RequestMethod.GET)
+	public String researchView(int sur_seq, Model model){
+		
+		SurveyVO surveyVO = service.getSurveyVO(sur_seq);
+		model.addAttribute("surveyVO", surveyVO);
+		
+		List<SurveyItemVO> list = service.getItemList(sur_seq);
+		model.addAttribute("list", list);
+		
+
+		return "researchView";
+	}
+	
+	
+	
 	
 }

@@ -18,10 +18,10 @@ public class SurveyServiceImpl implements SurveyService {
 		List<SurveyVO> list = new ArrayList<SurveyVO>();
 		
 		// public SurveyVO(int number, String title, Date start_date, Date end_date, String finish_yn)
-		SurveyVO item = new SurveyVO(0, "안녕하세요", null, null, null);
+		SurveyVO item = new SurveyVO(0, "Test 설문 조사 1", null, null, null);
 		list.add(item);
 		
-		SurveyVO item1 = new SurveyVO(1, "반갑습니다", null, null, null);
+		SurveyVO item1 = new SurveyVO(1, "Test 설문 조사 2", null, null, null);
 		list.add(item1);
 		
 		return list;
