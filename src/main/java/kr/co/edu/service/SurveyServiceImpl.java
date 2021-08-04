@@ -13,6 +13,11 @@ import kr.co.edu.vo.SurveyVO;
 @Service
 public class SurveyServiceImpl implements SurveyService {
 
+	
+	/**
+	 * 설문조사 목록을 가져오는 메소드(테스트용 메소드)
+	 * @return 설문조사 목록(테스트용)
+	 */
 	@Override
 	public List<SurveyVO> getList() {
 		List<SurveyVO> list = new ArrayList<SurveyVO>();
@@ -26,7 +31,13 @@ public class SurveyServiceImpl implements SurveyService {
 		
 		return list;
 	}
-
+	
+	
+	/**
+	 * SurveyVO들 중에서 하나의 SurveyVO만 가져오기 위함
+	 * @param sur_seq -> 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
+	 * @return {@link SurveyVO}
+	 */
 	@Override
 	public SurveyVO getSurveyVO(int sur_seq) {
 		// public SurveyVO(int number, String title, Date start_date, Date end_date, String finish_yn)
@@ -36,6 +47,12 @@ public class SurveyServiceImpl implements SurveyService {
 		return surveyVO;	
 	}
 
+	
+	/**
+	 * 설문조사 문항들을 가져오는 메소드(테스트용 메소드)
+	 * @param sur_seq 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
+	 * @return 설문조사 문항(테스트용)
+	 */
 	@Override
 	public List<SurveyItemVO> getItemList(int sur_seq) {
 		List<SurveyItemVO> list = new ArrayList<SurveyItemVO>();
