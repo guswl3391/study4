@@ -19,7 +19,7 @@
 
 
 	<c:forEach items="${list}" var = "list">
-		<c:out value="${list.title}" />
+		<c:out value="${list.sur_title}" />
 	
 	
 	</c:forEach>

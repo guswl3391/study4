@@ -14,7 +14,7 @@
 
 	
 	<c:forEach items="${list}" var="item">
-		<c:out value="${item.surveyNumber}" />, <c:out value="${item.question}" />
+		<c:out value="${item.sur_seq}" />, <c:out value="${item.suri_title}" />
 		<br />
 	</c:forEach>	
 

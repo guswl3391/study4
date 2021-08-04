@@ -28,18 +28,18 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public List<SurveyItemVO> getItemList(int surveyNumber) {
+	public List<SurveyItemVO> getItemList(int sur_seq) {
 		List<SurveyItemVO> list = new ArrayList<SurveyItemVO>();
 		
 		
 		//public SurveyItemVO(int surveyNumber, int itemNumber, String question)
-		SurveyItemVO item = new SurveyItemVO(surveyNumber, 1, "첫 번째 질문");
+		SurveyItemVO item = new SurveyItemVO(sur_seq, 1, "첫 번째 질문");
 		list.add(item);
 		
-		SurveyItemVO item1 = new SurveyItemVO(surveyNumber, 2, "두 번째 질문"); // surveyNumber가 0으로 동일한 이유: 같은 surveyNumber 안의 문항들이기 때문이다.
+		SurveyItemVO item1 = new SurveyItemVO(sur_seq, 2, "두 번째 질문"); // surveyNumber가 0으로 동일한 이유: 같은 surveyNumber 안의 문항들이기 때문이다.
 		list.add(item1);
 		
-		SurveyItemVO item2 = new SurveyItemVO(surveyNumber, 3, "세 번째 질문");
+		SurveyItemVO item2 = new SurveyItemVO(sur_seq, 3, "세 번째 질문");
 		list.add(item2);
 		
 		

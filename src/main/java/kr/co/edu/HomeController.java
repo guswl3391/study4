@@ -63,12 +63,13 @@ public class HomeController {
 	
 	
 	// 게시판 글 작성 화면
-	@RequestMapping(value = "/writeView", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/researchCreate", method = {RequestMethod.GET, RequestMethod.POST})
 	public void writeView(){
 	
 		
 	}
 	
+	//게시글 작성 부분 -> 끝나면 메인으로
 	@RequestMapping(value = "/write", method = {RequestMethod.POST})
 	public String write(
 			SurveyVO surveyVO,

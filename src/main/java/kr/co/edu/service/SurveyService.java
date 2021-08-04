@@ -19,7 +19,7 @@ public interface SurveyService {
 	 * @param surveyNumber 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
 	 * @return 설문조사 문항(테스트용)
 	 */
-	public List<SurveyItemVO> getItemList(int surveyNumber);
+	public List<SurveyItemVO> getItemList(int sur_seq);
 	
 
 }
