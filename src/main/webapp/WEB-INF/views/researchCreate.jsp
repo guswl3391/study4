@@ -329,14 +329,14 @@ doGoTab = function(thisObject, tab) {
               <tr>
                <td colspan="1" class="tl">
                	   <div class="research">
-                       <p><input type="text" id="aa" name="aa" class="inp"  title="1. 위생불량 납품단절 편함" /></p>
+                       <p><input type="text" id="aa" name="sur_title" class="inp"  title="1. 위생불량 납품단절 편함" /></p>
                         <ul>
-                        <li><input type="text" id="aa" name="aa" class="inp"  title="매우그렇다" /></li>
-                        <li><input type="text" id="aa" name="aa" class="inp"  title="매우그렇다" /></li>
-                        <li><input type="text" id="aa" name="aa" class="inp"  title="매우그렇다" /></li>
-                        <li><input type="text" id="aa" name="aa" class="inp" title="매우그렇다" /></li>
-                        <li><input type="text" id="aa" name="aa" class="inp"  title="매우그렇다" /></li>
-                        <li>선택사유 <input type="text" id="aa" name="aa" class="inp" style="width:650px;" /> </li>
+                        <li><input type="text" id="aa" name="question[]" class="inp"  title="매우그렇다" /></li>
+                        <li><input type="text" id="aa" name="question[]" class="inp"  title="매우그렇다" /></li>
+                        <li><input type="text" id="aa" name="question[]" class="inp"  title="매우그렇다" /></li>
+                        <li><input type="text" id="aa" name="question[]" class="inp" title="매우그렇다" /></li>
+                        <li><input type="text" id="aa" name="question[]" class="inp"  title="매우그렇다" /></li>
+                        <li>선택사유 <input type="text" id="aa" name="aa1" class="inp" style="width:650px;" /> </li>
                         </ul>
 					</div>
                </td>
@@ -355,7 +355,8 @@ doGoTab = function(thisObject, tab) {
           <span class="bbs_btn"> 
 
           <span class="wte_l"><a href="#" class="wte_r">목록</a></span>
-          <span class="per_l"><a href="#" class="pre_r">등록</a></span>
+          <!-- <span class="per_l"><a href="#" class="pre_r">등록</a></span> -->
+          <input type="submit" value="전송" />
           <span class="wte_l"><a href="#" class="wte_r">취소</a></span>
 
           </span> 
