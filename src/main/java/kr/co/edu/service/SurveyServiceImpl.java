@@ -28,6 +28,15 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
+	public SurveyVO getSurveyVO(int sur_seq) {
+		// public SurveyVO(int number, String title, Date start_date, Date end_date, String finish_yn)
+		Date start_date = new Date();
+		Date end_date = new Date();
+		SurveyVO surveyVO = new SurveyVO(sur_seq, "Test 설문 조사 "+sur_seq, start_date, end_date, null);
+		return surveyVO;	
+	}
+
+	@Override
 	public List<SurveyItemVO> getItemList(int sur_seq) {
 		List<SurveyItemVO> list = new ArrayList<SurveyItemVO>();
 		
