@@ -99,6 +99,21 @@ public class HomeController {
 		return "researchView";
 	}
 	
+	/**
+	 * 설문조사 상세 수정 화면
+	 * @param sur_seq -> 설문조사 정보의 제목 번호 {@link SurveyVO}
+	 */
+	@RequestMapping(value = "/researchEdit", method = RequestMethod.GET)
+	public String researchEdit(int sur_seq, Model model){
+
+		SurveyVO surveyVO = service.getSurveyVO(sur_seq);
+		model.addAttribute("surveyVO", surveyVO);
+		
+		List<SurveyItemVO> list = service.getItemList(sur_seq);
+		model.addAttribute("list", list);
+		
+		return "researchEdit";
+	}
 	
 	
 	
