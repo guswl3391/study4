@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 
 <title>서울학교급식포털</title>
-<link href="../css/base.css" rel="stylesheet" type="text/css" />
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/common.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 
