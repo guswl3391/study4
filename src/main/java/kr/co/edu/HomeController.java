@@ -49,15 +49,32 @@ public class HomeController {
 	}
 	
 	
+	/**
+	 * 설문조사 게시판의 리스트 화면
+	 * 설문조사 제목 1개(sur_seq)가 출력이 되고 설문조사 정보(시작일, 마감일, 완료 여부)가 나와야 함
+	 * @param sur_seq -> 설문조사 제목 번호  {@link SurveyVO}
+	 * @return
+	 */
+	@RequestMapping(value = "/researchList", method = {RequestMethod.GET, RequestMethod.POST})
+	public String list(int sur_seq, Model model){
+		logger.info("list");
+		
+		
+		
+		return "researchList";
+	}
+	
+
+
+	
+	
 	
 	@RequestMapping(value = "/readView",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String read(Model model, int number){
+	public String read(Model model, int sur_seq){
 		
-		List<SurveyItemVO> list = service.getItemList(number);
+		List<SurveyItemVO> list = service.getItemList(sur_seq);
 		model.addAttribute("list", list);
-		
-		
-		
+			
 		return "readView";
 	}
 	
