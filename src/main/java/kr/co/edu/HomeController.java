@@ -79,6 +79,16 @@ public class HomeController {
 	}
 	
 	
+	/*
+	 * @RequestMapping(value="/researchChoiceReasonPopup", method =
+	 * {RequestMethod.GET, RequestMethod.POST}) public String reasonPopup(Model
+	 * model, int sur_seq) {
+	 * 
+	 * 
+	 * }
+	 */
+	
+	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/researchCreate", method = {RequestMethod.GET, RequestMethod.POST})
 	public void writeView(){
