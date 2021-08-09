@@ -94,6 +94,14 @@ public class HomeController {
 		) {
 		// title에 인코딩 이슈 있음
 		
+		// 1. 제목 등록하기
+		service.insertSurveyVO(surveyVO);
+		
+		// 2. sur_seq 얻어오기
+		int sur_seq = surveyVO.getSur_seq();
+		
+		// 3. 문항들 등록하기
+		service.insertSurveyItemVO(question, sur_seq);
 		
 		return "redirect:/"; // redirect 하는 이유는 작성이 끝나고 나서 어떠한 화면으로 가야 하기 때문에
 	}
