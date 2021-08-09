@@ -6,14 +6,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
 import kr.co.edu.vo.SurveyVO;
 
 
 @Service
 public class SurveyServiceImpl implements SurveyService {
-	private SurveyVO serveyVO; // test code
-	private List<SurveyItemVO> list; // test code
+	public SurveyVO serveyVO; // test code
+	public List<SurveyItemVO> list; // test code
+	public List<SurveyAnswerVO> answerList;
+	
 	
 	public SurveyServiceImpl() { // test code
 		int sur_seq = 1;
@@ -29,6 +32,8 @@ public class SurveyServiceImpl implements SurveyService {
 		
 		SurveyItemVO item2 = new SurveyItemVO(sur_seq, 3, "세 번째 질문");
 		list.add(item2);
+		
+		answerList = new ArrayList<SurveyAnswerVO>();
 	}
 	
 	/**
@@ -142,4 +147,13 @@ public class SurveyServiceImpl implements SurveyService {
 		
 		return false;
 	}
+
+	@Override
+	public boolean insertSurveyAnswerVO(SurveyAnswerVO surveyAnswerVO) {
+		answerList.add(surveyAnswerVO); // test code
+		
+		return true;
+	}
+
+
 }

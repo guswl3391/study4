@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.edu.service.SurveyService;
+import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
 import kr.co.edu.vo.SurveyVO;
 
@@ -132,6 +133,46 @@ public class HomeController {
 		
 
 		return "researchView";
+	}
+	
+	/**
+	 * 참여자가 응답을 서버에 전송하는 기능
+	 * @param model
+	 * @param pno -> 참여자 번호
+	 * @param sur_seq -> 제목 번호
+	 * @param suriSeqList -> 문항 번호 여러개가 있어야 함
+	 * @param answerList -> 응답값 여러개가 있어야 함
+	 * @param choiceReasonList -> 선택 사유 여러개가 있어야 함
+	 * @return
+	 */
+	@RequestMapping(value = "/researchSend", method = RequestMethod.POST)
+	public String researchSend(Model model,
+			int pno, // 참여자 번호
+			int sur_seq, // 제목 번호 
+			@RequestParam("suri_seq[]") List<Integer> suriSeqList, // 문항 번호
+			@RequestParam("answer[]") List<Integer> answerList, // 응답값
+			@RequestParam("choice_reason[]") List<String> choiceReasonList // 선택 사유
+	) {
+		
+//		이 내용을 저장해야한다-> insert
+		
+		for(int i = 0; i < suriSeqList.size(); i++) {
+			int ano = 0; // 자동이다, 0은 의미 없는 값임(db 있을 때 자동으로 증가할 예정)
+			//int pno = 0; // 파라미터로 이미 있음  
+			//int sur_seq = 0; //파라미터로 이미 있음
+			int suri_seq = suriSeqList.get(i);
+			int answer = answerList.get(i);
+			String choice_reason = choiceReasonList.get(i);
+			
+			//public SurveyAnswerVO(int ano, int pno, int sur_seq, int suri_seq, int answer, String choice_reason) {
+			SurveyAnswerVO surveyAnswerVO = new SurveyAnswerVO(ano, pno, sur_seq, suri_seq, answer, choice_reason);
+			
+			
+			service.insertSurveyAnswerVO(surveyAnswerVO);
+		}
+		
+		
+		return "redirect:/"; // test용 
 	}
 	
 	/**
