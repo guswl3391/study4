@@ -1,9 +1,18 @@
 package kr.co.edu.vo;
 
+/**
+ * 설문 조사 각각의 문항들에 대한 정보
+ * 이 내용은 관리자가 등록한다.
+ * @author 82104
+ *
+ */
 public class SurveyItemVO {
 
-	private int sur_seq; // 제목 번호
-	private int suri_seq; // 문항 번호
+	/**
+	 * 제목 번호 {@link SurveyVO.sur_seq}
+	 */
+	private int sur_seq;
+	private int suri_seq; // 문항 번호, 자동 생성
 	private String suri_title; // 질문 내용
 
 	public SurveyItemVO() {
