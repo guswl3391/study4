@@ -310,10 +310,11 @@ doGoTab = function(thisObject, tab) {
                 <td colspan="5" class="tl"><input type="text" id="aa" name="aa" class="inp" value="${surveyVO.sur_title }"/></td>
                 </tr>
               <tr>
-                <th>시작일</th>
-                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
+                <th>시작일</th> 
+                <%-- value="${surveyVO.sur_sat_date } --%>
+                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_sat_date}" pattern="yyyy-mm-dd" />" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
                 <th>종료일</th>
-                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
+                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_end_date}" pattern="yyyy-mm-dd" />" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
                 <th>결과확인</th>
                 <td class="tl"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></td>
               </tr>
