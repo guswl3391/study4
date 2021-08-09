@@ -151,5 +151,41 @@ public class HomeController {
 	}
 	
 	
+	/**
+	 * 수정 기능(글 수정)
+	 * @param surveyVO -> sur_seq(제목 번호)와 sur_title(제목명)을 받아옴
+	 * @param model
+	 * @param suriTitle -> 수정된 설문조사 질문 내용 {@link SurveyItemVO.suri_title}
+	 * @param suriSeq -> 수정된 설문조사 문항 번호 {@link SurveyItemVO.suri_seq}
+	 * @return
+	 */
+	@RequestMapping(value="/edit", method= RequestMethod.POST)
+	public String edit(
+			SurveyVO surveyVO, 
+			Model model,
+			@RequestParam("suri_title[]") List<String> suriTitle,
+			@RequestParam("suri_seq[]") List<Integer> suriSeq // List<int>는 에러난다. 안 된다. 그 이유는.. 일단 생략!
+		) {
+		
+		// 1. ServeyVO  업데이트 하기
+		service.updateSurveyVO(surveyVO);
+		
+		// 2. ServeyItemVO 업데이트 하기
+		for(int i =0; i < suriSeq.size(); i++) {
+			String suri_title = suriTitle.get(i);
+			int suri_seq = suriSeq.get(i);
+			int sur_seq = surveyVO.getSur_seq();
+			
+			SurveyItemVO surveyItemVO = new SurveyItemVO();
+			surveyItemVO.setSuri_title(suri_title);
+			surveyItemVO.setSuri_seq(suri_seq);
+			surveyItemVO.setSur_seq(sur_seq);
+			
+			service.updateSurveyItemVO(surveyItemVO);
+		}
+		
+		
+		return "redirect:/"; // test용
+	}
 	
 }

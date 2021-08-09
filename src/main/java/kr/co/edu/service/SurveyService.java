@@ -45,4 +45,19 @@ public interface SurveyService {
 	 */
 	public boolean insertSurveyItemVO(List<String> question, int sur_seq);
 	
+	/**
+	 * 설문 조사 제목과 상세 정보들 업데이트 하기
+	 * @param surveyVO -> sur_title과 sur_seq 업데이트 해야 함
+	 * @return
+	 */
+	public boolean updateSurveyVO(SurveyVO surveyVO);
+	
+	
+	/**
+	 * 설문 조사 각각의 문항들에 대한 정보를 업데이트 하기
+	 * @param surveyItemVO -> suri_title, sur_seq, suri_seq
+	 * @return
+	 */
+	public boolean updateSurveyItemVO(SurveyItemVO surveyItemVO);
+	
 }
