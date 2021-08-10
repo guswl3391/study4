@@ -2,6 +2,7 @@ package kr.co.edu.dao;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -29,11 +30,20 @@ public class SurveyDaoImpl implements SurveyDao {
 	}
 
 	@Override
+	public SurveyVO selectSurvey(int sur_seq) {
+		return sqlSession.selectOne("surveyMapper.selectSurvey", sur_seq);
+	}
+	@Override
 	public int insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
 		int sur_seq = surveyVO.getSur_seq();
 		surveyItemVO.setSur_seq(sur_seq);
 		
 		return sqlSession.insert("surveyMapper.insertSurveyItem", surveyItemVO);
+	}
+
+	@Override
+	public List<SurveyItemVO> selectItemList(int sur_seq) {
+		return sqlSession.selectList("surveyMapper.selectItemList", sur_seq);
 	}
 
 }

@@ -84,23 +84,7 @@ public class SurveyServiceImpl implements SurveyService {
 	 */
 	@Override
 	public SurveyVO getSurveyVO(int sur_seq) {
-		// public SurveyVO(int number, String title, Date start_date, Date end_date, String finish_yn)
-		
-//		Date start_date = new Date();
-//		Date end_date = new Date();
-//		SurveyVO surveyVO = new SurveyVO(sur_seq, "Test 설문 조사 "+sur_seq, start_date, end_date, null);
-//		return surveyVO;	
-		
-		// return this.serveyVO;
-		
-		for (SurveyVO surveyVO : surveyList) { // 향상된 for문!
-			boolean isFind = (surveyVO.getSur_seq() == sur_seq); // 찾았다!
-			if (isFind) {
-				return surveyVO;
-			}
-		}
-		
-		return null;
+		return dao.selectSurvey(sur_seq);
 	}
 
 	
@@ -111,32 +95,7 @@ public class SurveyServiceImpl implements SurveyService {
 	 */
 	@Override
 	public List<SurveyItemVO> getItemList(int sur_seq) {
-//		List<SurveyItemVO> list = new ArrayList<SurveyItemVO>();
-//		
-//		
-//		//public SurveyItemVO(int surveyNumber, int itemNumber, String question)
-//		SurveyItemVO item = new SurveyItemVO(sur_seq, 1, "첫 번째 질문");
-//		list.add(item);
-//		
-//		SurveyItemVO item1 = new SurveyItemVO(sur_seq, 2, "두 번째 질문"); // surveyNumber가 0으로 동일한 이유: 같은 surveyNumber 안의 문항들이기 때문이다.
-//		list.add(item1);
-//		
-//		SurveyItemVO item2 = new SurveyItemVO(sur_seq, 3, "세 번째 질문");
-//		list.add(item2);
-//		
-//		
-//		return list;
-		
-		// test code
-		List<SurveyItemVO> list = new ArrayList<SurveyItemVO>();
-		for (SurveyItemVO item : this.itemList) {
-			boolean isFind = (item.getSur_seq() == sur_seq); // 찾았다! = WHERE sur_seq
-			if (isFind) {
-				list.add(item);
-			}
-		}
-		
-		return list;
+		return dao.selectItemList(sur_seq);
 	}
 
 

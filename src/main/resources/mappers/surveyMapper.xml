@@ -21,6 +21,14 @@
 		)
    </insert>
    
+   <select id="selectSurvey" parameterType="int" resultType="kr.co.edu.vo.SurveyVO">
+		SELECT
+			*
+		FROM
+			TB_06_RS
+		WHERE
+			SUR_SEQ = #{sur_seq}
+	</select>
 	<insert id="insertSurveyItem" parameterType="kr.co.edu.vo.SurveyItemVO" useGeneratedKeys="true" keyProperty="suri_seq">
 		<selectKey keyProperty="suri_seq" resultType="int" order="BEFORE">
 			SELECT TB_06_RSI_SEQ.NEXTVAL FROM DUAL	   
@@ -33,5 +41,14 @@
 		    #{sur_seq}, #{suri_seq}, #{suri_title}
 		)
    </insert>
+   
+   <select id="selectItemList" parameterType="int" resultType="kr.co.edu.vo.SurveyItemVO">
+		SELECT
+			*
+		FROM
+			TB_06_RSI
+		WHERE
+			SUR_SEQ = #{sur_seq}
+	</select>
    
 </mapper>
