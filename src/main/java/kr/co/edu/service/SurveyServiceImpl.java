@@ -159,15 +159,32 @@ public class SurveyServiceImpl implements SurveyService {
 
 	@Override
 	public boolean updateSurveyVO(SurveyVO surveyVO) {
-		 // test code: 나중에 DB에서 해야함!
+//		 // test code: 나중에 DB에서 해야함!
+//		int sur_seq = surveyVO.getSur_seq();
+//		if (this.serveyVO.getSur_seq() != sur_seq) { // WHERE
+//			return false; // early return
+//		}
+//		
+//		String sur_title = surveyVO.getSur_title();
+//		this.serveyVO.setSur_title(sur_title); // UPDATE
+//		return true;
+		
+		// test code (2)
 		int sur_seq = surveyVO.getSur_seq();
-		if (this.serveyVO.getSur_seq() != sur_seq) { // WHERE
-			return false; // early return
+//		for (SurveyVO item : this.surveyList) { // 향상된 for문을 여기서는 쓰지 않는다: UPDATE를  위해서!
+//			boolean isFind = (item.getSur_seq() == sur_seq);
+//			
+//		}
+		for (int i = 0; i < this.surveyList.size(); i++) {
+			SurveyVO item = this.surveyList.get(i);
+			boolean isFind = (item.getSur_seq() == sur_seq); // WHERE
+			if (isFind) {
+				this.surveyList.set(i, surveyVO); // UPDATE
+				return true;
+			}
 		}
 		
-		String sur_title = surveyVO.getSur_title();
-		this.serveyVO.setSur_title(sur_title); // UPDATE
-		return true;
+		return false; // test code: WHERE-> 0
 	}
 
 	@Override
