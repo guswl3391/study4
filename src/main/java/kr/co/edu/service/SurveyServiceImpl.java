@@ -13,25 +13,34 @@ import kr.co.edu.vo.SurveyVO;
 
 @Service
 public class SurveyServiceImpl implements SurveyService {
-	public SurveyVO serveyVO; // test code
-	public List<SurveyItemVO> list; // test code
+	// public SurveyVO serveyVO; // test code
+	public List<SurveyVO> surveyList;
+	public int surveySurSeq = 0;
+	
+	public List<SurveyItemVO> itemList; // test code
+	public int itemListSuriSeq = 0;
+	
 	public List<SurveyAnswerVO> answerList;
 	
 	
 	public SurveyServiceImpl() { // test code
-		int sur_seq = 1;
+		// int sur_seq = 1;
 		
-		serveyVO = new SurveyVO(sur_seq, "Test 설문 조사 2", null, null, null);
-		list = new ArrayList<SurveyItemVO>();
-			
-		SurveyItemVO item = new SurveyItemVO(sur_seq, 1, "첫 번째 질문");
-		list.add(item);
+		// serveyVO = new SurveyVO(sur_seq, "Test 설문 조사 2", null, null, null);
+		surveyList = new ArrayList<SurveyVO>();
+		itemList = new ArrayList<SurveyItemVO>();
 		
-		SurveyItemVO item1 = new SurveyItemVO(sur_seq, 2, "두 번째 질문");
-		list.add(item1);
-		
-		SurveyItemVO item2 = new SurveyItemVO(sur_seq, 3, "세 번째 질문");
-		list.add(item2);
+//		itemListSuriSeq++;
+//		SurveyItemVO item = new SurveyItemVO(sur_seq, itemListSuriSeq, "첫 번째 질문");
+//		itemList.add(item);
+//		
+//		itemListSuriSeq++;
+//		SurveyItemVO item1 = new SurveyItemVO(sur_seq, itemListSuriSeq, "두 번째 질문");
+//		itemList.add(item1);
+//		
+//		itemListSuriSeq++;
+//		SurveyItemVO item2 = new SurveyItemVO(sur_seq, itemListSuriSeq, "세 번째 질문");
+//		itemList.add(item2);
 		
 		answerList = new ArrayList<SurveyAnswerVO>();
 	}
@@ -69,7 +78,16 @@ public class SurveyServiceImpl implements SurveyService {
 //		SurveyVO surveyVO = new SurveyVO(sur_seq, "Test 설문 조사 "+sur_seq, start_date, end_date, null);
 //		return surveyVO;	
 		
-		return this.serveyVO;
+		// return this.serveyVO;
+		
+		for (SurveyVO surveyVO : surveyList) { // 향상된 for문!
+			boolean isFind = (surveyVO.getSur_seq() == sur_seq); // 찾았다!
+			if (isFind) {
+				return surveyVO;
+			}
+		}
+		
+		return null;
 	}
 
 	
@@ -96,24 +114,46 @@ public class SurveyServiceImpl implements SurveyService {
 //		
 //		return list;
 		
-		return this.list;
+		// test code
+		List<SurveyItemVO> list = new ArrayList<SurveyItemVO>();
+		for (SurveyItemVO item : this.itemList) {
+			boolean isFind = (item.getSur_seq() == sur_seq); // 찾았다! = WHERE sur_seq
+			if (isFind) {
+				list.add(item);
+			}
+		}
+		
+		return list;
 	}
 
 
 	@Override
 	public boolean insertSurveyVO(SurveyVO surveyVO) {
 		
-		surveyVO.setSur_seq(1);
+		// surveyVO.setSur_seq(1);
 		// test code: db에서 sur_seq를 알아서 세팅해 줄 것이다, 지금은 테스트로 진행
+		
+		// test code
+		surveySurSeq++;
+		surveyVO.setSur_seq(surveySurSeq);
+		surveyList.add(surveyVO);
 		
 		return true;
 	}
 
 
 	@Override
-	public boolean insertSurveyItemVO(List<String> question, int sur_seq) {
+	public boolean insertSurveyItemVO(List<String> questionList, int sur_seq) {
 		// db에 insert할 때 sur_seq도 같이 넣어줘야 함
-		
+
+		// test code
+		for (int i = 0; i < questionList.size(); i++) {
+			String question = questionList.get(i);
+			itemListSuriSeq++;
+			SurveyItemVO item = new SurveyItemVO(sur_seq, itemListSuriSeq, question); // 뭔가 어색하다?
+			itemList.add(item);
+		}
+				
 		return true;
 	}
 
@@ -135,7 +175,7 @@ public class SurveyServiceImpl implements SurveyService {
 		// test code: 나중에 DB에서 해야함!
 		int suri_seq = surveyItemVO.getSuri_seq();
 		
-		for (SurveyItemVO surveyItemVO2 : list) {
+		for (SurveyItemVO surveyItemVO2 : itemList) {
 			if (surveyItemVO2.getSuri_seq() != suri_seq) { // WHERE
 				continue; // early return: for
 			}
