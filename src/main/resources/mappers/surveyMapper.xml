@@ -3,7 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="surveyMapper">
+
 	<select id="test" resultType="Date">
 		select SYSDATE from DUAL
 	</select>
+	
+	<insert id="insertSurvey" parameterType="kr.co.edu.vo.SurveyVO" useGeneratedKeys="true" keyProperty="sur_seq">
+		<selectKey keyProperty="sur_seq" resultType="int" order="BEFORE">
+			SELECT TB_06_RS_SEQ.NEXTVAL FROM DUAL	   
+	    </selectKey>
+	   
+	   INSERT INTO TB_06_RS (
+		    SUR_SEQ, SUR_TITLE, SUR_SAT_DATE, SUR_END_DATE, FINISH_YN
+		)
+		VALUES (
+			#{sur_seq}, #{sur_title}, SYSDATE, SYSDATE, 'N'
+		)
+   </insert>
+   
+	<insert id="insertSurveyItem" parameterType="kr.co.edu.vo.SurveyItemVO" useGeneratedKeys="true" keyProperty="suri_seq">
+		<selectKey keyProperty="suri_seq" resultType="int" order="BEFORE">
+			SELECT TB_06_RSI_SEQ.NEXTVAL FROM DUAL	   
+	    </selectKey>
+	    
+	    INSERT INTO TB_06_RSI(
+		    SUR_SEQ, SURI_SEQ, SURI_TITLE
+		)
+		VALUES (
+		    #{sur_seq}, #{suri_seq}, #{suri_title}
+		)
+   </insert>
+   
 </mapper>

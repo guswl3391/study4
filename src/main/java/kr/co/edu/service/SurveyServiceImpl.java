@@ -142,29 +142,13 @@ public class SurveyServiceImpl implements SurveyService {
 
 	@Override
 	public boolean insertSurveyVO(SurveyVO surveyVO) {
-		
-		// surveyVO.setSur_seq(1);
-		// test code: db에서 sur_seq를 알아서 세팅해 줄 것이다, 지금은 테스트로 진행
-		
-		// test code
-		surveySurSeq++;
-		surveyVO.setSur_seq(surveySurSeq);
-		surveyList.add(surveyVO);
-		
+		dao.insertSurveyVO(surveyVO);
 		return true;
 	}
 	
 	@Override
 	public boolean insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
-		
-		// test code
-		int sur_seq = surveyVO.getSur_seq();
-		surveyItemVO.setSur_seq(sur_seq);
-		
-		itemListSuriSeq++;
-		surveyItemVO.setSuri_seq(itemListSuriSeq);
-		
-		this.itemList.add(surveyItemVO);
+		dao.insertSurveyItemVO(surveyItemVO, surveyVO);
 		return true;
 	}
 	
