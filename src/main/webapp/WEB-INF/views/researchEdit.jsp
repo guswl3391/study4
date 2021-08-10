@@ -252,7 +252,6 @@
           <!-- btn--> 
           <span class="bbs_btn"> 
 
-          <span class="wte_l"><a href="#" class="wte_r">목록</a></span>
           <span class="per_l"><a href="#" class="pre_r">확인</a></span>
           <span class="wte_l"><a href="#" class="wte_r">취소</a></span>
           
