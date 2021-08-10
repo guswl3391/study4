@@ -34,6 +34,10 @@
 		li.innerHTML = innerHTML;
 		ulQuestion.append(li);
 	}
+	
+	function onclickSubmit() {
+		document.form.submit();
+	}
 
 
 
@@ -186,7 +190,7 @@
         <p class="pt30"></p>
         
       	
-      <form action="/write" method="post">
+      <form name="form" action="/write" method="post">
       
       	<div class="tbl_box">
           <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
@@ -236,7 +240,7 @@
           <span class="bbs_btn"> 
 
           <span class="wte_l"><a href="#" class="wte_r">목록</a></span>
-          <!-- <span class="per_l"><a href="#" class="pre_r">등록</a></span> -->
+          <span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">등록</a></span>
           <span class="wte_l"><a href="#" class="wte_r">취소</a></span>
 
           </span> 
