@@ -101,7 +101,7 @@ public class HomeController {
 	@RequestMapping(value = "/write", method = {RequestMethod.POST})
 	public String write(
 			SurveyVO surveyVO,
-			@RequestParam("question[]") List<String> question
+			@RequestParam("question[]") List<String> questionList
 		) {
 		// title에 인코딩 이슈 있음
 		
@@ -112,7 +112,12 @@ public class HomeController {
 		int sur_seq = surveyVO.getSur_seq();
 		
 		// 3. 문항들 등록하기
-		service.insertSurveyItemVO(question, sur_seq);
+		for(String question : questionList) {
+			int suri_seq = 0; // INSERT
+			SurveyItemVO surveyItemVO = new SurveyItemVO(sur_seq, suri_seq, question);
+			service.insertSurveyItemVO(surveyItemVO, surveyVO);
+		}
+		
 		
 		return "redirect:/"; // redirect 하는 이유는 작성이 끝나고 나서 어떠한 화면으로 가야 하기 때문에
 	}

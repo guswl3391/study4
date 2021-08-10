@@ -140,22 +140,21 @@ public class SurveyServiceImpl implements SurveyService {
 		
 		return true;
 	}
-
-
+	
 	@Override
-	public boolean insertSurveyItemVO(List<String> questionList, int sur_seq) {
-		// db에 insert할 때 sur_seq도 같이 넣어줘야 함
-
+	public boolean insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
+		
 		// test code
-		for (int i = 0; i < questionList.size(); i++) {
-			String question = questionList.get(i);
-			itemListSuriSeq++;
-			SurveyItemVO item = new SurveyItemVO(sur_seq, itemListSuriSeq, question); // 뭔가 어색하다?
-			itemList.add(item);
-		}
-				
+		int sur_seq = surveyVO.getSur_seq();
+		surveyItemVO.setSur_seq(sur_seq);
+		
+		itemListSuriSeq++;
+		surveyItemVO.setSuri_seq(itemListSuriSeq);
+		
+		this.itemList.add(surveyItemVO);
 		return true;
 	}
+	
 
 	@Override
 	public boolean updateSurveyVO(SurveyVO surveyVO) {

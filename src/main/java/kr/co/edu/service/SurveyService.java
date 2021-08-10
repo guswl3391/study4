@@ -40,11 +40,11 @@ public interface SurveyService {
 	
 	/**
 	 * 설문조사의 문항들을 신규 등록하기
-	 * @param question -> 문항들의 질문 내용이다. (예: 오늘 덥나요? 등) {@link SurveyItemVO.suri_title}
-	 * @param sur_seq -> 제목 번호 {@link SurveyVO.sur_seq}
+	 * @param surveyItemVO 신규 등록할 문항 모델
+	 * @param surveyVO 신규 등록할 문항의 제목 모델
 	 * @return
 	 */
-	public boolean insertSurveyItemVO(List<String> question, int sur_seq);
+	public boolean insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
 	
 	/**
 	 * 설문 조사 제목과 상세 정보들 업데이트 하기
