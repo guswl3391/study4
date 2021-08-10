@@ -21,6 +21,7 @@ public class SurveyServiceImpl implements SurveyService {
 	public int itemListSuriSeq = 0;
 	
 	public List<SurveyAnswerVO> answerList;
+	public int answerListAno = 0;
 	
 	
 	public SurveyServiceImpl() { // test code
@@ -206,6 +207,10 @@ public class SurveyServiceImpl implements SurveyService {
 
 	@Override
 	public boolean insertSurveyAnswerVO(SurveyAnswerVO surveyAnswerVO) {
+		
+		// test code
+		answerListAno++;
+		surveyAnswerVO.setAno(answerListAno);
 		answerList.add(surveyAnswerVO); // test code
 		
 		return true;

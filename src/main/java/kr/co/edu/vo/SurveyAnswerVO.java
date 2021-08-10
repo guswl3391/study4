@@ -51,6 +51,10 @@ public class SurveyAnswerVO {
 		return ano;
 	}
 
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
 	public int getPno() {
 		return pno;
 	}
