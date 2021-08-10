@@ -41,8 +41,9 @@
  		
  		const isConfirm = confirm("답변 제출 후에는 수정이 불가능합니다. 답변 제출하시겠습니까?");
 		
+ 		// validate
  		if(isConfirm==false){
- 			return;
+ 			return false; //early return
  		}
  		
  		document.form.submit();
@@ -307,7 +308,7 @@
           <span class="bbs_btn"> 
 
           <span class="wte_l"><a href="#" class="wte_r">목록</a></span>
-          <span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit();">답변 등록</a></span>
+          <span class="wte_l"><a href="#" class="wte_r" onclick="return onclickSubmit();">답변 등록</a></span>
           
           
 
