@@ -102,4 +102,39 @@
 		    #{choice_reason}
 		)
    </insert>
+   
+   <!-- 게시물 검색(동적 쿼리 sql문) -->
+	<sql id="searchWhere">
+	    <where>
+	        <if test="keyword != null and keyword.length() > 0">
+	            SUR_TITLE LIKE '%' || #{keyword} || '%'
+	        </if>
+	    </where>
+	</sql>
+	
+	<select id="selectSurveyListCount" resultType="int" parameterType="Map">
+		SELECT
+		    count(*)
+		FROM
+		    TB_06_RS tr
+		<include refid="searchWhere" />
+	</select>
+	
+	<select id="selectSurveyList" resultType="kr.co.edu.vo.SurveyVO" parameterType="Map">
+		SELECT
+		    tr.*
+		FROM
+		(
+		    SELECT
+		        tr.*,
+		        ROW_NUMBER() OVER(ORDER BY SUR_SEQ ASC) AS RNUM
+		    FROM
+		        TB_06_RS tr
+		    <include refid="searchWhere" />
+		) tr
+		WHERE
+		    RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY
+		    RNUM DESC
+	</select>
 </mapper>

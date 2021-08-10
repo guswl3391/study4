@@ -43,8 +43,15 @@ public class HomeController {
 		String sysdate = dateFormat.format(date2);
 		model.addAttribute("sysdate", sysdate);
 		
-		List<SurveyVO> list = service.getList();
+		int page = 1;
+		String keyword = "";
+		int pno = 1;
+		
+		List<SurveyVO> list = service.selectSurveyList(page, keyword, pno);
 		model.addAttribute("list", list);
+		
+		int count = service.selectSurveyListCount(keyword);
+		model.addAttribute("count", count);
 		
 		return "home";
 	}
@@ -56,12 +63,27 @@ public class HomeController {
 	 * @param sur_seq -> 설문조사 제목 번호  {@link SurveyVO}
 	 * @return
 	 */
-	@RequestMapping(value = "/researchList", method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(int sur_seq, Model model){
-		logger.info("list");
+	@RequestMapping(value = "/researchList", method = RequestMethod.GET)
+	public String list(
+		Model model,
+		Integer page,
+		String keyword
+	){
+		// validation
+		if (page == null || page <= 0) {
+			page = 1;
+		}
 		
+		// model
+		int count = service.selectSurveyListCount(keyword);
+		model.addAttribute("count", count);
 		
+		int pno = 1; // test code: !!! 세션에서 가져와야 함. 로그인 구현 후 꼭 수정할 것
 		
+		List<SurveyVO> list = service.selectSurveyList(page, keyword, pno);
+		model.addAttribute("list", list);
+		
+		// view
 		return "researchList";
 	}
 	

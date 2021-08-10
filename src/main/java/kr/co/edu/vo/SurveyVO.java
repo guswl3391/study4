@@ -17,18 +17,27 @@ public class SurveyVO {
 	private Date sur_sat_date; // 시작일
 	private Date sur_end_date; // 마감일
 	private String finish_yn; // 완료 여부: Y는 완료 N은 진행 중
+	
+	private String answer_yn; // 참여 여부
+	private int rnum; 
 
 	public SurveyVO() {
 		super();
 	}
 
-	public SurveyVO(int sur_seq, String sur_title, Date sur_sat_date, Date sur_end_date, String finish_yn) {
+	public SurveyVO(
+		int sur_seq, String sur_title, Date sur_sat_date, Date sur_end_date, String finish_yn,
+		String answer_yn, int rnum
+	) {
 		super();
 		this.sur_seq = sur_seq;
 		this.sur_title = sur_title;
 		this.sur_sat_date = sur_sat_date;
 		this.sur_end_date = sur_end_date;
 		this.finish_yn = finish_yn;
+		
+		this.answer_yn = answer_yn;
+		this.rnum = rnum;
 	}
 
 	public int getSur_seq() {
@@ -71,4 +80,11 @@ public class SurveyVO {
 		this.finish_yn = finish_yn;
 	}
 
+	public int getRnum() {
+		return rnum;
+	}
+	
+	public String getAnswer_yn() {
+		return answer_yn;
+	}
 }

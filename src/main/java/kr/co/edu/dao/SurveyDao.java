@@ -67,4 +67,21 @@ public interface SurveyDao {
 	 * @return
 	 */
 	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
+	
+
+	/**
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	public int selectSurveyListCount(String keyword);
+	
+	/**
+	 * 
+	 * @param page
+	 * @param keyword
+	 * @param pno
+	 * @return
+	 */
+	public List<SurveyVO> selectSurveyList(int page, String keyword, int pno);
 }

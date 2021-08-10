@@ -16,12 +16,6 @@ public interface SurveyService {
 	public Date test();
 	
 	/**
-	 * 설문조사 목록을 가져오는 메소드(테스트용 메소드)
-	 * @return 설문조사 목록(테스트용)
-	 */
-	public List<SurveyVO> getList();
-	
-	/**
 	 * SurveyVO들 중에서 하나의 SurveyVO만 가져오기 위함
 	 * @param sur_seq -> 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
 	 * @return {@link SurveyVO}
@@ -73,5 +67,21 @@ public interface SurveyService {
 	 * @return
 	 */
 	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
+
+	/**
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	public int selectSurveyListCount(String keyword);
+	
+	/**
+	 * 
+	 * @param page
+	 * @param keyword
+	 * @param pno
+	 * @return
+	 */
+	public List<SurveyVO> selectSurveyList(int page, String keyword, int pno);
 	
 }

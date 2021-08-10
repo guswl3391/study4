@@ -63,4 +63,26 @@ public class SurveyDaoImpl implements SurveyDao {
 		return sqlSession.insert("surveyMapper.insertSurveyAnswer", surveyAnswerVO);
 	}
 
+	@Override
+	public int selectSurveyListCount(String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		return sqlSession.selectOne("surveyMapper.selectSurveyListCount", map);
+	}
+
+	@Override
+	public List<SurveyVO> selectSurveyList(int page, String keyword, int pno) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("pno", pno);
+		
+		int rowStart = (page - 1) * 10 + 1;
+		map.put("rowStart", rowStart);
+		
+		int rowEnd = page * 10;
+		map.put("rowEnd", rowEnd);
+		
+		return sqlSession.selectList("surveyMapper.selectSurveyList", map);
+	}
+
 }
