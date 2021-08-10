@@ -14,7 +14,7 @@ public class PageMaker {
 	
 	private int prev; // 이전 페이지 리스트 블럭의 마지막 페이지 
 	private int next; // 다음 페이지 리스트 블럭의 처음 페이지
-	// private int curPage; // 현재 페이지
+	private int curPage; // 현재 페이지
 	
 	private int startPage; // 페이지 리스트의 시작
 	private int endPage; // 페이지 리스트의 끝
@@ -33,6 +33,7 @@ public class PageMaker {
 
 	public PageMaker(int curPage, int totalCount, String keyword) {
 		this.keyword = keyword;
+		this.curPage = curPage;
 		
 		topPage = 1; //첫 페이지
 		lastPage = totalCount / pageSize; //끝 페이지
@@ -86,6 +87,18 @@ public class PageMaker {
 		
 		return uriComponents.toUriString();
 	}
+
+	private String encoding(String keyword) {
+		if(keyword == null || keyword.trim().length() == 0) { 
+			return "";
+		}
+		 
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		} catch(UnsupportedEncodingException e) { 
+			return ""; 
+		}
+	}
 	
 	public String makeTopPage() {
 		return this.makeSearch(topPage);
@@ -102,17 +115,9 @@ public class PageMaker {
 	public String makeNextPage() {
 		return this.makeSearch(next);
 	}
-
-	private String encoding(String keyword) {
-		if(keyword == null || keyword.trim().length() == 0) { 
-			return "";
-		}
-		 
-		try {
-			return URLEncoder.encode(keyword, "UTF-8");
-		} catch(UnsupportedEncodingException e) { 
-			return ""; 
-		}
+	
+	public boolean isCurPage(int pageNo) {
+		boolean isCurPage = (pageNo == curPage);
+		return isCurPage;
 	}
-
 }
