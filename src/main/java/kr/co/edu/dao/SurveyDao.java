@@ -3,6 +3,7 @@ package kr.co.edu.dao;
 import java.util.Date;
 import java.util.List;
 
+import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
 import kr.co.edu.vo.SurveyVO;
 
@@ -59,4 +60,11 @@ public interface SurveyDao {
 	 * @return
 	 */
 	public int updateSurveyItem(SurveyItemVO surveyItemVO);
+	
+	/**
+	 * 참여자가 응답을 서버에 전송해서 insert 하기
+	 * @param surveyAnswerVO -> 설문 조사에 참여자가 응답하는 상세 내용
+	 * @return
+	 */
+	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
 }

@@ -89,4 +89,17 @@
 		    SURI_SEQ = #{suri_seq}
 	</update>
    
+	<insert id="insertSurveyAnswer" parameterType="kr.co.edu.vo.SurveyAnswerVO" useGeneratedKeys="true" keyProperty="ano">
+		<selectKey keyProperty="ano" resultType="int" order="BEFORE">
+		    SELECT TB_06_RSR_SEQ.NEXTVAL FROM DUAL	   
+		</selectKey>
+		
+		INSERT INTO TB_06_RSR (
+		    ANO, PNO, SUR_SEQ, SURI_SEQ, ANSWER, CHOICE_REASON
+		)
+		VALUES (
+		    #{ano}, #{pno}, #{sur_seq}, #{suri_seq}, #{answer}, 
+		    #{choice_reason}
+		)
+   </insert>
 </mapper>

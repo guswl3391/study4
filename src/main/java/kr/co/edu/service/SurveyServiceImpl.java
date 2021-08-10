@@ -123,13 +123,7 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public boolean insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO) {
-		
-		// test code
-		answerListAno++;
-		surveyAnswerVO.setAno(answerListAno);
-		answerList.add(surveyAnswerVO); // test code
-		
-		return true;
+	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO) {
+		return dao.insertSurveyAnswer(surveyAnswerVO);
 	}
 }

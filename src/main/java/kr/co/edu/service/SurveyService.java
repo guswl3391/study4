@@ -72,6 +72,6 @@ public interface SurveyService {
 	 * @param surveyAnswerVO -> 설문 조사에 참여자가 응답하는 상세 내용
 	 * @return
 	 */
-	public boolean insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
+	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
 	
 }

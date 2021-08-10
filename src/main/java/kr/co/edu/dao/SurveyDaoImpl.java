@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
 import kr.co.edu.vo.SurveyVO;
 
@@ -55,6 +56,11 @@ public class SurveyDaoImpl implements SurveyDao {
 	@Override
 	public int updateSurveyItem(SurveyItemVO surveyItemVO) {
 		return sqlSession.update("surveyMapper.updateSurveyItem", surveyItemVO);
+	}
+
+	@Override
+	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO) {
+		return sqlSession.insert("surveyMapper.insertSurveyAnswer", surveyAnswerVO);
 	}
 
 }
