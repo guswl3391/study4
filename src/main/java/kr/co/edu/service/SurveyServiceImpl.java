@@ -81,7 +81,7 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public List<SurveyVO> selectSurveyList(int page, String keyword, int pno) {
-		return dao.selectSurveyList(page, keyword, pno);
+	public List<SurveyVO> selectSurveyList(int page, int count, String keyword, int pno) {
+		return dao.selectSurveyList(page, count, keyword, pno);
 	}
 }

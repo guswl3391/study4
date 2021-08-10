@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.edu.service.SurveyService;
+import kr.co.edu.vo.PageMaker;
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
 import kr.co.edu.vo.SurveyVO;
@@ -80,8 +81,11 @@ public class HomeController {
 		
 		int pno = 1; // test code: !!! 세션에서 가져와야 함. 로그인 구현 후 꼭 수정할 것
 		
-		List<SurveyVO> list = service.selectSurveyList(page, keyword, pno);
+		List<SurveyVO> list = service.selectSurveyList(page, count, keyword, pno);
 		model.addAttribute("list", list);
+		
+		PageMaker pageMaker = new PageMaker(page, count, keyword);
+		model.addAttribute("pageMaker", pageMaker);
 		
 		// view
 		return "researchList";

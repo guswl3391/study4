@@ -42,6 +42,24 @@
 				</p>
 			</li>
 		</c:forEach>
+		
+		<div class="paging">
+			<div class="paging-body">
+				<div class="text-center mt-5 mb-5">
+				 	<ul class="pagination">
+	                  	<li><a href="researchList${pageMaker.makeTopPage()}">[처음]</a></li>
+	                  	<li><a href="researchList${pageMaker.makePrevPage()}">[이전]</a></li>
+					    
+					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx" >
+					    	<li><a href="researchList${pageMaker.makeSearch(idx)}"> ${idx}</a></li>
+					    </c:forEach>
+					
+				    	<li><a href="researchList${pageMaker.makeNextPage()}">[다음]</a></li>
+				    	<li><a href="researchList${pageMaker.makeLastPage()}">[끝]</a></li>
+	           		</ul>
+           		</div>
+			</div>
+		</div>
 	</ol>
 </body>
 

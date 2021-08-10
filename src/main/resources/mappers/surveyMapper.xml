@@ -122,16 +122,30 @@
 	
 	<select id="selectSurveyList" resultType="kr.co.edu.vo.SurveyVO" parameterType="Map">
 		SELECT
-		    tr.*
+		    rs.*,
+		    (CASE
+		        WHEN rsr.SUR_SEQ > 0
+		        THEN 'Y'
+		        ELSE 'N'
+		    END) answer_yn
 		FROM
 		(
 		    SELECT
-		        tr.*,
+		        rs.*,
 		        ROW_NUMBER() OVER(ORDER BY SUR_SEQ ASC) AS RNUM
 		    FROM
-		        TB_06_RS tr
+		        TB_06_RS rs
 		    <include refid="searchWhere" />
-		) tr
+		) rs
+		LEFT JOIN
+		(
+		    SELECT
+		        DISTINCT SUR_SEQ
+		    FROM
+		        TB_06_RSR rsr
+		    WHERE
+		        PNO = #{pno}
+		) rsr on rsr.SUR_SEQ = rs.SUR_SEQ
 		WHERE
 		    RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY

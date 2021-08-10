@@ -71,15 +71,21 @@ public class SurveyDaoImpl implements SurveyDao {
 	}
 
 	@Override
-	public List<SurveyVO> selectSurveyList(int page, String keyword, int pno) {
+	public List<SurveyVO> selectSurveyList(int page, int count, String keyword, int pno) {
+		int pageSize = 10;
+		int maxPage = count / pageSize; //끝 페이지
+		if(count % pageSize > 0) { 
+			maxPage++;
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("pno", pno);
 		
-		int rowStart = (page - 1) * 10 + 1;
+		int rowStart = count - (page * pageSize) + 1;
 		map.put("rowStart", rowStart);
 		
-		int rowEnd = page * 10;
+		int rowEnd = count - (page - 1) * pageSize;
 		map.put("rowEnd", rowEnd);
 		
 		return sqlSession.selectList("surveyMapper.selectSurveyList", map);

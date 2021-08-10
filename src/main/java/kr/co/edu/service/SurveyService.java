@@ -78,10 +78,11 @@ public interface SurveyService {
 	/**
 	 * 
 	 * @param page
+	 * @param count
 	 * @param keyword
 	 * @param pno
 	 * @return
 	 */
-	public List<SurveyVO> selectSurveyList(int page, String keyword, int pno);
+	public List<SurveyVO> selectSurveyList(int page, int count, String keyword, int pno);
 	
 }
