@@ -48,11 +48,11 @@ public class HomeController {
 		String keyword = "";
 		int pno = 1;
 		
-		List<SurveyVO> list = service.selectSurveyList(page, keyword, pno);
-		model.addAttribute("list", list);
-		
 		int count = service.selectSurveyListCount(keyword);
 		model.addAttribute("count", count);
+		
+		List<SurveyVO> list = service.selectSurveyList(page, count, keyword, pno);
+		model.addAttribute("list", list);
 		
 		return "home";
 	}
