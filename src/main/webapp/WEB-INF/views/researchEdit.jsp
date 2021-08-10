@@ -42,7 +42,7 @@
 		const innerHTML = `
 			<p>
          	 <input type="text" name="suri_title[]" value=""/>
-          	 <input type="hidden" name="suri_seq[]" value="" />
+          	 <input type="hidden" name="suri_seq[]" value="0" />
           	</p>
 		`;
 		div.innerHTML = innerHTML;
