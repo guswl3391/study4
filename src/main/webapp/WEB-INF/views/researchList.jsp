@@ -60,6 +60,13 @@
            		</div>
 			</div>
 		</div>
+		
+		<form name="form" action="/researchList" method="GET">
+			<p>
+				검색어: <input type="text" name="keyword" />
+				<a href="#" onclick="document.form.submit();">검색하기</a>
+			</p>
+		</form>
 	</ol>
 </body>
 
