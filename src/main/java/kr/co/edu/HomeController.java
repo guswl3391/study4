@@ -221,13 +221,22 @@ public class HomeController {
 			String suri_title = suriTitle.get(i);
 			int suri_seq = suriSeq.get(i);
 			int sur_seq = surveyVO.getSur_seq();
-			
+
 			SurveyItemVO surveyItemVO = new SurveyItemVO();
 			surveyItemVO.setSuri_title(suri_title);
 			surveyItemVO.setSuri_seq(suri_seq);
 			surveyItemVO.setSur_seq(sur_seq);
 			
-			service.updateSurveyItemVO(surveyItemVO);
+			boolean isUpdate = (suri_seq > 0);
+			if (isUpdate) {
+				service.updateSurveyItemVO(surveyItemVO);
+				
+			} else { // 새로 추가된 값
+				service.insertSurveyItemVO(surveyItemVO, surveyVO);
+				
+			}
+			
+			
 		}
 		
 		
