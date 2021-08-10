@@ -142,13 +142,13 @@ public class SurveyServiceImpl implements SurveyService {
 
 	@Override
 	public boolean insertSurveyVO(SurveyVO surveyVO) {
-		dao.insertSurveyVO(surveyVO);
+		dao.insertSurvey(surveyVO);
 		return true;
 	}
 	
 	@Override
 	public boolean insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
-		dao.insertSurveyItemVO(surveyItemVO, surveyVO);
+		dao.insertSurveyItem(surveyItemVO, surveyVO);
 		return true;
 	}
 	

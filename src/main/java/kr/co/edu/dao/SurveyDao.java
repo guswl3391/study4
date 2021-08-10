@@ -21,7 +21,7 @@ public interface SurveyDao {
 	 * @param surveyVO
 	 * @return
 	 */
-	public int insertSurveyVO(SurveyVO surveyVO);
+	public int insertSurvey(SurveyVO surveyVO);
 	
 	/**
 	 * 설문조사의 문항들을 신규 등록하기
@@ -29,5 +29,5 @@ public interface SurveyDao {
 	 * @param surveyVO 신규 등록할 문항의 제목 모델
 	 * @return
 	 */
-	public int insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
+	public int insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
 }

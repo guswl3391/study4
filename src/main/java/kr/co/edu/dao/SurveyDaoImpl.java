@@ -24,12 +24,12 @@ public class SurveyDaoImpl implements SurveyDao {
 	}
 
 	@Override
-	public int insertSurveyVO(SurveyVO surveyVO) {
+	public int insertSurvey(SurveyVO surveyVO) {
 		return sqlSession.insert("surveyMapper.insertSurvey", surveyVO);
 	}
 
 	@Override
-	public int insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
+	public int insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
 		int sur_seq = surveyVO.getSur_seq();
 		surveyItemVO.setSur_seq(sur_seq);
 		
