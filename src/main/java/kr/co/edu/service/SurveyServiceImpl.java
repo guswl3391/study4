@@ -83,7 +83,7 @@ public class SurveyServiceImpl implements SurveyService {
 	 * @return {@link SurveyVO}
 	 */
 	@Override
-	public SurveyVO getSurveyVO(int sur_seq) {
+	public SurveyVO selectSurvey(int sur_seq) {
 		return dao.selectSurvey(sur_seq);
 	}
 
@@ -94,36 +94,36 @@ public class SurveyServiceImpl implements SurveyService {
 	 * @return 설문조사 문항(테스트용)
 	 */
 	@Override
-	public List<SurveyItemVO> getItemList(int sur_seq) {
+	public List<SurveyItemVO> selectItemList(int sur_seq) {
 		return dao.selectItemList(sur_seq);
 	}
 
 
 	@Override
-	public boolean insertSurveyVO(SurveyVO surveyVO) {
+	public boolean insertSurvey(SurveyVO surveyVO) {
 		dao.insertSurvey(surveyVO);
 		return true;
 	}
 	
 	@Override
-	public boolean insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
+	public boolean insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
 		dao.insertSurveyItem(surveyItemVO, surveyVO);
 		return true;
 	}
 	
 
 	@Override
-	public int updateSurveyVO(SurveyVO surveyVO) {
+	public int updateSurvey(SurveyVO surveyVO) {
 		return dao.updateSurvey(surveyVO);
 	}
 
 	@Override
-	public int updateSurveyItemVO(SurveyItemVO surveyItemVO) {
+	public int updateSurveyItem(SurveyItemVO surveyItemVO) {
 		return dao.updateSurveyItem(surveyItemVO);
 	}
 
 	@Override
-	public boolean insertSurveyAnswerVO(SurveyAnswerVO surveyAnswerVO) {
+	public boolean insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO) {
 		
 		// test code
 		answerListAno++;

@@ -73,7 +73,7 @@ public class HomeController {
 	@RequestMapping(value = "/readView",  method = {RequestMethod.GET, RequestMethod.POST})
 	public String read(Model model, int sur_seq){
 		
-		List<SurveyItemVO> list = service.getItemList(sur_seq);
+		List<SurveyItemVO> list = service.selectItemList(sur_seq);
 		model.addAttribute("list", list);
 			
 		return "readView";
@@ -106,7 +106,7 @@ public class HomeController {
 		// title에 인코딩 이슈 있음
 		
 		// 1. 제목 등록하기
-		service.insertSurveyVO(surveyVO);
+		service.insertSurvey(surveyVO);
 		
 		// 2. sur_seq 얻어오기
 		int sur_seq = surveyVO.getSur_seq();
@@ -115,7 +115,7 @@ public class HomeController {
 		for(String question : questionList) {
 			int suri_seq = 0; // INSERT
 			SurveyItemVO surveyItemVO = new SurveyItemVO(sur_seq, suri_seq, question);
-			service.insertSurveyItemVO(surveyItemVO, surveyVO);
+			service.insertSurveyItem(surveyItemVO, surveyVO);
 		}
 		
 		
@@ -130,10 +130,10 @@ public class HomeController {
 	@RequestMapping(value = "/researchView", method = RequestMethod.GET)
 	public String researchView(int sur_seq, Model model){
 		
-		SurveyVO surveyVO = service.getSurveyVO(sur_seq);
+		SurveyVO surveyVO = service.selectSurvey(sur_seq);
 		model.addAttribute("surveyVO", surveyVO);
 		
-		List<SurveyItemVO> list = service.getItemList(sur_seq);
+		List<SurveyItemVO> list = service.selectItemList(sur_seq);
 		model.addAttribute("list", list);
 		
 
@@ -173,7 +173,7 @@ public class HomeController {
 			SurveyAnswerVO surveyAnswerVO = new SurveyAnswerVO(ano, pno, sur_seq, suri_seq, answer, choice_reason);
 			
 			
-			service.insertSurveyAnswerVO(surveyAnswerVO);
+			service.insertSurveyAnswer(surveyAnswerVO);
 		}
 		
 		
@@ -187,10 +187,10 @@ public class HomeController {
 	@RequestMapping(value = "/researchEdit", method = RequestMethod.GET)
 	public String researchEdit(int sur_seq, Model model){
 
-		SurveyVO surveyVO = service.getSurveyVO(sur_seq);
+		SurveyVO surveyVO = service.selectSurvey(sur_seq);
 		model.addAttribute("surveyVO", surveyVO);
 		
-		List<SurveyItemVO> list = service.getItemList(sur_seq);
+		List<SurveyItemVO> list = service.selectItemList(sur_seq);
 		model.addAttribute("list", list);
 		
 		return "researchEdit";
@@ -214,7 +214,7 @@ public class HomeController {
 		) {
 		
 		// 1. ServeyVO  업데이트 하기
-		service.updateSurveyVO(surveyVO);
+		service.updateSurvey(surveyVO);
 		
 		// 2. ServeyItemVO 업데이트 하기
 		for(int i =0; i < suriSeq.size(); i++) {
@@ -229,10 +229,10 @@ public class HomeController {
 			
 			boolean isUpdate = (suri_seq > 0);
 			if (isUpdate) {
-				service.updateSurveyItemVO(surveyItemVO);
+				service.updateSurveyItem(surveyItemVO);
 				
 			} else { // 새로 추가된 값
-				service.insertSurveyItemVO(surveyItemVO, surveyVO);
+				service.insertSurveyItem(surveyItemVO, surveyVO);
 				
 			}
 			

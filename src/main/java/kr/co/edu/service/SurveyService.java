@@ -26,14 +26,14 @@ public interface SurveyService {
 	 * @param sur_seq -> 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
 	 * @return {@link SurveyVO}
 	 */
-	public SurveyVO getSurveyVO(int sur_seq);
+	public SurveyVO selectSurvey(int sur_seq);
 	
 	/**
 	 * 설문조사 문항들을 가져오는 메소드(테스트용 메소드)
 	 * @param sur_seq 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
 	 * @return 설문조사 문항(테스트용)
 	 */
-	public List<SurveyItemVO> getItemList(int sur_seq);
+	public List<SurveyItemVO> selectItemList(int sur_seq);
 	
 
 	/**
@@ -41,7 +41,7 @@ public interface SurveyService {
 	 * @param surveyVO -> 이 안에 있는 sur_title을 가지고 와야 함
 	 * @return
 	 */
-	public boolean insertSurveyVO(SurveyVO surveyVO);
+	public boolean insertSurvey(SurveyVO surveyVO);
 	
 	
 	/**
@@ -50,14 +50,14 @@ public interface SurveyService {
 	 * @param surveyVO 신규 등록할 문항의 제목 모델
 	 * @return
 	 */
-	public boolean insertSurveyItemVO(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
+	public boolean insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
 	
 	/**
 	 * 설문 조사 제목과 상세 정보들 업데이트 하기
 	 * @param surveyVO -> sur_title과 sur_seq 업데이트 해야 함
 	 * @return
 	 */
-	public int updateSurveyVO(SurveyVO surveyVO);
+	public int updateSurvey(SurveyVO surveyVO);
 	
 	
 	/**
@@ -65,13 +65,13 @@ public interface SurveyService {
 	 * @param surveyItemVO -> suri_title, sur_seq, suri_seq
 	 * @return
 	 */
-	public int updateSurveyItemVO(SurveyItemVO surveyItemVO);
+	public int updateSurveyItem(SurveyItemVO surveyItemVO);
 	
 	/**
 	 * 참여자가 응답을 서버에 전송해서 insert 하기
 	 * @param surveyAnswerVO -> 설문 조사에 참여자가 응답하는 상세 내용
 	 * @return
 	 */
-	public boolean insertSurveyAnswerVO(SurveyAnswerVO surveyAnswerVO);
+	public boolean insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
 	
 }
