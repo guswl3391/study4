@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import kr.co.edu.service.SurveyService;
 import kr.co.edu.vo.PageMaker;
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
+import kr.co.edu.vo.SurveyPeopleVO;
 import kr.co.edu.vo.SurveyVO;
 
 @Controller
@@ -74,19 +76,22 @@ public class HomeController {
 		if (page == null || page <= 0) {
 			page = 1;
 		}
-		
+
 		// model
+		model.addAttribute("keyword", keyword);
+
 		int count = service.selectSurveyListCount(keyword);
 		model.addAttribute("count", count);
-		
-		int pno = 1; // test code: !!! 세션에서 가져와야 함. 로그인 구현 후 꼭 수정할 것
-		
+
+		SurveyPeopleVO surveyPeopleVO = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
+		int pno = (surveyPeopleVO == null) ? 0 :  surveyPeopleVO.getPno();
+
 		List<SurveyVO> list = service.selectSurveyList(page, count, keyword, pno);
 		model.addAttribute("list", list);
-		
+
 		PageMaker pageMaker = new PageMaker(page, count, keyword);
 		model.addAttribute("pageMaker", pageMaker);
-		
+
 		// view
 		return "researchList";
 	}
@@ -178,13 +183,19 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/researchSend", method = RequestMethod.POST)
 	public String researchSend(Model model,
-			int pno, // 참여자 번호
-			int sur_seq, // 제목 번호 
+			HttpSession session,
+			int sur_seq, // 제목 번호
 			@RequestParam("suri_seq[]") List<Integer> suriSeqList, // 문항 번호
 			@RequestParam("answer[]") List<Integer> answerList, // 응답값
 			@RequestParam("choice_reason[]") List<String> choiceReasonList // 선택 사유
 	) {
-		
+		SurveyPeopleVO surveyPeopleVO = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
+		int pno = (surveyPeopleVO == null) ? 0 :  surveyPeopleVO.getPno();
+
+		// validation
+		if (pno == 0) {
+			// 화내야함. 쫓아내버려야함
+		}
 //		이 내용을 저장해야한다-> insert
 		
 		for(int i = 0; i < suriSeqList.size(); i++) {
