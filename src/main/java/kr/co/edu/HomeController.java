@@ -36,15 +36,15 @@ public class HomeController {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
 		
-		model.addAttribute("serverTime", formattedDate );
-		
+		Date date2 = service.test();
+		String sysdate = dateFormat.format(date2);
+		model.addAttribute("sysdate", sysdate);
 		
 		List<SurveyVO> list = service.getList();
 		model.addAttribute("list", list);
-		
 		
 		return "home";
 	}

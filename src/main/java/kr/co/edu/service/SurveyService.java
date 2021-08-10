@@ -1,5 +1,6 @@
 package kr.co.edu.service;
 
+import java.util.Date;
 import java.util.List;
 
 import kr.co.edu.vo.SurveyAnswerVO;
@@ -8,6 +9,11 @@ import kr.co.edu.vo.SurveyVO;
 
 public interface SurveyService {
 	
+	/**
+	 * mybatis 테스트용 메소드
+	 * @return SYSDATE
+	 */
+	public Date test();
 	
 	/**
 	 * 설문조사 목록을 가져오는 메소드(테스트용 메소드)

@@ -16,6 +16,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<P>  The time on the DB is ${sysdate}. </P>
 
 
 	<c:forEach items="${list}" var = "list">

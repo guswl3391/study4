@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
+import kr.co.edu.dao.SurveyDao;
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
 import kr.co.edu.vo.SurveyVO;
@@ -13,6 +16,9 @@ import kr.co.edu.vo.SurveyVO;
 
 @Service
 public class SurveyServiceImpl implements SurveyService {
+	@Inject
+	private SurveyDao dao;
+	
 	// public SurveyVO serveyVO; // test code
 	public List<SurveyVO> surveyList;
 	public int surveySurSeq = 0;
@@ -44,6 +50,12 @@ public class SurveyServiceImpl implements SurveyService {
 //		itemList.add(item2);
 		
 		answerList = new ArrayList<SurveyAnswerVO>();
+	}
+	
+
+	@Override
+	public Date test() {
+		return dao.test();
 	}
 	
 	/**
@@ -215,6 +227,4 @@ public class SurveyServiceImpl implements SurveyService {
 		
 		return true;
 	}
-
-
 }
