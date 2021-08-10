@@ -11,6 +11,7 @@ public class SurveyPeopleVO {
 	 * 회원 번호
 	 */
 	private int pno;
+
 	/**
 	 * 회원명
 	 */
@@ -71,4 +72,9 @@ public class SurveyPeopleVO {
 	}
 
 
+	@Override
+	public String toString() {
+		return "SurveyPeopleVO [pno=" + pno + ", name=" + name + ", phone=" + phone + ", email=" + email + ", id=" + id
+				+ ", pw=" + pw + "]";
+	}
 }

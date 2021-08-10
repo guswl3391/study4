@@ -18,6 +18,8 @@
 <P>  The time on the server is ${serverTime}. </P>
 <P>  The time on the DB is ${sysdate}. </P>
 <P>  count: ${count} </P>
+<%-- <P>  surveyPeopleVO: ${surveyPeopleVO} </P> --%>
+<P>  surveyPeopleVO2: ${surveyPeopleVO2} </P>
 
 
 	<c:forEach items="${list}" var = "list">
