@@ -48,6 +48,12 @@
 		div.innerHTML = innerHTML;
 		tdQuestion.append(div);
 	}
+               
+        	
+   	function onclickSubmit() {
+   		document.form.submit();
+   	}
+
 
 </script>
 </head>
@@ -197,7 +203,7 @@
         <p class="history"><img src="/resources/images/sub/history_home.gif" alt="home" /> 알림마당 <img src="/resources/images/sub/history_arrow.gif" alt="다음" /> <strong>설문조사</strong></p>
         <p class="pt30"></p>
         
-       
+       <form name="form" action="/edit" method="post">
         <div class="tbl_box">
           <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
             <caption>
@@ -252,7 +258,7 @@
           <!-- btn--> 
           <span class="bbs_btn"> 
 
-          <span class="per_l"><a href="#" class="pre_r">확인</a></span>
+          <span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span>
           <span class="wte_l"><a href="#" class="wte_r">취소</a></span>
           
           
@@ -261,6 +267,9 @@
           <!-- //btn--> 
           
         </div>
+       </form>
+      
+      
       </div>
       
       <p class="bottom_bg"></p>
