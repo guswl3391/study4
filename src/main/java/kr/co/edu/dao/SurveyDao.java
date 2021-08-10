@@ -30,6 +30,14 @@ public interface SurveyDao {
 	 * @return {@link SurveyVO}
 	 */
 	public SurveyVO selectSurvey(int sur_seq);
+
+	/**
+	 * 설문 조사 제목과 상세 정보들 업데이트 하기
+	 * @param surveyVO -> sur_title과 sur_seq 업데이트 해야 함
+	 * @return
+	 */
+	public int updateSurvey(SurveyVO surveyVO);
+	
 	/**
 	 * 설문조사의 문항들을 신규 등록하기
 	 * @param surveyItemVO 신규 등록할 문항 모델
@@ -44,4 +52,11 @@ public interface SurveyDao {
 	 * @return 설문조사 문항(테스트용)
 	 */
 	public List<SurveyItemVO> selectItemList(int sur_seq);
+	
+	/**
+	 * 설문 조사 각각의 문항들에 대한 정보를 업데이트 하기
+	 * @param surveyItemVO -> suri_title, sur_seq, suri_seq
+	 * @return
+	 */
+	public int updateSurveyItem(SurveyItemVO surveyItemVO);
 }

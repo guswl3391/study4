@@ -57,7 +57,7 @@ public interface SurveyService {
 	 * @param surveyVO -> sur_title과 sur_seq 업데이트 해야 함
 	 * @return
 	 */
-	public boolean updateSurveyVO(SurveyVO surveyVO);
+	public int updateSurveyVO(SurveyVO surveyVO);
 	
 	
 	/**
@@ -65,7 +65,7 @@ public interface SurveyService {
 	 * @param surveyItemVO -> suri_title, sur_seq, suri_seq
 	 * @return
 	 */
-	public boolean updateSurveyItemVO(SurveyItemVO surveyItemVO);
+	public int updateSurveyItemVO(SurveyItemVO surveyItemVO);
 	
 	/**
 	 * 참여자가 응답을 서버에 전송해서 insert 하기

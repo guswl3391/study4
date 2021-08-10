@@ -33,6 +33,12 @@ public class SurveyDaoImpl implements SurveyDao {
 	public SurveyVO selectSurvey(int sur_seq) {
 		return sqlSession.selectOne("surveyMapper.selectSurvey", sur_seq);
 	}
+
+	@Override
+	public int updateSurvey(SurveyVO surveyVO) {
+		return sqlSession.update("surveyMapper.updateSurvey", surveyVO);
+	}
+
 	@Override
 	public int insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO) {
 		int sur_seq = surveyVO.getSur_seq();
@@ -44,6 +50,11 @@ public class SurveyDaoImpl implements SurveyDao {
 	@Override
 	public List<SurveyItemVO> selectItemList(int sur_seq) {
 		return sqlSession.selectList("surveyMapper.selectItemList", sur_seq);
+	}
+
+	@Override
+	public int updateSurveyItem(SurveyItemVO surveyItemVO) {
+		return sqlSession.update("surveyMapper.updateSurveyItem", surveyItemVO);
 	}
 
 }

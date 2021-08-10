@@ -29,6 +29,27 @@
 		WHERE
 			SUR_SEQ = #{sur_seq}
 	</select>
+	
+	<update id="updateSurvey" parameterType="kr.co.edu.vo.SurveyVO">
+		UPDATE TB_06_RS
+		<set>
+			<if test="sur_title != null">
+		    	SUR_TITLE = #{sur_title},
+	    	</if>
+		    <if test="sur_sat_date != null">
+		    	SUR_SAT_DATE = #{sur_sat_date},
+		    </if>
+		    <if test="sur_end_date != null">
+		    	SUR_END_DATE = #{sur_end_date},
+		    </if>
+		    <if test="finish_yn != null">
+		    	FINISH_YN = #{finish_yn},
+		    </if>
+	    </set>
+		WHERE
+		    SUR_SEQ = #{sur_seq}
+	</update>
+   
 	<insert id="insertSurveyItem" parameterType="kr.co.edu.vo.SurveyItemVO" useGeneratedKeys="true" keyProperty="suri_seq">
 		<selectKey keyProperty="suri_seq" resultType="int" order="BEFORE">
 			SELECT TB_06_RSI_SEQ.NEXTVAL FROM DUAL	   
@@ -50,5 +71,22 @@
 		WHERE
 			SUR_SEQ = #{sur_seq}
 	</select>
+	
+	<update id="updateSurveyItem" parameterType="kr.co.edu.vo.SurveyItemVO">
+		UPDATE TB_06_RSI
+		<set>
+		    <if test="sur_seq != null">
+		        SUR_SEQ = #{sur_seq},
+		    </if>
+		    <if test="suri_seq != null">
+		        SURI_SEQ = #{suri_seq},
+		    </if>
+		    <if test="suri_title != null">
+		        SURI_TITLE = #{suri_title},
+		    </if>
+		</set>
+		WHERE
+		    SURI_SEQ = #{suri_seq}
+	</update>
    
 </mapper>
