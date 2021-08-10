@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
+import kr.co.edu.vo.SurveyPeopleVO;
 import kr.co.edu.vo.SurveyVO;
 
 public interface SurveyService {
@@ -84,5 +85,13 @@ public interface SurveyService {
 	 * @return
 	 */
 	public List<SurveyVO> selectSurveyList(int page, int count, String keyword, int pno);
+	
+	/**
+	 * 
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	public SurveyPeopleVO selectPeople(String id, String pw);
 	
 }

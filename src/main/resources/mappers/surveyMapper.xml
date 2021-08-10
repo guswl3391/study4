@@ -151,4 +151,14 @@
 		ORDER BY
 		    RNUM DESC
 	</select>
+	
+	<select id="selectPeople" resultType="kr.co.edu.vo.SurveyPeopleVO" parameterType="Map">
+		SELECT
+		    rsp.*
+		FROM
+		    TB_06_RSP rsp
+		WHERE
+		    ID = #{id}
+		    AND PW = #{pw}
+	</select>
 </mapper>

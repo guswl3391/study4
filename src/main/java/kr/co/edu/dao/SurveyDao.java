@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
+import kr.co.edu.vo.SurveyPeopleVO;
 import kr.co.edu.vo.SurveyVO;
 
 // org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [kr.co.edu.dao.SurveyDaoImpl]; nested exception is java.io.FileNotFoundException: 
@@ -85,4 +86,13 @@ public interface SurveyDao {
 	 * @return
 	 */
 	public List<SurveyVO> selectSurveyList(int page, int count, String keyword, int pno);
+	
+
+	/**
+	 * 
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	public SurveyPeopleVO selectPeople(String id, String pw);
 }

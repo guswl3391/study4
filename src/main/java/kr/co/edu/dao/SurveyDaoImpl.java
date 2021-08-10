@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
+import kr.co.edu.vo.SurveyPeopleVO;
 import kr.co.edu.vo.SurveyVO;
 
 @Repository
@@ -89,6 +90,15 @@ public class SurveyDaoImpl implements SurveyDao {
 		map.put("rowEnd", rowEnd);
 		
 		return sqlSession.selectList("surveyMapper.selectSurveyList", map);
+	}
+
+	@Override
+	public SurveyPeopleVO selectPeople(String id, String pw) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("pw", pw);
+
+		return sqlSession.selectOne("surveyMapper.selectPeople", map);
 	}
 
 }

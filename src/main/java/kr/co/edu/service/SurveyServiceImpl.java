@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.co.edu.dao.SurveyDao;
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
+import kr.co.edu.vo.SurveyPeopleVO;
 import kr.co.edu.vo.SurveyVO;
 
 
@@ -83,5 +84,10 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public List<SurveyVO> selectSurveyList(int page, int count, String keyword, int pno) {
 		return dao.selectSurveyList(page, count, keyword, pno);
+	}
+
+	@Override
+	public SurveyPeopleVO selectPeople(String id, String pw) {
+		return dao.selectPeople(id, pw);
 	}
 }
