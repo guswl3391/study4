@@ -2,8 +2,8 @@ package kr.co.edu.vo;
 
 /**
  * 설문 조사에 참여자가 응답하는 상세 내용
+ * 테이블명: TB_06_RSR
  * @author 82104
- *
  */
 public class SurveyAnswerVO {
 

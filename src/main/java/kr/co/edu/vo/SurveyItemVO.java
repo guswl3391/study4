@@ -3,8 +3,8 @@ package kr.co.edu.vo;
 /**
  * 설문 조사 각각의 문항들에 대한 정보
  * 이 내용은 관리자가 등록한다.
+ * 테이블: TB_06_RSI
  * @author 82104
- *
  */
 public class SurveyItemVO {
 
