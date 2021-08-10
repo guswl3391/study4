@@ -36,6 +36,17 @@
 		input.value = value;
 	}
 
+	 
+ 	function onclickSubmit() {
+ 		
+ 		const isConfirm = confirm("답변 제출 후에는 수정이 불가능합니다. 답변 제출하시겠습니까?");
+		
+ 		if(isConfirm==false){
+ 			return;
+ 		}
+ 		
+ 		document.form.submit();
+	 }
 
 </script>
 </head>
@@ -185,7 +196,7 @@
         <p class="history"><img src="/resources/images/sub/history_home.gif" alt="home" /> 알림마당 <img src="/resources/images/sub/history_arrow.gif" alt="다음" /> <strong>설문조사</strong></p>
         <p class="pt30"></p>
         
-       <form action="/researchSend" method="POST">
+       <form action="/researchSend" method="POST" name="form">
         <input type="hidden" name="pno" value="1"> <!-- 아직 처리해야 함 -->
 		<input type="hidden" name="sur_seq" value="${surveyVO.sur_seq }">
 		
@@ -296,6 +307,7 @@
           <span class="bbs_btn"> 
 
           <span class="wte_l"><a href="#" class="wte_r">목록</a></span>
+          <span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit();">답변 등록</a></span>
           
           
 
