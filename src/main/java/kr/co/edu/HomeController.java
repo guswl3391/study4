@@ -268,5 +268,23 @@ public class HomeController {
 		
 		return "redirect:/"; // test용
 	}
+
+
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void login() {
+		
+	}
 	
+	@RequestMapping(value = "/loginDo", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean loginDo(String id, String pw, HttpSession session) {
+		SurveyPeopleVO surveyPeopleVO = service.selectPeople(id, pw);
+		session.setAttribute("surveyPeopleVO", surveyPeopleVO);
+		
+		boolean isLogin = (surveyPeopleVO != null);
+		return isLogin;
+	}
 }
