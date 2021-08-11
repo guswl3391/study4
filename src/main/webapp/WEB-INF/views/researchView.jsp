@@ -68,7 +68,7 @@
       <ul>
         <li class="bn"><a href="#">HOME</a></li>
         <li><a href="#">SITEMAP</a></li>
-        <li class="bn"> <a href="#"><img src="/resources/images/header/common/btn_login.gif" alt="로그인" /></a></li>
+        <li class="bn"> <a href="/login"><img src="/resources/images/header/common/btn_login.gif" alt="로그인" /></a></li>
       </ul>
     </div>
     <div id="gnb">
@@ -190,7 +190,7 @@
         <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_02Off.gif" alt="영양(교)사이야기" /></a></li>
         <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_03Off.gif" alt="조리(원)사이야기" /></a></li>
         <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_04Off.gif" alt="자유게시판" /></a></li>
-        <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_05On.gif" alt="설문조사" /></a></li>
+        <li><a href="/researchList"><img src="/resources/images/sub/particiation/sub_stitle_05On.gif" alt="설문조사" /></a></li>
       </ul>
       <div class="right_box">
         <h3><img src="/resources/images/sub/particiation/title_04.gif" alt="급식기구관리전환" /></h3>
@@ -307,7 +307,7 @@
           <!-- btn--> 
           <span class="bbs_btn"> 
 
-          <span class="wte_l"><a href="#" class="wte_r">목록</a></span>
+          <span class="wte_l"><a href="/researchList" class="wte_r">목록</a></span>
           <span class="wte_l"><a href="#" class="wte_r" onclick="return onclickSubmit();">답변 등록</a></span>
           
           
