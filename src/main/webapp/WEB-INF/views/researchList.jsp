@@ -320,7 +320,22 @@ doGoTab = function(thisObject, tab) {
               <c:forEach items="${list}" var="item">
 				<tr>
 	                <td>${item.rnum}</td>
-	                <td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+	                
+	                <!-- admin인 경우 -->
+	                <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'admin'}">
+	               	 <td class="tl"><a href="/researchEdit?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+	                </c:if>
+	                
+	                <!-- user인 경우 -->
+	                <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user'}">
+	               	 <td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+	                </c:if>
+	                
+	                <!-- 비로그인 경우 -->
+	                <c:if test ="${surveyPeopleVO == null || surveyPeopleVO.user_type == null}">
+	               	 <td class="tl"><a href="#">${item.sur_title}</a></td>
+	                </c:if>
+	                
 	                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
 	                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 	                <td>${item.finish_yn}</td>
