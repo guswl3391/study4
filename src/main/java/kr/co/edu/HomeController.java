@@ -132,7 +132,7 @@ public class HomeController {
 	// 게시글 작성 부분 -> 끝나면 메인으로
 	@RequestMapping(value = "/write", method = { RequestMethod.POST })
 	public String write(SurveyVO surveyVO, @RequestParam("question[]") List<String> questionList) {
-		// title에 인코딩 이슈 있음
+		// title에 인코딩 이슈 있음 -> 해결
 
 		// 1. 제목 등록하기
 		service.insertSurvey(surveyVO);
