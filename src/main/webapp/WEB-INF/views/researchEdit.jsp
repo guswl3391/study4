@@ -14,6 +14,13 @@
 <script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 
+<!-- jQuery UI 의 datepicker 위젯 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+
+
 <script type="text/javascript" >
 	let n = ${list.size()}; // 현재 문항 갯수 // 여러번 써야 한다-> 일회용인 지역번수 대신 계속 쓸 수 있는 전역변수로 해야 한다-> 이런 전역변수들을.. 프로그래머들은 몹시 싫어하며, 안 쓸 수 있으면 안 쓸 수 있는 방법을 고민해야 하며, "상태"라고 부르기도한다.
 	
@@ -60,6 +67,25 @@
    			location.href="/researchList"
    			} 
    		}
+   	
+
+	$(function(){
+	    $("#date2").datepicker({
+	        showOn: "both",
+	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
+	        buttonImageOnly: true,
+	        buttonText: "Select date"
+	    });
+	});
+
+	$(function(){
+	    $("#date3").datepicker({
+	        showOn: "both",
+	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
+	        buttonImageOnly: true,
+	        buttonText: "Select date"
+	    });
+	});
 
 </script>
 </head>
@@ -234,9 +260,13 @@
               <tr>
                 <th>시작일</th> 
                 <%-- value="${surveyVO.sur_sat_date } --%>
-                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_sat_date}" pattern="yyyy-mm-dd" />" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
+                <td class="tl"><input type="text" name="sur_sat_date" id="date2" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_sat_date}" pattern="MM/dd/yyyy" />" readonly/> 
+                <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
+                </td>
                 <th>종료일</th>
-                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_end_date}" pattern="yyyy-mm-dd" />" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
+                <td class="tl"><input type="text" name="sur_end_date" id="date3" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_end_date}" pattern="MM/dd/yyyy" />" readonly/> 
+                <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
+                </td>
                 <td class="tl" colspan="2"></td>
               </tr>
               <tr>
