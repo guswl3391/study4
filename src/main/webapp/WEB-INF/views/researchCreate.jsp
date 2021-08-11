@@ -237,11 +237,11 @@
                 </tr>
               <tr>
                 <th>시작일</th>
-                <td class="tl"><input type="text" name="date" id="date2" class="inp" style="width:100px;" readonly /> 
+                <td class="tl"><input type="text" name="sur_sat_date" id="date2" class="inp" style="width:100px;" readonly /> 
                 <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
                 </td>
                 <th>종료일</th>
-                <td class="tl"><input type="text" name="date1" id="date3" class="inp" style="width:100px;" readonly /> 
+                <td class="tl"><input type="text" name="sur_end_date" id="date3" class="inp" style="width:100px;" readonly /> 
                 <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
                 </td>
                 <td class="tl" colspan="2"></td>
