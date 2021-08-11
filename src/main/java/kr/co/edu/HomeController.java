@@ -2,8 +2,10 @@ package kr.co.edu;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -62,6 +64,10 @@ public class HomeController {
 		
 		SurveyPeopleVO surveyPeopleVO2 = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
 		model.addAttribute("surveyPeopleVO2", surveyPeopleVO2);
+		
+		int sur_seq = 5;
+		List<Map<String, Object>> resultList = service.selectResult(sur_seq);
+		model.addAttribute("resultList", resultList);
 		
 		return "home";
 	}
