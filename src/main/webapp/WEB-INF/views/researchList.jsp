@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,7 +162,7 @@ doGoTab = function(thisObject, tab) {
       <ul>
         <li class="bn"><a href="#">HOME</a></li>
         <li><a href="#">SITEMAP</a></li>
-        <li class="bn"> <a href="#"><img src="/resources/images/header/common/btn_login.gif" alt="로그인" /></a></li>
+        <li class="bn"> <a href="/login"><img src="/resources/images/header/common/btn_login.gif" alt="로그인" /></a></li>
       </ul>
     </div>
     <div id="gnb">
@@ -283,7 +284,7 @@ doGoTab = function(thisObject, tab) {
         <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_02Off.gif" alt="영양(교)사이야기" /></a></li>
         <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_03Off.gif" alt="조리(원)사이야기" /></a></li>
         <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_04Off.gif" alt="자유게시판" /></a></li>
-        <li><a href="#"><img src="/resources/images/sub/particiation/sub_stitle_05On.gif" alt="설문조사" /></a></li>
+        <li><a href="/researchList"><img src="/resources/images/sub/particiation/sub_stitle_05On.gif" alt="설문조사" /></a></li>
       </ul>
       <div class="right_box">
         <h3><img src="/resources/images/sub/particiation/title_04.gif" alt="급식기구관리전환" /></h3>
@@ -319,9 +320,9 @@ doGoTab = function(thisObject, tab) {
               <c:forEach items="${list}" var="item">
 				<tr>
 	                <td>${item.rnum}</td>
-	                <td class="tl">${item.sur_title}</td>
-	                <td>${item.sur_sat_date}</td>                
-	                <td>${item.sur_end_date}</td>
+	                <td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+	                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
+	                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 	                <td>${item.finish_yn}</td>
 	                <td>${item.answer_yn}</td>
 	                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></a></td>
