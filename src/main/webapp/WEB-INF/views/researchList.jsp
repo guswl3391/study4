@@ -348,7 +348,10 @@ doGoTab = function(thisObject, tab) {
           <!-- btn--> 
           <span class="bbs_btn"> 
 
-          <span class="per_l"><a href="/researchCreate" class="pre_r">글쓰기</a></span>
+			
+			<c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'admin'}">
+          		<span class="per_l"><a href="/researchCreate" class="pre_r">글쓰기</a></span>
+        	</c:if>
 
           </span> 
           <!-- //btn--> 

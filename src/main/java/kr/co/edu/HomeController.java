@@ -93,8 +93,9 @@ public class HomeController {
 		model.addAttribute("count", count);
 
 		SurveyPeopleVO surveyPeopleVO = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
+		model.addAttribute("surveyPeopleVO", surveyPeopleVO);
+		
 		int pno = (surveyPeopleVO == null) ? 0 :  surveyPeopleVO.getPno();
-
 		List<SurveyVO> list = service.selectSurveyList(page, count, keyword, pno);
 		model.addAttribute("list", list);
 
