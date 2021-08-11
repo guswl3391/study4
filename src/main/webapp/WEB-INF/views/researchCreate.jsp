@@ -8,8 +8,17 @@
 <title>서울학교급식포털</title>
 <link href="/resources/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery-1.7.2.min.js"></script>
+
+
+<!-- jQuery UI 의 datepicker 위젯 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+
+
 
 <script type="text/javascript" >
 	let n = 1; // 현재 문항 갯수 // 여러번 써야 한다-> 일회용인 지역번수 대신 계속 쓸 수 있는 전역변수로 해야 한다-> 이런 전역변수들을.. 프로그래머들은 몹시 싫어하며, 안 쓸 수 있으면 안 쓸 수 있는 방법을 고민해야 하며, "상태"라고 부르기도한다.
@@ -30,7 +39,7 @@
 		const ulQuestion = document.getElementById('ulQuestion');
 		const li = document.createElement('li');
 		n++;
-		const innerHTML = '<input type="text" name="question[]" class="inp" />'; // javascript string litteral이 왠지 안 됨 T_T
+		const innerHTML = '<pre>질문: <input type="text" name="question[]" class="inp" style="width: 690px;"/></pre>'; // javascript string litteral이 왠지 안 됨 T_T
 		li.innerHTML = innerHTML;
 		ulQuestion.append(li);
 	}
@@ -39,7 +48,23 @@
 		document.form.submit();
 	}
 
+	$(function(){
+	    $("#date2").datepicker({
+	        showOn: "both",
+	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
+	        buttonImageOnly: true,
+	        buttonText: "Select date"
+	    });
+	});
 
+	$(function(){
+	    $("#date3").datepicker({
+	        showOn: "both",
+	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
+	        buttonImageOnly: true,
+	        buttonText: "Select date"
+	    });
+	});
 
 </script> 
 </head>
@@ -212,9 +237,13 @@
                 </tr>
               <tr>
                 <th>시작일</th>
-                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
+                <td class="tl"><input type="text" name="date" id="date2" class="inp" style="width:100px;" readonly /> 
+                <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
+                </td>
                 <th>종료일</th>
-                <td class="tl"><input type="text" id="aa" name="aa" class="inp" style="width:100px;" /> <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a></td>
+                <td class="tl"><input type="text" name="date1" id="date3" class="inp" style="width:100px;" readonly /> 
+                <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
+                </td>
                 <td class="tl" colspan="2"></td>
               </tr>
               <tr>
@@ -225,9 +254,9 @@
                 </tr>
               <tr>
                <td colspan="1" class="tl">
-               	   <div class="research">
-                        <ul id="ulQuestion">
-                        	<li><input type="text" name="question[]" class="inp"/></li>
+               	   <div class="research" style="width: 735px;">
+                        <ul id="ulQuestion" >
+                        	<li><pre>질문: <input type="text" name="question[]" class="inp" style="width: 690px;"/></pre></li>
                         </ul>
 					</div>
                </td>
@@ -240,7 +269,7 @@
           <span class="bbs_btn"> 
 
           <span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">등록</a></span>
-          <span class="wte_l"><a href="#" class="wte_r">취소</a></span>
+          <span class="wte_l"><a href="/researchList" class="wte_r">취소</a></span>
 
           </span> 
           <!-- //btn--> 
