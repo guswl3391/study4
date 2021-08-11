@@ -1,5 +1,7 @@
 package kr.co.edu.dao;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -101,4 +103,44 @@ public class SurveyDaoImpl implements SurveyDao {
 		return sqlSession.selectOne("surveyMapper.selectPeople", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectResult(int sur_seq) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		// nested loop 중첩 루프: 가능하면 안 쓰는게 제일 좋음
+		List<Map<String, Object>> list1 = sqlSession.selectList("surveyMapper.selectResultBySurSeq", sur_seq);
+		for (Map<String, Object> item1 : list1) {
+			Integer suri_seq = ((BigDecimal) item1.get("SURI_SEQ")).intValue();
+			String suri_title = (String) item1.get("SURI_TITLE");
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("suri_seq", suri_seq);
+			map.put("suri_title", suri_title);
+			map.put("1", 0);
+			map.put("2", 0);
+			map.put("3", 0);
+			map.put("4", 0);
+			map.put("5", 0);
+			map.put("maxAnswer", 0);
+			
+			List<Map<String, BigDecimal>> list2 = sqlSession.selectList("surveyMapper.selectResultBySuriSeq", suri_seq);
+			
+			// maxAnswer
+			int maxAnswer = 0;
+			
+			// scan and set
+			for (Map<String, BigDecimal> item2 : list2) {
+				String answer = Integer.toString(item2.get("ANSWER").intValue()); // (1, 2, 3, 4, 5)
+				Integer count = item2.get("COUNT").intValue();
+				map.replace(answer, count);
+				
+				maxAnswer = Math.max(maxAnswer, count);
+			}
+			map.replace("maxAnswer", maxAnswer);
+			
+			list.add(map);
+		}
+		
+		return list;
+	}
 }

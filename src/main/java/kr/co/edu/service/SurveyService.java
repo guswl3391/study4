@@ -2,6 +2,7 @@ package kr.co.edu.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.edu.vo.SurveyAnswerVO;
 import kr.co.edu.vo.SurveyItemVO;
@@ -94,4 +95,11 @@ public interface SurveyService {
 	 */
 	public SurveyPeopleVO selectPeople(String id, String pw);
 	
+
+	/**
+	 * 
+	 * @param sur_seq
+	 * @return
+	 */
+	public List<Map<String, Object>> selectResult(int sur_seq);
 }

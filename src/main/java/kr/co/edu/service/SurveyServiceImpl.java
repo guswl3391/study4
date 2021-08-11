@@ -3,6 +3,7 @@ package kr.co.edu.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -89,5 +90,10 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public SurveyPeopleVO selectPeople(String id, String pw) {
 		return dao.selectPeople(id, pw);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectResult(int sur_seq) {
+		return dao.selectResult(sur_seq);
 	}
 }

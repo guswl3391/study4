@@ -161,4 +161,28 @@
 		    ID = #{id}
 		    AND PW = #{pw}
 	</select>
+	
+	<select id="selectResultBySurSeq" resultType="Map" parameterType="int">
+		SELECT
+		    rsi.suri_seq,
+		    rsi.suri_title
+		FROM
+		    TB_06_RSI rsi
+		WHERE
+		    sur_seq = #{sur_seq}
+		ORDER BY
+		    rsi.suri_seq ASC
+	</select>
+	
+	<select id="selectResultBySuriSeq" resultType="Map" parameterType="int">
+		SELECT
+		    rsr.ANSWER,
+		    count(rsr.ANSWER) as count
+		FROM
+		    TB_06_RSR rsr
+		WHERE
+		    SURI_SEQ = #{suri_seq}
+		GROUP BY
+		    rsr.ANSWER
+	</select>
 </mapper>
