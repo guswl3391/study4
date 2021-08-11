@@ -60,13 +60,6 @@ public class HomeController {
 		List<SurveyVO> list = service.selectSurveyList(page, count, keyword, pno);
 		model.addAttribute("list", list);
 		
-
-//		String id = "test";
-//		String pw = "test";
-//		SurveyPeopleVO surveyPeopleVO = service.selectPeople(id, pw);
-//		model.addAttribute("surveyPeopleVO", surveyPeopleVO);
-//		session.setAttribute("surveyPeopleVO", surveyPeopleVO);
-		
 		SurveyPeopleVO surveyPeopleVO2 = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
 		model.addAttribute("surveyPeopleVO2", surveyPeopleVO2);
 		
