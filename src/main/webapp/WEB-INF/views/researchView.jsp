@@ -47,6 +47,7 @@
  		}
  		
  		document.form.submit();
+ 		
 	 }
 
 </script>
@@ -221,9 +222,9 @@
                 </tr>
               <tr>
                 <th>시작일</th>
-                <td class="tl">2013-12-12</td>
+                <td class="tl"><fmt:formatDate value="${surveyVO.sur_sat_date}"/></td>
                 <th>종료일</th>
-                <td class="tl">2013-12-12</td>
+                <td class="tl"><fmt:formatDate value="${surveyVO.sur_end_date}"/></td>
                 <th>결과확인</th>
                 <td class="tl"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></td>
               </tr>
@@ -308,7 +309,7 @@
           <span class="bbs_btn"> 
 
           <span class="wte_l"><a href="/researchList" class="wte_r">목록</a></span>
-          <span class="wte_l"><a href="#" class="wte_r" onclick="return onclickSubmit();">답변 등록</a></span>
+          <span class="wte_l"><a href="" class="wte_r" onclick="return onclickSubmit();">답변 등록</a></span>
           
           
 
