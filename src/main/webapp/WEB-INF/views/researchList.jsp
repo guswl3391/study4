@@ -16,133 +16,16 @@
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 
 <script type="text/javascript" >
-<!--
 
-	var flag1=true;
-	var flag2=true;
-	
-	$(document).ready(function(){
-		$(".mainMenu").each(function(index, item){
-			$(item).click(function(){
-				flag1=false;
-			});
-		});
-		
-		$(".subMenu").each(function(index, item){
-			$(item).click(function(){
-				flag1=true;
-				flag2=false;
-			});
-		});
-	});
 
-   function getElementsByClass(searchClass, node, tag) {
-     var classElements = new Array();
-     if ( node == null ) node = document;
-     if ( tag == null ) tag = '*';
-     var els = node.getElementsByTagName(tag);
-     var elsLen = els.length;
-     var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
-     for (i = 0, j = 0; i < elsLen; i++) {
-      if ( pattern.test(els[i].className) ) {
-        classElements[j] = els[i];
-        j++;
-      }
-    }
-    return classElements;
-  }
-
-  function menuHidden(menu, sub) {
-    menu.src = menu.src.replace("On", "Off");
-    sub.style.display = "none";
-  }
-
-  function setEvtGnb() {
-    var mainMenu = getElementsByClass("mainMenu");
-    var prevMenu1, prevSub1, isHid1, prevMenu2, isHid2;
-	
-	var subMenu = getElementsByClass("subMenu");
-	
-    for (var i=0; i<mainMenu.length; i++) {
-      (function (pos){
-        mainMenu[pos].getElementsByTagName("img")[0].onmouseover = function(){
-          if(prevMenu1) menuHidden(prevMenu1, prevSub1);
-          prevMenu1 = this;
-          this.src = this.src.replace("Off", "On");
-          prevSub1 = document.getElementById("sub"+("0"+(pos+1)).match(/..$/));
-          prevSub1.style.display = "block";
-        };
-    
-        mainMenu[pos].onmouseout = function(e){
-          var bool, e= e || event;
-          (function (obj, tobj) {
-            var childs = obj.childNodes;
-            for (var x=0; x<childs.length; x++) {
-              if(childs[x] == tobj) bool = true;
-              else arguments.callee(childs[x], tobj);
-            }
-          })(this, document.elementFromPoint(e.clientX, e.clientY));
-          if(flag1){
-	          if(bool) return false;
-	          menuHidden(prevMenu1, prevSub1);
-          }
-        };
-      })(i);
-    }
-	
-	for (var j=0; j<subMenu.length; j++) {
-      (function (pos){
-        subMenu[pos].getElementsByTagName("img")[0].onmouseover = function(){
-          prevMenu2 = this;
-          this.src = this.src.replace("Off", "On");
-          prevSub2 = document.getElementById("sub"+("0"+(pos+1)).match(/..$/));
-       	  flag2=true;
-        };
-    
-        subMenu[pos].onmouseout = function(e){
-          var bool, e= e || event;
-          (function (obj, tobj) {
-            var childs = obj.childNodes;
-            for (var x=0; x<childs.length; x++) {
-              if(childs[x] == tobj) bool = true;
-              else arguments.callee(childs[x], tobj);
-            }
-          })(this, document.elementFromPoint(e.clientX, e.clientY));
-          if(flag2){
-	          if(bool) return false;
-	          menuHidden(prevMenu2, prevSub2);
-          }
-        };
-      })(j);
-    }
-  }
- 
-  window.onload = function() {
-    setEvtGnb();
-  }
-//-->
-</SCRIPT>
-
-<script type="text/javascript">
-initPage = function() {
-	
-};
-
-doGoTab = function(thisObject, tab) {
-	$(".business_tab").find(">li>a").each(function(index, el) {
-		$(el).removeClass("business_tab0"+(index+1)+"_on");
-		$(el).addClass("business_tab0"+(index+1));
-	});
-	$(thisObject).addClass("business_tab"+tab+"_on");
-	if("01"==tab){
-		$("#tab02").hide();
-		$("#tab01").show();
-	}else{
-		$("#tab01").hide();
-		$("#tab02").show();
+	function searchPopup(){
+		var popUrl = "/researchPopup"
+		var popOption = "top=50, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
+        window.open(popUrl, popOption);
 	}
-	
-};
+
+
+
 </script>
 </head>
 <body>
@@ -340,7 +223,7 @@ doGoTab = function(thisObject, tab) {
 	                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 	                <td>${item.finish_yn}</td>
 	                <td>${item.answer_yn}</td>
-	                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></a></td>
+	                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
               	</tr>
 			  </c:forEach>
             </tbody>

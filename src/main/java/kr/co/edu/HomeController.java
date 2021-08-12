@@ -290,4 +290,15 @@ public class HomeController {
 		boolean isLogin = (surveyPeopleVO != null);
 		return isLogin;
 	}
+
+
+
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/researchPopup", method = {RequestMethod.GET, RequestMethod.POST})
+	public void researchPopup() {
+		
+	}
+
 }
