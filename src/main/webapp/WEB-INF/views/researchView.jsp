@@ -309,7 +309,7 @@
           <span class="bbs_btn"> 
 
           <span class="wte_l"><a href="/researchList" class="wte_r">목록</a></span>
-          <span class="wte_l"><a href="" class="wte_r" onclick="return onclickSubmit();">답변 등록</a></span>
+          <span class="wte_l"><a href="#" class="wte_r" onclick="return onclickSubmit();">답변 등록</a></span>
           
           
 
