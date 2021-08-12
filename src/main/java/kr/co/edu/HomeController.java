@@ -297,7 +297,17 @@ public class HomeController {
 	 * 
 	 */
 	@RequestMapping(value = "/researchPopup", method = {RequestMethod.GET, RequestMethod.POST})
-	public void researchPopup() {
+	public void researchPopup(
+			Model model,
+			HttpSession session
+	) {
+		
+		SurveyPeopleVO surveyPeopleVO2 = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
+		model.addAttribute("surveyPeopleVO2", surveyPeopleVO2);
+		
+		int sur_seq = 5;
+		List<Map<String, Object>> resultList = service.selectResult(sur_seq);
+		model.addAttribute("resultList", resultList);
 		
 	}
 
