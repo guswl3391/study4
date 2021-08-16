@@ -301,18 +301,19 @@ public class HomeController {
 
 
 	/**
-	 * 
+	 * 설문조사에 대한 내용들의 결과를 모아서 보여주는 곳
+	 * @param int sur_seq 제목 번호 {@link SurveyVO.sur_seq}
 	 */
-	@RequestMapping(value = "/researchPopup", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/researchPopup", method = RequestMethod.GET )
 	public void researchPopup(
 			Model model,
-			HttpSession session
+			HttpSession session,
+			int sur_seq
 	) {
 		
 		SurveyPeopleVO surveyPeopleVO2 = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
 		model.addAttribute("surveyPeopleVO2", surveyPeopleVO2);
 		
-		int sur_seq = 5;
 		List<Map<String, Object>> resultList = service.selectResult(sur_seq);
 		model.addAttribute("resultList", resultList);
 		
