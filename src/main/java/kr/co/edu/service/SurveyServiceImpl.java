@@ -100,4 +100,19 @@ public class SurveyServiceImpl implements SurveyService {
 	public List<Map<String, Object>> selectResult(int sur_seq) {
 		return dao.selectResult(sur_seq);
 	}
+
+	@Override
+	public int deleteResearchAnswer(int sur_seq) {
+	    return dao.deleteResearchAnswer(sur_seq);
+	}
+	
+	@Override
+	public int deleteResearchItem(int sur_seq) {
+	    return dao.deleteResearchItem(sur_seq);
+	}
+	
+	@Override
+	public int deleteResearchSurvey(int sur_seq) {
+	    return dao.deleteResearchSurvey(sur_seq);
+	}
 }

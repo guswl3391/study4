@@ -197,4 +197,25 @@
 		GROUP BY
 		    rsr.ANSWER
 	</select>
+
+	<delete id="deleteResearchAnswer" parameterType="int">
+		DELETE
+		    TB_06_RSR
+		WHERE
+		    SUR_SEQ = #{sur_seq}
+	</delete>
+	
+	<delete id="deleteResearchItem" parameterType="int">
+		DELETE
+		    TB_06_RSI
+		WHERE
+		    SUR_SEQ = #{sur_seq}
+	</delete>
+	
+	<delete id="deleteResearchSurvey" parameterType="int">
+		DELETE
+		    TB_06_RS
+		WHERE
+		    SUR_SEQ = #{sur_seq}
+	</delete>
 </mapper>

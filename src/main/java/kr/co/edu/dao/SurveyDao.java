@@ -109,4 +109,8 @@ public interface SurveyDao {
 	 * @return
 	 */
 	public List<Map<String, Object>> selectResult(int sur_seq);
+
+	public int deleteResearchAnswer(int sur_seq);
+	public int deleteResearchItem(int sur_seq);
+	public int deleteResearchSurvey(int sur_seq);
 }

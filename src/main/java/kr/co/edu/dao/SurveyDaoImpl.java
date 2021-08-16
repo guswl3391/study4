@@ -153,4 +153,19 @@ public class SurveyDaoImpl implements SurveyDao {
 		
 		return list;
 	}
+	
+	@Override
+	public int deleteResearchAnswer(int sur_seq) {
+	    return sqlSession.delete("surveyMapper.deleteResearchAnswer", sur_seq);
+	}
+	
+	@Override
+	public int deleteResearchItem(int sur_seq) {
+	    return sqlSession.delete("surveyMapper.deleteResearchItem", sur_seq);
+	}
+	
+	@Override
+	public int deleteResearchSurvey(int sur_seq) {
+	    return sqlSession.delete("surveyMapper.deleteResearchSurvey", sur_seq);
+	}
 }
