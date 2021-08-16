@@ -236,6 +236,36 @@ public class HomeController {
 
 		return "researchEdit";
 	}
+	
+	/**
+	 * 설문조사를 삭제한다.
+	 * @param sur_seq
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/researchDelete", method = RequestMethod.GET)
+	public String researchDelete(int sur_seq, HttpSession session, Model model) throws Exception {
+		// validate // 이런 권한 관련으로 반복적인 체크를.. interceptor로 처리하게 됩니다
+		SurveyPeopleVO surveyPeopleVO = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
+		boolean isLogin = (surveyPeopleVO != null);
+		if (isLogin == false) {
+			// 화내는 방법: throw Excpetion-> 구체적으로 화내기!-> 5분 뒤의 나를 위해서!
+			throw new Exception("로그인 정보가 없습니다.");
+		}
+		
+		boolean isAdmin = ("admin".equals(surveyPeopleVO.getUser_type()));
+		if (isAdmin == false) {
+			// 화내는 방법: throw Excpetion-> 구체적으로 화내기!-> 5분 뒤의 나를 위해서!
+			throw new Exception("관리자만이 삭제할 수 있습니다.");
+		}
+		
+		// delete
+		service.deleteResearchAnswer(sur_seq);
+		service.deleteResearchItem(sur_seq);
+		service.deleteResearchSurvey(sur_seq);
+
+		return "redirect:/researchList"; // 리스트로 보내기
+	}
 
 	/**
 	 * 수정 기능(글 수정)
@@ -341,5 +371,7 @@ public class HomeController {
 		
 		model.addAttribute("itemList", itemList);
 	}
+	
+	
 
 }
