@@ -18,15 +18,19 @@
 <script type="text/javascript" >
 
 
-	function searchPopup(){
-		var popUrl = "/researchPopup"
+	/**
+	 * popup으로 넘어가는 함수
+	 * @param sur_seq 제목 번호 
+	 */
+	function searchPopup(sur_seq){
+		var popUrl = '/researchPopup?sur_seq=' + sur_seq;
+		var popName = 'researchPopup';
 		var popOption = "top=50, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
         window.open(popUrl, popOption);
 
 	}
-
-
-
+	
+	
 </script>
 </head>
 <body>
@@ -214,13 +218,13 @@
 		                <td>${item.finish_yn}</td>
 		                
 		                <td>${item.answer_yn}</td>
-		                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
+		                <td><a href="#" onclick="searchPopup(${item.sur_seq}); return false;"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></a></td>
 	              	</tr>
 				  </c:forEach>
               </c:if>
               
-				<%-- <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user' && 'N' eq item.answer_yn }"> --%>
-			  <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user' }">
+              <!-- user로 로그인한 경우 -->
+              <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user' }">
 				  <c:forEach items="${list}" var="item">
 					<tr>
 		                <td>${item.rnum}</td>
@@ -239,7 +243,22 @@
 		                <td>${item.finish_yn}</td>
 		                
 		                <td>${item.answer_yn}</td>
-		                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
+		                <c:choose>
+		                	<c:when test="${item.isAfterEndDate()}">
+		                		<td>
+		                			<a href="#" onclick="searchPopup(${item.sur_seq}); return false;">
+		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
+	                				</a>
+                				</td>
+		                	</c:when>
+		                	<c:otherwise>
+								<td>
+		                			<a href="#" onclick="alert('마감일 이후에 결과 보기가 가능합니다.');">
+		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
+	                				</a>
+                				</td>
+							</c:otherwise>
+		                </c:choose>
 	              	</tr>
 				  </c:forEach>
               </c:if>
@@ -255,7 +274,23 @@
 		                <td>${item.finish_yn}</td>
 		                
 		                <td>${item.answer_yn}</td>
-		                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
+		                
+		                <c:choose>
+		                	<c:when test="${item.isAfterEndDate()}">
+		                		<td>
+		                			<a href="#" onclick="searchPopup(${item.sur_seq}); return false;">
+		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
+	                				</a>
+                				</td>
+		                	</c:when>
+		                	<c:otherwise>
+								<td>
+		                			<a href="#" onclick="alert('마감일 이후에 결과 보기가 가능합니다.');">
+		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
+	                				</a>
+                				</td>
+							</c:otherwise>
+		                </c:choose>
 	              	</tr>
 				  </c:forEach>
                </c:if>
