@@ -16,9 +16,20 @@ public class SurveyVO {
 	private String sur_title; // 제목
 	private Date sur_sat_date; // 시작일
 	private Date sur_end_date; // 마감일
-	private String finish_yn; // 완료 여부: Y는 완료 N은 진행 중 // 이걸 DB로 update해주려면, 하루에 한 번 도는 작업이 필요하다! // 이런 정기적인 작업을 Job, Scheduller, Cron, Batch, 등으로 사람들이 부르고, // 이건 이것대로 또! 개발이 필요하다! // T_T!
+//	private String finish_yn; 
+	// 완료 여부: Y는 완료 N은 진행 중 
+	// 이걸 DB로 update해주려면, 하루에 한 번 도는 작업이 필요하다! 
+	// 이런 정기적인 작업을 Job, Scheduller, Cron, Batch, 등으로 사람들이 부르고, 
+	// 이건 이것대로 또! 개발이 필요하다! 
+	// T_T!
+	// -> 즉, 이걸, DB에서 조회해오지 말자!
+	// -> DB의 필드를 지우자! (중요! 꼭 지워야함! 반드시!)
+	// -->> 그리고, getter를 만들자.
+	// -> 왜냐면, 얘는 관련 데이터가 DB에 따로 있지 않다. 그냥 sur_end_date만 있으면 된다!-> 그냥 Java에서 하자! -> SQL에서도 할 수 있지만, 그럴려면 모든 관련 쿼리에 다 들어가야 하니까요
+	private String answer_yn;
+	// 참여 여부
+	// 얘는, DB에서 반드시! 조회해와야만! 한다!-> 데이터가 DB에 있는걸! -> 얄짤 없이 DB에서 조회해야 한다!
 	
-	private String answer_yn; // 참여 여부
 	private int rnum; 
 
 	public SurveyVO() {
@@ -26,17 +37,16 @@ public class SurveyVO {
 	}
 
 	public SurveyVO(
-		int sur_seq, String sur_title, Date sur_sat_date, Date sur_end_date, String finish_yn,
-		String answer_yn, int rnum
+		int sur_seq, String sur_title, Date sur_sat_date, Date sur_end_date, String answer_yn, 
+		int rnum
 	) {
 		super();
 		this.sur_seq = sur_seq;
 		this.sur_title = sur_title;
 		this.sur_sat_date = sur_sat_date;
 		this.sur_end_date = sur_end_date;
-		this.finish_yn = finish_yn;
-		
 		this.answer_yn = answer_yn;
+		
 		this.rnum = rnum;
 	}
 
@@ -73,20 +83,16 @@ public class SurveyVO {
 	}
 	
 	/**
-	 * sur_end_date 지났나요?
-	 * @return 네/아니오
+	 * 설문이 종료되었는지 Y/N값
+	 * sur_end_date가 지났는지로 확인한다.
+	 * @return
 	 */
-	public boolean isAfterEndDate() {
-		Date now = new Date();
-		return now.after(sur_end_date); // now < sur_end_date // sur_end_date가 now보다 과거에 있다.
-	}
-
 	public String getFinish_yn() {
-		return finish_yn;
-	}
+		Date now = new Date();
+		boolean isAfterEndDate = now.after(sur_end_date); // now < sur_end_date // sur_end_date가 now보다 과거에 있다.
+		String finish_yn = (isAfterEndDate) ? "Y" : "N";
 
-	public void setFinish_yn(String finish_yn) {
-		this.finish_yn = finish_yn;
+		return finish_yn;
 	}
 
 	public int getRnum() {

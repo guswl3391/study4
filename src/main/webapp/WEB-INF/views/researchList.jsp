@@ -243,7 +243,7 @@
 		                
 		                <td>${item.answer_yn}</td>
 		                <c:choose>
-		                	<c:when test="${item.isAfterEndDate()}">
+		                	<c:when test="${'Y' eq item.finish_yn}">
 		                		<td>
 		                			<a href="#" onclick="searchPopup(${item.sur_seq}); return false;">
 		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
@@ -275,7 +275,7 @@
 		                <td>${item.answer_yn}</td>
 		                
 		                <c:choose>
-		                	<c:when test="${item.isAfterEndDate()}">
+		                	<c:when test="${'Y' eq item.finish_yn}">
 		                		<td>
 		                			<a href="#" onclick="searchPopup(${item.sur_seq}); return false;">
 		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
