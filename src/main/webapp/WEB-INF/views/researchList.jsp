@@ -26,8 +26,7 @@
 		var popUrl = '/researchPopup?sur_seq=' + sur_seq;
 		var popName = 'researchPopup';
 		var popOption = "top=50, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
-        window.open(popUrl, popOption);
-
+        window.open(popUrl, popName, popOption); // chrome에서는 name을 안 적으면, 그냥 새 탭으로 연다!
 	}
 	
 	
