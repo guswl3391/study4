@@ -1,5 +1,7 @@
 package kr.co.edu.vo;
 
+import java.util.List;
+
 /**
  * 설문 조사 각각의 문항들에 대한 정보
  * 이 내용은 관리자가 등록한다.
@@ -14,6 +16,7 @@ public class SurveyItemVO {
 	private int sur_seq;
 	private int suri_seq; // 문항 번호, 자동 생성
 	private String suri_title; // 질문 내용
+	private List<SurveyAnswerVO> answerList; // 응답 목록
 
 	public SurveyItemVO() {
 		super();
@@ -50,6 +53,11 @@ public class SurveyItemVO {
 		this.suri_title = suri_title;
 	}
 
+	public List<SurveyAnswerVO> getAnswerList() {
+		return answerList;
+	}
 
-
+	public void setAnswerList(List<SurveyAnswerVO> answerList) {
+		this.answerList = answerList;
+	}
 }
