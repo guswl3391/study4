@@ -272,33 +272,7 @@
 					</div>
 					
                  </c:forEach>  
-                    
-               	  <!--  <div class="research">
-                       <p>1. 위생불량 납품단절 편함</p>
-                        <ul>
-                        <li>① 매우그렇다</li>
-                        <li>② 조금그렇다</li>
-                        <li>③ 그렇다</li>
-                        <li>④ 조금 아니다</li>
-                        <li>⑤ 매우 아니다</li>
-                        <li>선택사유 <input type="text" id="aa" name="aa" class="inp" style="width:200px;" /> </li>
-                        </ul>
-					</div>
-					
-					
-               	   <div class="research">
-                       <p>1. 위생불량 납품단절 편함</p>
-                        <ul>
-                        <li>① 매우그렇다</li>
-                        <li>② 조금그렇다</li>
-                        <li>③ 그렇다</li>
-                        <li>④ 조금 아니다</li>
-                        <li>⑤ 매우 아니다</li>
-                        <li>선택사유 <input type="text" id="aa" name="aa" class="inp" style="width:200px;" /> </li>
-                        </ul>
-					</div> -->
-                    
-                    
+                                  
                </td>
               </tr>
             </tbody>
