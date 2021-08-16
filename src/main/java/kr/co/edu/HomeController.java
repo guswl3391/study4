@@ -195,6 +195,10 @@ public class HomeController {
 			// 화내는 방법: throw Excpetion-> 구체적으로 화내기!-> 5분 뒤의 나를 위해서!
 			throw new Exception("로그인 정보가 없습니다.");
 		}
+		
+		// validation: 질문이 1개이고, 선택 사유는 적지 않았을 경우: choiceReasonList.size()가 0으로 들어오더라!
+		if (suriSeqList.size() == 1 && choiceReasonList.size() == 0) {
+			choiceReasonList.add("");
 		}
 
 //		이 내용을 저장해야한다-> insert
