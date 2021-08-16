@@ -176,6 +176,7 @@ public class HomeController {
 	 * @param answerList       -> 응답값 여러개가 있어야 함
 	 * @param choiceReasonList -> 선택 사유 여러개가 있어야 함
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/researchSend", method = RequestMethod.POST)
 	public String researchSend(Model model,
@@ -184,13 +185,16 @@ public class HomeController {
 			@RequestParam("suri_seq[]") List<Integer> suriSeqList, // 문항 번호
 			@RequestParam("answer[]") List<Integer> answerList, // 응답값
 			@RequestParam("choice_reason[]") List<String> choiceReasonList // 선택 사유
-	) {
+	) throws Exception {
 		SurveyPeopleVO surveyPeopleVO = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
 		int pno = (surveyPeopleVO == null) ? 0 :  surveyPeopleVO.getPno();
 
 		// validation
 		if (pno == 0) {
 			// 화내야함. 쫓아내버려야함
+			// 화내는 방법: throw Excpetion-> 구체적으로 화내기!-> 5분 뒤의 나를 위해서!
+			throw new Exception("로그인 정보가 없습니다.");
+		}
 		}
 
 //		이 내용을 저장해야한다-> insert
