@@ -50,9 +50,9 @@ public interface SurveyDao {
 	public int insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
 	
 	/**
-	 * 설문조사 문항들을 가져오는 메소드(테스트용 메소드)
+	 * 설문조사 문항들을 가져오는 메소드
 	 * @param sur_seq 설문조사의 제목 번호: 제목 번호가 같은 문항들을 가지고 오기 위함
-	 * @return 설문조사 문항(테스트용)
+	 * @return 설문조사 문항
 	 */
 	public List<SurveyItemVO> selectItemList(int sur_seq);
 	
