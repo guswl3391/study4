@@ -2,7 +2,6 @@ package kr.co.edu;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -147,7 +146,7 @@ public class HomeController {
 			service.insertSurveyItem(surveyItemVO, surveyVO);
 		}
 
-		return "redirect:/"; // redirect 하는 이유는 작성이 끝나고 나서 어떠한 화면으로 가야 하기 때문에
+		return "redirect:/researchList"; // redirect 하는 이유는 작성이 끝나고 나서 어떠한 화면으로 가야 하기 때문에
 	}
 
 	/**
@@ -218,7 +217,7 @@ public class HomeController {
 			service.insertSurveyAnswer(surveyAnswerVO);
 		}
 
-		return "redirect:/"; // test용
+		return "redirect:/researchList"; // 리스트로 보내기
 	}
 
 	/**
