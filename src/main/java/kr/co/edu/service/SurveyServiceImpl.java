@@ -60,6 +60,10 @@ public class SurveyServiceImpl implements SurveyService {
 		return true;
 	}
 	
+	@Override
+	public List<SurveyAnswerVO> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO) {
+		return dao.selectSurveyAnswerChoiceReasonList(surveyItemVO);
+	}
 
 	@Override
 	public int updateSurvey(SurveyVO surveyVO) {

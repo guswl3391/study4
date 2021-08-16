@@ -49,6 +49,13 @@ public interface SurveyService {
 	public boolean insertSurveyItem(SurveyItemVO surveyItemVO, SurveyVO surveyVO);
 	
 	/**
+	 * 참여자 응답 중에 상세 사유만을 조회한다.
+	 * @param surveyItemVO -> sur_seq, suri_seq
+	 * @return
+	 */
+	public List<SurveyAnswerVO> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO);
+	
+	/**
 	 * 설문 조사 제목과 상세 정보들 업데이트 하기
 	 * @param surveyVO -> sur_title과 sur_seq 업데이트 해야 함
 	 * @return

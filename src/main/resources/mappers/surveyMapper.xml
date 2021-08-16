@@ -65,11 +65,13 @@
    
    <select id="selectItemList" parameterType="int" resultType="kr.co.edu.vo.SurveyItemVO">
 		SELECT
-			*
+			rsi.*
 		FROM
-			TB_06_RSI
+			TB_06_RSI rsi
 		WHERE
-			SUR_SEQ = #{sur_seq}
+			rsi.SUR_SEQ = #{sur_seq}
+		ORDER BY
+		    rsi.SURI_SEQ ASC
 	</select>
 	
 	<update id="updateSurveyItem" parameterType="kr.co.edu.vo.SurveyItemVO">
@@ -102,6 +104,19 @@
 		    #{choice_reason}
 		)
    </insert>
+   
+   <select id="selectSurveyAnswerChoiceReasonList" resultType="kr.co.edu.vo.SurveyAnswerVO" parameterType="kr.co.edu.vo.SurveyItemVO">
+	   	SELECT
+		    rsr.*
+		FROM
+		    TB_06_RSR rsr
+		WHERE
+		     rsr.SUR_SEQ = ${sur_seq}
+		    AND rsr.SURI_SEQ = ${suri_seq}
+		    AND rsr.CHOICE_REASON IS NOT NULL
+		ORDER BY
+		    rsr.SURI_SEQ ASC, rsr.ANO ASC
+   </select>
    
    <!-- 게시물 검색(동적 쿼리 sql문) -->
 	<sql id="searchWhere">

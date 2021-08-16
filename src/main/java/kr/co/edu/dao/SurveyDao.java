@@ -70,7 +70,13 @@ public interface SurveyDao {
 	 */
 	public int insertSurveyAnswer(SurveyAnswerVO surveyAnswerVO);
 	
-
+	/**
+	 * 참여자 응답 중에 상세 사유만을 조회한다.
+	 * @param surveyItemVO -> sur_seq, suri_seq
+	 * @return
+	 */
+	public List<SurveyAnswerVO> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO);
+	
 	/**
 	 * 
 	 * @param keyword
