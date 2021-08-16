@@ -60,6 +60,14 @@
    	function onclickSubmit() {
    		document.form.submit();
    	}
+   	
+   	function onclickDelete() {
+   		const sur_seq = ${sur_seq};
+   		if(confirm('삭제하시겠습니까?')){
+   			location.href="/researchDelete?sur_seq=" + sur_seq;
+   		}
+   		
+   	}
 
    	
    	function cancle_btn(){
@@ -294,7 +302,13 @@
           <!-- btn--> 
           <span class="bbs_btn"> 
 
-          <span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span>
+          
+          <c:if test ="${'N' eq item.finish_yn}">
+          	<span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span>
+          </c:if>
+          
+          <span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
+          
           <span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span>
           
           
