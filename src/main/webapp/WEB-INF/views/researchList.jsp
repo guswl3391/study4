@@ -22,6 +22,7 @@
 		var popUrl = "/researchPopup"
 		var popOption = "top=50, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
         window.open(popUrl, popOption);
+
 	}
 
 
@@ -181,13 +182,14 @@
             설문조사
             </caption>
             <colgroup>
-            <col width="8%"/>
-            <col width="*%"/>
-            <col width="15%"/>
-            <col width="15%"/>
-            <col width="9%"/>
-            <col width="9%"/>
-            <col width="10%"/>
+	            <col width="8%"/>
+	            <col width="*%"/>
+	            <col width="15%"/>
+	            <col width="15%"/>
+	            <col width="9%"/>
+	            
+	            <col width="9%"/>
+	            <col width="10%"/>
             </colgroup>
             <tbody>
               <tr>
@@ -196,36 +198,68 @@
                 <th>시작일</th>
                 <th>마감일</th>
                 <th>완료여부</th>
+                
                 <th>참여여부</th>
                 <th>결과확인</th>
               </tr>
               
-              <c:forEach items="${list}" var="item">
-				<tr>
-	                <td>${item.rnum}</td>
-	                
-	                <!-- admin인 경우 -->
-	                <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'admin'}">
-	               	 <td class="tl"><a href="/researchEdit?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
-	                </c:if>
-	                
-	                <!-- user인 경우 -->
-	                <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user'}">
-	               	 <td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
-	                </c:if>
-	                
-	                <!-- 비로그인 경우 -->
-	                <c:if test ="${surveyPeopleVO == null || surveyPeopleVO.user_type == null}">
-	               	 <td class="tl"><a href="#">${item.sur_title}</a></td>
-	                </c:if>
-	                
-	                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
-	                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
-	                <td>${item.finish_yn}</td>
-	                <td>${item.answer_yn}</td>
-	                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
-              	</tr>
-			  </c:forEach>
+              <!-- admin인 경우 -->
+              <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'admin'}">
+	              <c:forEach items="${list}" var="item">
+					<tr>
+		                <td>${item.rnum}</td>
+		                <td class="tl"><a href="/researchEdit?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
+		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
+		                <td>${item.finish_yn}</td>
+		                
+		                <td>${item.answer_yn}</td>
+		                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
+	              	</tr>
+				  </c:forEach>
+              </c:if>
+              
+				<%-- <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user' && 'N' eq item.answer_yn }"> --%>
+			  <c:if test ="${surveyPeopleVO != null && surveyPeopleVO.user_type == 'user' }">
+				  <c:forEach items="${list}" var="item">
+					<tr>
+		                <td>${item.rnum}</td>
+		               <c:choose>
+		                	<c:when test="${'N' eq item.answer_yn }">
+		                		<td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+		                	</c:when>
+		                	<c:otherwise>
+								<td class="tl">
+									<c:out value="==이미 참여한 설문조사입니다.==" escapeXml="true"/>
+								</td>
+							</c:otherwise>
+		                </c:choose>
+		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
+		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
+		                <td>${item.finish_yn}</td>
+		                
+		                <td>${item.answer_yn}</td>
+		                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
+	              	</tr>
+				  </c:forEach>
+              </c:if>
+              
+               <!-- 비로그인 경우 -->
+              <c:if test ="${surveyPeopleVO == null || surveyPeopleVO.user_type == null}">
+	              <c:forEach items="${list}" var="item">
+					<tr>
+		                <td>${item.rnum}</td>
+              		    <td class="tl">${item.sur_title}</td>
+		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
+		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
+		                <td>${item.finish_yn}</td>
+		                
+		                <td>${item.answer_yn}</td>
+		                <td><a href="#"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" onclick="searchPopup();"/></a></td>
+	              	</tr>
+				  </c:forEach>
+               </c:if>
+               
             </tbody>
           </table>
           
