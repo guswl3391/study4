@@ -16,7 +16,7 @@ public class SurveyVO {
 	private String sur_title; // 제목
 	private Date sur_sat_date; // 시작일
 	private Date sur_end_date; // 마감일
-	private String finish_yn; // 완료 여부: Y는 완료 N은 진행 중
+	private String finish_yn; // 완료 여부: Y는 완료 N은 진행 중 // 이걸 DB로 update해주려면, 하루에 한 번 도는 작업이 필요하다! // 이런 정기적인 작업을 Job, Scheduller, Cron, Batch, 등으로 사람들이 부르고, // 이건 이것대로 또! 개발이 필요하다! // T_T!
 	
 	private String answer_yn; // 참여 여부
 	private int rnum; 
@@ -71,6 +71,15 @@ public class SurveyVO {
 	public void setSur_end_date(Date sur_end_date) {
 		this.sur_end_date = sur_end_date;
 	}
+	
+	/**
+	 * sur_end_date 지났나요?
+	 * @return 네/아니오
+	 */
+	public boolean isAfterEndDate() {
+		Date now = new Date();
+		return now.after(sur_end_date); // now < sur_end_date // sur_end_date가 now보다 과거에 있다.
+	}
 
 	public String getFinish_yn() {
 		return finish_yn;
@@ -87,4 +96,5 @@ public class SurveyVO {
 	public String getAnswer_yn() {
 		return answer_yn;
 	}
+	
 }
