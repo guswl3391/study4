@@ -20,29 +20,22 @@
     <h1>사유전체보기</h1>
     <div class="pop_list">
       <div class="research_box">
-          <h2>올해 가장 행복했던일</h2>
-          <ul class="research_list">
-            <li>먹기</li>
-            <li>자기</li>
-            <li>먹지</li>
-            <li>으어</li>
-          </ul>
-          
-          <h2>올해 가장 행복했던일</h2>
-          <ul class="research_list">
-            <li>먹기</li>
-            <li>자기</li>
-            <li>먹지</li>
-            <li>으어</li>
-          </ul>
-          
-          <h2>올해 가장 행복했던일</h2>
-          <ul class="research_list">
-            <li>먹기</li>
-            <li>자기</li>
-            <li>먹지</li>
-            <li>으어</li>
-          </ul>
+      	<c:forEach items="${itemList}" var="surveyItemVO">
+      		<h2>${surveyItemVO.suri_title}</h2>
+      		
+      		<ul class="research_list">
+      			<c:choose>
+                	<c:when test="${surveyItemVO.answerList.size() == 0}">
+                		<li>* 없습니다.</li>
+                	</c:when>
+                	<c:otherwise>
+	                	<c:forEach items="${surveyItemVO.answerList}" var="surveyAnswerVO">
+			      			<li>${surveyAnswerVO.choice_reason}</li>
+			      		</c:forEach>
+					</c:otherwise>
+                </c:choose>
+      		</ul>
+      	</c:forEach>
       </div>
     </div>
     <p class="pt20"></p>

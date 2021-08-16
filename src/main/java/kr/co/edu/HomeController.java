@@ -310,6 +310,7 @@ public class HomeController {
 			HttpSession session,
 			int sur_seq
 	) {
+		model.addAttribute("sur_seq", sur_seq);
 		
 		SurveyPeopleVO surveyPeopleVO2 = (SurveyPeopleVO) session.getAttribute("surveyPeopleVO"); // casting: have to
 		model.addAttribute("surveyPeopleVO2", surveyPeopleVO2);
@@ -317,6 +318,28 @@ public class HomeController {
 		List<Map<String, Object>> resultList = service.selectResult(sur_seq);
 		model.addAttribute("resultList", resultList);
 		
+	}
+	
+	/**
+	 * 설문조사 상세 페이지 내 사유 전체 보기 popup
+	 * @param int sur_seq 제목 번호 {@link SurveyVO.sur_seq}
+	 */
+	@RequestMapping(value = "/researchChoiceReasonPopup", method = RequestMethod.GET)
+	public void researchChoiceReasonPopup(
+			Model model,
+			HttpSession session,
+			int sur_seq
+	) {
+		// 설문조사 문항 리스트
+		List<SurveyItemVO> itemList = service.selectItemList(sur_seq);
+		
+		for(SurveyItemVO surveyItemVO : itemList) {
+			// 상세 사유가 있는 답변을 가져온다.
+			List<SurveyAnswerVO> answerList = service.selectSurveyAnswerChoiceReasonList(surveyItemVO);
+			surveyItemVO.setAnswerList(answerList);
+		}
+		
+		model.addAttribute("itemList", itemList);
 	}
 
 }
