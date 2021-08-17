@@ -36,6 +36,11 @@
 				</c:forEach>
                </td> */
 	
+	/**
+	 * 문항을 추가해 주는 함수
+	 * n: 현재 문항 갯수
+	 * 참고: onclickDeleteQuestion()
+	 */
 	function onclickAddQuestion() {
 		if(n >= 10){
 			alert("문항은 10개로 제한됩니다.")
@@ -45,10 +50,10 @@
 		const tdQuestion = document.getElementById('tdQuestion');
 		const div = document.createElement('div');
 		div.classList.add('research');
-		n++;
+		n++; //현재 문항 갯수를 1씩 증가
 		const innerHTML = `
 			<p>
-         	 <pre>질문: <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/>" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/> <input type="button" value=" - "/></pre>
+         	 <pre>질문: <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/>" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
           	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
          	</p>
 		`;
@@ -56,7 +61,18 @@
 		tdQuestion.append(div);
 	}
                
-        	
+   	/**
+   	 * 문항을 감소해 주는 함수
+   	 * n: 현재 문항 갯수
+   	 * 참고: onclickAddQuestion()
+   	 */
+    function onclickDeleteQuestion(inputElement) {
+    	const pre = inputElement.parentElement;
+    	const div = pre.parentElement;
+    	div.remove();
+    	n--; //현재 문항 갯수를 1씩 감소
+    }            
+                
    	function onclickSubmit() {
    		document.form.submit();
    	}
