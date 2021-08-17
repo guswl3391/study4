@@ -211,7 +211,7 @@
 	              <c:forEach items="${list}" var="item">
 					<tr>
 		                <td>${item.rnum}</td>
-		                <td class="tl"><a href="/researchEdit?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+		                <td class="tl"><a href="/researchEdit?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
 		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
 		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 		                <td>${item.finish_yn}</td>
@@ -229,7 +229,7 @@
 		                <td>${item.rnum}</td>
 		               <c:choose>
 		                	<c:when test="${'N' eq item.answer_yn }">
-		                		<td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}">${item.sur_title}</a></td>
+		                		<td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
 		                	</c:when>
 		                	<c:otherwise>
 								<td class="tl">
@@ -267,7 +267,7 @@
 	              <c:forEach items="${list}" var="item">
 					<tr>
 		                <td>${item.rnum}</td>
-              		    <td class="tl">${item.sur_title}</td>
+              		    <td class="tl"><c:out value="${item.sur_title}"/></td>
 		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
 		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 		                <td>${item.finish_yn}</td>
