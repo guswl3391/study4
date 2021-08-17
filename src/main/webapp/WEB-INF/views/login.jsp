@@ -48,6 +48,18 @@
 			});
 		}
 	</script>
+	
+	
+	<style type="text/css">
+	
+		.move{
+			padding: 15px;
+		
+		}
+	
+	
+	</style>
+	
 </head>
 
 <body>
@@ -224,28 +236,30 @@
 				
 				
                 
-                <ul class="login_text">
+                <ul class="login_text" >
                 
                 	<form name="form">
-					<div>
+					<div style="position: relative; left: 140px;">
+					<br/> <br/>
 						<p>
-							아이디:
+							I　D:
 							<input type="text" class="inp" name="id" style="width:180px;" />
 						</p>
+						<br/>
 						<p>
-							비밀번호:
+							P W:
 							<input type="password" class="inp" name="pw" style="width:180px;" />
 						</p>
+						<br/>
+						
+						<div style="position: relative; left: 90px;">
 						<p>
-							<a href="#" onclick="login();"><img src="/resources/images/sub/etc/login_btn.gif" alt="로그인" /></a>
+							<a href="#" onclick="login();"><img src="/resources/images/sub/etc/login_btn.gif" alt="로그인"/></a>
 						</p>
+						</div>
 					</div>
 					</form>
-                
-                	<li>학생, 학부모, 시민은 별도의 회원가입 없이 본인확인(아이핀인증 또는 실명인증)만으로 <br />서비스 이용이 가능합니다. (사용자 등록 불가)</li>
-                    <li>서울특별시교육청(학교 포함) 소속 교직원은 나이스 `와 인증서로 로그인을 하시기 바랍니다.<br />
-						<span class="f_eb7c10">※ 로그인이 되지 않을 경우, 서울시교육청 홈페이지에서 먼저 사용자 등록을 하시기 바랍니다.</span>
-					</li>
+                	
                 </ul>
                 
             </div>	
