@@ -49,6 +49,27 @@
  		document.form.submit();
  		
 	 }
+ 	
+ 	
+ 	//글자 수 제한 - 50글자
+	$(document).ready(function() {
+	    $('#test01').on('input', function() {
+	        $('#test_cnt_01').html("("+$(this).val().length+" / 50)");
+	 
+	        if($(this).val().length > 50) {
+	        	
+	            $(this).val($(this).val().substring(0, 50));  //글자수 자르는 곳인가
+	            $('#test_cnt_01').html("(50 / 50)");
+
+	            setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
+	        }
+	    });
+	});
+ 	
+ 	
+ 	
+ 	
+ 	
 
 </script>
 </head>
@@ -218,7 +239,7 @@
             <tbody>
               <tr>
                 <th>제목</th>
-                <td colspan="5" class="tl"><strong>${surveyVO.sur_title}</strong></td>
+                <td colspan="5" class="tl"><strong><c:out value="${surveyVO.sur_title}"/></strong></td>
                 </tr>
               <tr>
                 <th>시작일</th>
@@ -242,7 +263,7 @@
                	<!-- varStatus="status"를 통해서 index를 얻어올 수 있음 -->
                
                	   <div class="research">
-                       <p>${status.count}. ${item.suri_title }</p>
+                       <p>${status.count}. <c:out value="${item.suri_title }"/></p>
                        <input type="hidden" name="suri_seq[]" value="${item.suri_seq }">
                        <input type="hidden" name="answer[]" value="">
                        
@@ -267,7 +288,7 @@
 	                        	<input type="radio" id="radio5${item.suri_seq}" name="radio${item.suri_seq}" value="5" onchange="onchangeRadio(this);">
 					  <label for="radio5${item.suri_seq}">⑤ 매우 아니다</label>
 	                        </li>
-	                        <li>선택사유 <input type="text" name="choice_reason[]" value="" class="inp" style="width:200px;" /> </li>
+	                        <li>선택사유 <input type="text" id="test01" name="choice_reason[]" value="" class="inp" style="width:200px;" /> </li>
                         </ul>
 					</div>
 					
