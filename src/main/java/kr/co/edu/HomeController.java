@@ -269,6 +269,8 @@ public class HomeController {
 
 	/**
 	 * 수정 기능(글 수정)
+	 * 웹 사이트의 설문 수정 페이지에서 사용자가 수정을 한 뒤, 수정 버튼을 누르면
+	 * 사용자가 입력한 값들이 여기로 온다 우리는 이걸 처리해 준다
 	 * 
 	 * @param surveyVO  -> sur_seq(제목 번호)와 sur_title(제목명)을 받아옴
 	 * @param model
@@ -278,21 +280,34 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(SurveyVO surveyVO, Model model, @RequestParam("suri_title[]") List<String> suriTitle,
-			@RequestParam("suri_seq[]") List<Integer> suriSeq // List<int>는 에러난다. 안 된다. 그 이유는.. 일단 생략!
+			@RequestParam(name="suri_seq[]", required = false) List<Integer> suriSeq // List<int>는 에러난다. 안 된다. 그 이유는.. 일단 생략!
 	) {
 
 		// 1. ServeyVO 업데이트 하기
 		service.updateSurvey(surveyVO);
+		
+		/*
+		 * if(suriSeq != null) { for (Integer surveyVO : suriSeq) {
+		 * service.updateSurvey(surveyVO); } }
+		 */
+		
+		
 
 		// 2. ServeyItemVO 업데이트 하기
 		for (int i = 0; i < suriSeq.size(); i++) {
-			String suri_title = suriTitle.get(i);
-			int suri_seq = suriSeq.get(i);
+			String suri_title = suriTitle.get(i); // suriTitle: 사용자가 입력한 값
+			//Integer suri_seq = suriSeq.get(i); 
+			int suri_seq = (suriSeq.get(i) == null) ? 0 : suriSeq.get(i); //이런 식으로 null처리를 계속해서 하게 될 것이다 
+			// 여기서 에러 나는 중: i값은 1-> suriSeq.get(i)값은..? 
+			// Integer 달리 int는 절대로 null값이 될 수 없다! 에러가 남
+			// 1. Integer로 받는다. (이게 쉬우니 이걸로 일단 해 봄) -> Integer로 바꿔도 오류 없음 -> 오류는 없으나, 진행 과정에서 오류가 생김 -> 한번으로 끝나지 않을 거 같음 -> 2번으로 
+			// 2. null일 때에는 0이 되도록 한다. (삼항연산자를 쓰면 간단하다) 
 			int sur_seq = surveyVO.getSur_seq();
 
 			SurveyItemVO surveyItemVO = new SurveyItemVO();
-			surveyItemVO.setSuri_title(suri_title);
+			surveyItemVO.setSuri_title(suri_title); // 문항제목은 여기서 세팅 중
 			surveyItemVO.setSuri_seq(suri_seq);
+			// 여기서 에러 나는 중-> int로 바꿔 주었으니 괜찮을 것이다..
 			surveyItemVO.setSur_seq(sur_seq);
 
 			boolean isUpdate = (suri_seq > 0);
@@ -301,12 +316,21 @@ public class HomeController {
 
 			} else { // 새로 추가된 값
 				service.insertSurveyItem(surveyItemVO, surveyVO);
+				// Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 
+				// cannot insert NULL into ("KH"."TB_06_RSI"."SURI_TITLE")
+				// -> 에러 메시지를 주의 깊게 읽자-> SURI_TITLE(문항 제목)이 null이다 
+				
+				// -->> 사용자가 문항 제목을 아 ㄴ썻기 때문에 에러가 나고 있음 -> 에러가 나는 게 맞음
+				// * 해결 방법: 
+				// 1. 제목이 들어오지 않는 경우 처리하지 않는다
+				// 2. 지금처럼 에러를 그대로 내고 대신 스크립트로 내용이 없는 게 보이면 못 넘어오게 한다
+				// 3. 추후 개발한다.
 
 			}
 
 		}
 
-		return "redirect:/"; // test용
+		return "redirect:/researchList"; 
 	}
 
 
