@@ -118,19 +118,22 @@ public class SurveyDaoImpl implements SurveyDao {
 			Integer suri_seq = ((BigDecimal) item1.get("SURI_SEQ")).intValue();
 			String suri_title = (String) item1.get("SURI_TITLE");
 			
+			List<String> nameList = new ArrayList<String>();
+			nameList.add("매우 그렇다");
+			nameList.add("조금 그렇다");
+			nameList.add("그렇다");
+			nameList.add("조금 아니다");
+			nameList.add("매우 아니다");
+			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("suri_seq", suri_seq);
 			map.put("suri_title", suri_title);
 			map.put("1", 0);
-			map.put("1text", "매우 그렇다");
 			map.put("2", 0);
-			map.put("2text", "조금 그렇다");
 			map.put("3", 0);
-			map.put("3text", "그렇다");
 			map.put("4", 0);
-			map.put("4text", "조금 아니다");
 			map.put("5", 0);
-			map.put("5text", "매우 아니다");
+			map.put("nameList", nameList);
 			map.put("maxAnswer", 0);
 			
 			List<Map<String, BigDecimal>> list2 = sqlSession.selectList("surveyMapper.selectResultBySuriSeq", suri_seq);

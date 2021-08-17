@@ -12,6 +12,28 @@
 <title>서울학교급식포털</title>
 <link href="/resources/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/common.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .graph {
+        flex: 6; 
+        display: flex;
+        height: 200px;
+    }
+    .graph > .question {
+        flex: 1;
+    }
+
+    .graph > .question:nth-child(odd) > .bar {
+        background-color: red;
+    }
+    
+    .graph > .question:nth-child(even) > .bar {
+        background-color: blue;
+    }
+    
+    .graph > .question > .text {
+        text-align: center;
+    }
+</style>
 <script type="text/javascript">
 
 	/*
@@ -37,30 +59,22 @@
 				</h2>
 				<div class="rearch_box">
 				
-				<c:forEach items="${resultList}" var="map">
+				<c:forEach items="${resultList}" var="map" varStatus="status">
 					<p style="text-align: left;">
-					<b>${map.suri_seq}. ${map.suri_title}</b>
+					<b>${status.count}. ${map.suri_title}</b>
 					</p>
 					<br/>
 					<div style="display: flex;">
-				        <div style="flex: 6; display: flex;">
-				            
-				            <c:forEach begin="1" end="5" var="key" >
-					            <div style="
-					                flex: 1;
-					                background-color: ${(key % 2 == 1) ? "red" : "blue"};
-					                height: ${
-					                	(map.maxAnswer > 0)
-						                	? map[Integer.toString(key)] / map.maxAnswer *  100
-						                	: 0
-				                	}%;
-				                	width: 50%;
-					                align-self: flex-end;
-					            ">
+						<div class="graph">
+							<c:forEach items="${map.nameList}" var="name" varStatus="nameVarStatus">
+					            <div class="question">
+					                <div style="height: ${(map.maxAnswer > 0) ? (1 - (map[Integer.toString(nameVarStatus.count)] / map.maxAnswer)) * 100 : 100}%;"></div>
+					                <div class="bar" style="height: ${(map.maxAnswer > 0) ? (map[Integer.toString(nameVarStatus.count)] / map.maxAnswer) * 100 : 0}%;"></div>
+					                <div class="text">${name}</div>
 					            </div>
 				            </c:forEach>
-				            
-				        </div>
+			            </div>
+				        
 				        <div style="flex: 4;">
 				            <p>① 매우 그렇다: ${map['1']}명</p>
 				            <p>② 조금 그렇다: ${map['2']}명</p>
