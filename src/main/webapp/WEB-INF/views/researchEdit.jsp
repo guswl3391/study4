@@ -48,9 +48,9 @@
 		n++;
 		const innerHTML = `
 			<p>
-         	 <input type="text" name="suri_title[]" value=""/>
-          	 <input type="hidden" name="suri_seq[]" value="0" />
-          	</p>
+         	 <pre>질문: <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/>" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/> <input type="button" value=" - "/></pre>
+          	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
+         	</p>
 		`;
 		div.innerHTML = innerHTML;
 		tdQuestion.append(div);
@@ -94,7 +94,37 @@
 	        buttonText: "Select date"
 	    });
 	});
+	
+	
+	//글자 수 제한 - 50글자: 제목
+	$(document).ready(function() {
+	    $('#test01').on('input', function() {
+	        $('#test_cnt_01').html("("+$(this).val().length+" / 50)");
+	 
+	        if($(this).val().length > 50) {
+	        	
+	            $(this).val($(this).val().substring(0, 50));  //글자수 자르는 곳인가
+	            $('#test_cnt_01').html("(50 / 50)");
 
+	            setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
+	        }
+	    });
+	});
+	
+	
+	// 첫 글자 공백만 사용 못 하게
+    //onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"
+    function noSpaceForm2(obj) 
+    {                        
+        if(obj.value == " ") // 공백 체크
+        {              
+            alert("첫 글자 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+            obj.focus();
+            obj.value = obj.value.replace(' ','');  // 공백 제거
+            return false;
+        }
+    } 
+	
 </script>
 </head>
 <body>
@@ -261,7 +291,7 @@
               <tr>
                 <th>제목</th>
                 	<td colspan="5" class="tl">
-                		<input type="text" name="sur_title" class="inp" value="${surveyVO.sur_title }"/>
+                		<input type="text" id="test01" name="sur_title" class="inp" value="<c:out value="${surveyVO.sur_title }"/>"/>
                 		<input type="hidden" name="sur_seq" value="${surveyVO.sur_seq }" /> 
                		</td>
                 </tr>
@@ -288,7 +318,7 @@
                	<c:forEach items="${list}" var="item" >
                	    <div class="research">
                        <p>
-                      	 <pre>제목: <input type="text" name="suri_title[]" value="${item.suri_title }" style="width: 690px;"/></pre>
+                      	 <pre>질문: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></pre>
                        	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
                        </p>
 					</div>
@@ -303,17 +333,35 @@
           <span class="bbs_btn"> 
 
           
-          <c:if test ="${'N' eq item.finish_yn}">
-          	<span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span>
-          </c:if>
-          
-          <span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
-          
-          <span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span>
-          
-          
+         
+         	
+		  <c:if test="${'N' eq item.finish_yn}">
+			<!-- <span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span> -->
+			<span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit();">수정</a></span>
+		  </c:if>
+		  
+		  	<!-- <span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit();">수정</a></span> -->
+          	<span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
+          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span> 
+          	
+<%--           <c:choose>
+             	<c:when test="${'N' eq item.finish_yn}">
+             		<td class="tl">
+	             		<span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span>
+			          	<span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
+			          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span>
+             		</td>
+             	</c:when>
+             	<c:otherwise>
+					<td class="tl">
+						<span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
+			          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span>
+					</td>
+				</c:otherwise>
+          </c:choose> --%>
 
           </span> 
+          
           <!-- //btn--> 
           
         </div>
