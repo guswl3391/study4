@@ -228,13 +228,13 @@
 					<tr>
 		                <td>${item.rnum}</td>
 		               <c:choose>
-		                	<c:when test="${'N' eq item.answer_yn }">
-		                		<td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
-		                	</c:when>
-		                	<c:otherwise>
+		                	<c:when test="${'Y' eq item.answer_yn }">
 								<td class="tl">
 									<c:out value="==이미 참여한 설문조사입니다.==" escapeXml="true"/>
 								</td>
+		                	</c:when>
+		                	<c:otherwise>
+		                		<td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
 							</c:otherwise>
 		                </c:choose>
 		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
