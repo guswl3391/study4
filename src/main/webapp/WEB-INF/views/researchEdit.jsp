@@ -333,32 +333,13 @@
           <span class="bbs_btn"> 
 
           
-         
-         	
-		  <c:if test="${'N' eq item.finish_yn}">
-			<!-- <span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span> -->
-			<span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit();">수정</a></span>
+		  <c:if test="${'N' eq surveyVO.finish_yn}">
+			<span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit(); return false;">수정</a></span>
 		  </c:if>
 		  
-		  	<!-- <span class="wte_l"><a href="#" class="wte_r" onclick="onclickSubmit();">수정</a></span> -->
           	<span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
-          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span> 
+          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn(); return false;">취소</a></span> 
           	
-<%--           <c:choose>
-             	<c:when test="${'N' eq item.finish_yn}">
-             		<td class="tl">
-	             		<span class="per_l"><a href="#" class="pre_r" onclick="onclickSubmit();">수정</a></span>
-			          	<span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
-			          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span>
-             		</td>
-             	</c:when>
-             	<c:otherwise>
-					<td class="tl">
-						<span class="per_l"><a href="#" class="pre_r" onclick="onclickDelete(); return false;">삭제</a></span>
-			          	<span class="wte_l"><a href="#" class="wte_r" onclick="cancle_btn();">취소</a></span>
-					</td>
-				</c:otherwise>
-          </c:choose> --%>
 
           </span> 
           
