@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +12,8 @@
 <title>서울학교급식포털</title>
 <link href="/resources/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/resources/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="/resources/js/jquery-1.7.2.min.js"></script>
-
+<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 
 <!-- jQuery UI 의 datepicker 위젯 -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -19,8 +22,7 @@
 <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 
 
-
-<script type="text/javascript" >
+<script type="text/javascript">
 	let n = 1; // 현재 문항 갯수 // 여러번 써야 한다-> 일회용인 지역번수 대신 계속 쓸 수 있는 전역변수로 해야 한다-> 이런 전역변수들을.. 프로그래머들은 몹시 싫어하며, 안 쓸 수 있으면 안 쓸 수 있는 방법을 고민해야 하며, "상태"라고 부르기도한다.
 	
 	/* 참고용
@@ -39,7 +41,7 @@
 		const ulQuestion = document.getElementById('ulQuestion');
 		const li = document.createElement('li');
 		n++;
-		const innerHTML = '<pre>질문: <input type="text" name="question[]" class="inp" style="width: 690px;"/></pre>'; // javascript string litteral이 왠지 안 됨 T_T
+		const innerHTML = '<pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" /> <input type="button" value=" - "/></pre><br/>'; // javascript string litteral이 왠지 안 됨 T_T
 		li.innerHTML = innerHTML;
 		ulQuestion.append(li);
 	}
@@ -65,9 +67,105 @@
 	        buttonText: "Select date"
 	    });
 	});
+	
+	
+	//글자 수 제한 - 50글자: 제목
+	$(document).ready(function() {
+	    $('#test01').on('input', function() {
+	        $('#test_cnt_01').html("("+$(this).val().length+" / 50)");
+	 
+	        if($(this).val().length > 50) {
+	        	
+	            $(this).val($(this).val().substring(0, 50));  //글자수 자르는 곳인가
+	            $('#test_cnt_01').html("(50 / 50)");
+
+	            setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
+	        }
+	    });
+	});
+	
+	//글자 수 제한 - 50글자: 문항 제목
+	/* $(document).ready(function() {
+	    $('#test02').on('input', function() {
+	        $('#test_cnt_02').html("("+$(this).val().length+" / 50)");
+	 
+	        if($(this).val().length > 50) {
+	        	
+	            $(this).val($(this).val().substring(0, 50));  //글자수 자르는 곳인가
+	            $('#test_cnt_02').html("(50 / 50)");
+
+	            setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
+	        }
+	    });
+	}); */
+	
+	function foo(){
+		alert("안녕하세요");
+		
+	}
+	
+	function onchangeQuestion(inputElement) {
+		foo();
+	}
+	
+	/**
+	 * input[name="question[]"]의 사용자 입력을 처리하는 함수
+	 */
+	function onkeyupQuestion(inputElement) {
+		questionTrimStart(inputElement);
+		questionLengthCheck(inputElement);
+	}
+	
+	/**
+	 * input[name="question[]"]의 앞을 trim해준다.
+	 */
+	function questionTrimStart(inputElement) {
+// 		if(inputElement.value != inputElement.value.trimStart()){
+// 			alert("첫 글자 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+// 		}
+// 		inputElement.value = inputElement.value.trimStart();
+
+		const trimStart = inputElement.value.trimStart();
+		const isValid = (inputElement.value == trimStart);
+		if (isValid) {
+			return; // early return
+		}
+		
+		inputElement.value = trimStart;
+		alert("첫 글자 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+	}
+	
+	/**
+	 * input[name="question[]"]의 길이를 확인하고, 처리한다.
+	 */
+	function questionLengthCheck(inputElement) {
+		const isValid = (inputElement.value.length <= 50);
+		if (isValid) {
+			return; // early return
+		}
+		
+		inputElement.value = inputElement.value.substring(0, 50); //글자수 자르는 곳인가
+		setTimeout(function(){alert("질문은 50자로 이내로 제한됩니다.")}, 100);
+	}
+	
+	
+    // 첫 글자 공백만 사용 못 하게
+    //onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"
+    function noSpaceForm2(obj) 
+    {                        
+        if(obj.value == " ") // 공백 체크
+        {              
+            alert("첫 글자 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+            obj.focus();
+            obj.value = obj.value.replace(' ','');  // 공백 제거
+            return false;
+        }
+    } 
+	
 
 </script> 
 </head>
+
 <body>
 <div id="wrap"> 
   <!--skip S-->
@@ -233,7 +331,7 @@
             <tbody>
               <tr>
                 <th>제목</th>
-                <td colspan="5" class="tl"><input type="text" name="sur_title" class="inp" /></td>
+                <td colspan="5" class="tl"><input type="text" id="test01" name="sur_title" class="inp" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></td>
                 </tr>
               <tr>
                 <th>시작일</th>
@@ -256,8 +354,15 @@
                <td colspan="1" class="tl">
                	   <div class="research" style="width: 735px;">
                         <ul id="ulQuestion" >
-                        	<li><pre>질문: <input type="text" name="question[]" class="inp" style="width: 690px;"/></pre></li>
+<!--                         	<li><pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></pre><br/></li>	 -->
+							<li>
+								<pre>질문: 
+									<input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);"/>
+								</pre>
+								<br/>
+							</li>
                         </ul>
+                        
 					</div>
                </td>
               </tr>
