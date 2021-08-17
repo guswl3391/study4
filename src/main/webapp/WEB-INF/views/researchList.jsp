@@ -235,7 +235,8 @@
 		                	</c:when>
 		                	<c:when test="${'Y' eq item.finish_yn }">
 								<td class="tl">
-									<c:out value="==종료된 설문조사입니다.==" escapeXml="true"/>
+									<a href="#" onclick="alert('종료된 설문조사입니다.'); return false;"><c:out value="${item.sur_title}"/></a>
+									<%-- <c:out value="==종료된 설문조사입니다.==" escapeXml="true"/> --%>
 								</td>
 		                	</c:when>
 		                	<c:otherwise>
