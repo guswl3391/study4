@@ -26,7 +26,7 @@
       		<ul class="research_list">
       			<c:choose>
                 	<c:when test="${surveyItemVO.answerList.size() == 0}">
-                		<li>* 없습니다.</li>
+                		<li>==사유가 없습니다.==</li>
                 	</c:when>
                 	<c:otherwise>
 	                	<c:forEach items="${surveyItemVO.answerList}" var="surveyAnswerVO">
