@@ -356,9 +356,7 @@
                         <ul id="ulQuestion" >
 <!--                         	<li><pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></pre><br/></li>	 -->
 							<li>
-								<pre>질문: 
-									<input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);"/>
-								</pre>
+								<pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);"/></pre>
 								<br/>
 							</li>
                         </ul>
