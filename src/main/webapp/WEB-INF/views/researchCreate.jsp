@@ -41,13 +41,70 @@
 		const ulQuestion = document.getElementById('ulQuestion');
 		const li = document.createElement('li');
 		n++;
-		const innerHTML = '<pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" /> <input type="button" value=" - "/></pre><br/>'; // javascript string litteral이 왠지 안 됨 T_T
+		const innerHTML = '<pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);"/></pre><br/>'; // javascript string litteral이 왠지 안 됨 T_T
 		li.innerHTML = innerHTML;
 		ulQuestion.append(li);
 	}
 	
+	
+	/**
+   	 * 문항을 감소해 주는 함수
+   	 * n: 현재 문항 갯수
+   	 * 참고: onclickAddQuestion()
+   	 */
+    function onclickDeleteQuestion(inputElement) {
+    	const pre = inputElement.parentElement;
+    	const div = pre.parentElement;
+    	div.remove();
+    	n--; //현재 문항 갯수를 1씩 감소
+    }     
+	
+	
 	function onclickSubmit() {
-		document.form.submit();
+		
+		var form = document.form;
+		
+		if(document.form.sur_title.value.trim() == ""){
+			alert("제목은 필수 입력입니다.");
+			return document.form.sur_title.focus(); 
+		} else if(document.form.sur_sat_date.value.trim() == ""){
+			alert("시작일은 필수 입력입니다.");
+			return document.form.sur_sat_date.focus();
+		} else if(document.form.sur_end_date.value.trim() == ""){
+			alert("완료일은 필수 입력입니다.");
+			return document.form.sur_end_date.focus();
+		} 
+		
+		for(let i=0; i<=document.form['question[]'].length; i++){	
+			const input = document.form['question[]'][i];
+			console.log(`(${i}) input.value:`, input.value);
+			
+			const isValid =(input.value > '');
+			if(isValid){
+				continue;
+				
+			}
+			
+			alert('체크하세요!');
+			input.focus();
+			return;
+			
+		}
+		
+		
+		/* if(document.form.question.value.trim() == ""){
+			alert("완료일은 필수 입력입니다.");
+			return document.form.question.focus();
+		}  */
+		
+		/* else if($(\"input[name='question[]']\").eq(i).val()==''){
+        alert("입력되지 않았습니다.");
+   		 $(\"input[name='pd[]']\").eq(i).focus();
+    	return false;
+		} */
+	
+		
+		form.submit();
 	}
 
 	$(function(){
@@ -83,30 +140,7 @@
 	        }
 	    });
 	});
-	
-	//글자 수 제한 - 50글자: 문항 제목
-	/* $(document).ready(function() {
-	    $('#test02').on('input', function() {
-	        $('#test_cnt_02').html("("+$(this).val().length+" / 50)");
-	 
-	        if($(this).val().length > 50) {
-	        	
-	            $(this).val($(this).val().substring(0, 50));  //글자수 자르는 곳인가
-	            $('#test_cnt_02').html("(50 / 50)");
 
-	            setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
-	        }
-	    });
-	}); */
-	
-	function foo(){
-		alert("안녕하세요");
-		
-	}
-	
-	function onchangeQuestion(inputElement) {
-		foo();
-	}
 	
 	/**
 	 * input[name="question[]"]의 사용자 입력을 처리하는 함수
@@ -149,7 +183,7 @@
 	}
 	
 	
-    // 첫 글자 공백만 사용 못 하게
+  /*   // 첫 글자 공백만 사용 못 하게
     //onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"
     function noSpaceForm2(obj) 
     {                        
@@ -160,7 +194,7 @@
             obj.value = obj.value.replace(' ','');  // 공백 제거
             return false;
         }
-    } 
+    }  */
 	
 
 </script> 
@@ -347,7 +381,7 @@
               <tr>
                 <th>문항수</th>
                 <td colspan="5" class="tl">
-                <input type="button" value="문항 추가" onclick="onclickAddQuestion();" />
+                	<input type="button" value="문항 추가" onclick="onclickAddQuestion();" />
                 </td>
                 </tr>
               <tr>
@@ -356,7 +390,7 @@
                         <ul id="ulQuestion" >
 <!--                         	<li><pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></pre><br/></li>	 -->
 							<li>
-								<pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);"/></pre>
+								<pre>질문: <input type="text" name="question[]" class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></pre>
 								<br/>
 							</li>
                         </ul>
