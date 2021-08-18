@@ -104,7 +104,7 @@
 		} */
 	
 		
-		form.submit();
+		//form.submit();
 	}
 
 	$(function(){
@@ -365,7 +365,7 @@
             <tbody>
               <tr>
                 <th>제목</th>
-                <td colspan="5" class="tl"><input type="text" id="test01" name="sur_title" class="inp" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></td>
+                <td colspan="5" class="tl"><input type="text" id="test01" name="sur_title" class="inp" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></td>
                 </tr>
               <tr>
                 <th>시작일</th>
