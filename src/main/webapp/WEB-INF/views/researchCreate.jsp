@@ -75,8 +75,10 @@
 			return document.form.sur_end_date.focus();
 		} 
 		
-		for(let i=0; i<=document.form['question[]'].length; i++){	
-			const input = document.form['question[]'][i];
+		const list = document.querySelectorAll('input[name="question[]"]');
+		
+		for(let i=0; i<=list.length; i++){	
+			const input = list[i];
 			console.log(`(${i}) input.value:`, input.value);
 			
 			const isValid =(input.value > '');
@@ -85,7 +87,7 @@
 				
 			}
 			
-			alert('체크하세요!');
+			alert('질문은 필수 입력입니다. 입력하세요.');
 			input.focus();
 			return;
 			
@@ -104,7 +106,7 @@
 		} */
 	
 		
-		//form.submit();
+		form.submit();
 	}
 
 	$(function(){
