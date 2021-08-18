@@ -84,7 +84,7 @@
 			alert("시작일은 필수 입력입니다.");
 			return document.form.sur_sat_date.focus();
 		} else if(document.form.sur_end_date.value.trim() == ""){
-			alert("완료일은 필수 입력입니다.");
+			alert("종료일은 필수 입력입니다.");
 			return document.form.sur_end_date.focus();
 		} /* else if(document.form.question.value.trim() == ""){
 			alert("완료일은 필수 입력입니다.");
@@ -173,6 +173,111 @@
 	        buttonText: "Select date"
 	    });
 	});
+	
+	
+	/**
+	 * 시작일이 변경될 떄의 검증 로직
+	 */
+	function onchangeStartDate() {
+		const inputStartDate = document.getElementById('date2');
+		const inputEndDate = document.getElementById('date3');
+		
+// 		1. 시작일은 있지만, 마감일은 아직 없다.-> 그냥 지나간다!-> bypass-> early return
+// 		2. 마감일은 있지만, 시작일은 아직 없다.-> 그냥 지나간다!-> bypass-> early return
+// 		3. 둘 다 없다.-> 그냥 지나간다!-> bypass-> early return
+		// -> 시작일이 없으면.. 리턴
+		// -> 마감일이 없으면.. 리턴!
+		// ==>> 위의 1, 2, 3 모두 논리적으로 동치다.
+		
+		if(inputStartDate.value==''){
+			return; //early return: new Date(document.getElementById('date2').value)가 실행되지 않아야 하기 때문에! (그리고 사실 애시당초 실행할 필요도 없음!)
+		} else if(inputEndDate.value==''){
+			return; //early return: new Date(document.getElementById('date3').value)가 실행되지 않아야 하기 때문다! (그리고 사실 애시당초 실행할 필요도 없음!)
+		}
+		
+		
+		// 1. 시작일 값을 읽어서, new Date()로 받는다.
+		// const startDate = new Date('#date2'); // 이러면 new Date()안에 '#date2'라는 글자가 들어간다. // 우리가 원하는 것은 ㅇate2 라는 id를 가진 input element의 값value이다!
+		const startDate = new Date(inputStartDate.value);
+		
+		// 2. 종료일 값을 읽어서, "
+		const endDate = new Date(inputEndDate.value);
+		
+		console.log({startDate, endDate});
+		
+		// 3. 1과 2를 비교한다
+		if(startDate > endDate){
+			// 1. 시작일이 마감일보다 느리다-> 에러!!
+			alert("시작일은 종료일보다 빨라야 합니다."); 
+			//날짜 초기화: 시작일을 아예 지워버림-> input 태그 중에서 시작일이 들어가는 태그가 있는데, 그 부분의 값ㅍalue을 초기화 그러니까.. '' 빈값으로 해버리자!
+			inputStartDate.value='';
+			
+			//포커스 필요
+			inputStartDate.focus();			
+			
+		} else if(startDate.getTime() == endDate.getTime()){ // call by reference이기 때문에 이렇게 직접 primitive한 value를 꺼내서 비교해야 한다. 
+			// 2. 시작일과 마감일이 같다-> 에러!!
+			alert("시작일과 종료일은 달라야 합니다.");
+			//날짜 초기화: 시작일을 아예 지워버림
+			inputStartDate.value='';
+			
+			//포커스 필요
+			inputStartDate.focus();
+		}
+	}
+	
+	/**
+	 * 종료일이 변경될 떄의 검증 로직
+	 */
+	function onchangeEndDate() {
+		const inputStartDate = document.getElementById('date2');
+		const inputEndDate = document.getElementById('date3');
+		
+// 		1. 시작일은 있지만, 마감일은 아직 없다.-> 그냥 지나간다!-> bypass-> early return
+// 		2. 마감일은 있지만, 시작일은 아직 없다.-> 그냥 지나간다!-> bypass-> early return
+// 		3. 둘 다 없다.-> 그냥 지나간다!-> bypass-> early return
+		// -> 시작일이 없으면.. 리턴
+		// -> 마감일이 없으면.. 리턴!
+		// ==>> 위의 1, 2, 3 모두 논리적으로 동치다.
+		
+		if(inputStartDate.value==''){
+			return; //early return: new Date(document.getElementById('date2').value)가 실행되지 않아야 하기 때문에! (그리고 사실 애시당초 실행할 필요도 없음!)
+		} else if(inputEndDate.value==''){
+			return; //early return: new Date(document.getElementById('date3').value)가 실행되지 않아야 하기 때문다! (그리고 사실 애시당초 실행할 필요도 없음!)
+		}
+		
+		
+		// 1. 시작일 값을 읽어서, new Date()로 받는다.
+		// const startDate = new Date('#date2'); // 이러면 new Date()안에 '#date2'라는 글자가 들어간다. // 우리가 원하는 것은 ㅇate2 라는 id를 가진 input element의 값value이다!
+		const startDate = new Date(inputStartDate.value);
+		
+		// 2. 종료일 값을 읽어서, "
+		const endDate = new Date(inputEndDate.value);
+		
+		console.log({startDate, endDate});
+		
+		// 3. 1과 2를 비교한다
+		if(startDate > endDate){
+			// 1. 시작일이 마감일보다 느리다-> 에러!!
+			alert("종료일은 시작일보다 느려야 합니다."); 
+			//날짜 초기화: 시작일을 아예 지워버림-> input 태그 중에서 시작일이 들어가는 태그가 있는데, 그 부분의 값ㅍalue을 초기화 그러니까.. '' 빈값으로 해버리자!
+			inputEndDate.value='';
+			
+			//포커스 필요
+			inputEndDate.focus();			
+			
+		} else if(startDate.getTime() == endDate.getTime()){ // call by reference이기 때문에 이렇게 직접 primitive한 value를 꺼내서 비교해야 한다. 
+			// 2. 시작일과 마감일이 같다-> 에러!!
+			alert("시작일과 종료일은 달라야 합니다.");
+			//날짜 초기화: 시작일을 아예 지워버림
+			inputEndDate.value='';
+			
+			//포커스 필요
+			inputEndDate.focus();
+		}
+	}
+	
+	
 	
 	
 	//글자 수 제한 - 50글자: 제목
@@ -370,18 +475,18 @@
               <tr>
                 <th>제목</th>
                 	<td colspan="5" class="tl">
-                		<input type="text" id="test01" name="sur_title" class="inp" value="<c:out value="${surveyVO.sur_title }"/>"/>
+                		<input type="text" id="test01" name="sur_title" class="inp" placeholder="제목을 입력하세요." value="<c:out value="${surveyVO.sur_title }"/>"/>
                 		<input type="hidden" name="sur_seq" value="${surveyVO.sur_seq }" /> 
                		</td>
                 </tr>
               <tr>
                 <th>시작일</th> 
                 <%-- value="${surveyVO.sur_sat_date } --%>
-                <td class="tl"><input type="text" name="sur_sat_date" id="date2" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_sat_date}" pattern="MM/dd/yyyy" />" readonly/> 
+                <td class="tl"><input type="text" name="sur_sat_date" id="date2" class="inp" placeholder="시작일" style="width:100px;" onchange="onchangeStartDate();" value="<fmt:formatDate value="${surveyVO.sur_sat_date}" pattern="MM/dd/yyyy" />" readonly/> 
                 <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
                 </td>
                 <th>종료일</th>
-                <td class="tl"><input type="text" name="sur_end_date" id="date3" class="inp" style="width:100px;" value="<fmt:formatDate value="${surveyVO.sur_end_date}" pattern="MM/dd/yyyy" />" readonly/> 
+                <td class="tl"><input type="text" name="sur_end_date" id="date3" class="inp" placeholder="종료일" style="width:100px;" onchange="onchangeEndDate();" value="<fmt:formatDate value="${surveyVO.sur_end_date}" pattern="MM/dd/yyyy" />" readonly/> 
                 <!-- <a href="#"><img src="/resources/images/sub/btn/ico_data.gif" alt="달력" /></a> -->
                 </td>
                 <td class="tl" colspan="2"></td>
