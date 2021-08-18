@@ -42,7 +42,7 @@
 	function openPopup(sur_seq) {
 		var popUrl = '/researchChoiceReasonPopup?sur_seq=' + sur_seq;
 		var popName = 'researchChoiceReasonPopup';
-		var popOption = "top=50, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
+		var popOption = "top=50, left=10, width=700, height=600, status=no, menubar=no, toolbar=no, resizable=no";
         window.open(popUrl, popName, popOption); // chrome에서는 name을 안 적으면, 그냥 새 탭으로 연다!
 	}
 </script>
@@ -76,10 +76,15 @@
 			            </div>
 				        
 				        <div style="flex: 4;">
+				        	<br/><br/><br/>
 				            <p>① 매우 그렇다: ${map['1']}명</p>
+				            <br/>
 				            <p>② 조금 그렇다: ${map['2']}명</p>
+				            <br/>
 				            <p>③ 그　 렇　다: ${map['3']}명</p>
+				            <br/>
 				            <p>④ 조금 아니다: ${map['4']}명</p>
+				            <br/>
 				            <p>⑤ 매우 아니다: ${map['5']}명</p>
 				        </div>
 				    </div>
