@@ -53,7 +53,7 @@
 		n++; //현재 문항 갯수를 1씩 증가
 		const innerHTML = `
 			<p>
-         	 <pre>질문: <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/>" style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
+         	 <pre>질문: <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/>" style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
           	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
          	</p>
 		`;
@@ -74,9 +74,72 @@
     }            
                 
    	function onclickSubmit() {
-   		document.form.submit();
+   		
+		var form = document.form;
+		
+		if(document.form.sur_title.value.trim() == ""){
+			alert("제목은 필수 입력입니다.");
+			return document.form.sur_title.focus(); 
+		} else if(document.form.sur_sat_date.value.trim() == ""){
+			alert("시작일은 필수 입력입니다.");
+			return document.form.sur_sat_date.focus();
+		} else if(document.form.sur_end_date.value.trim() == ""){
+			alert("완료일은 필수 입력입니다.");
+			return document.form.sur_end_date.focus();
+		} /* else if(document.form.question.value.trim() == ""){
+			alert("완료일은 필수 입력입니다.");
+			return document.form.question.focus();
+		} */
+		
+		
+		form.submit();
+
    	}
    	
+   	
+
+	/**
+	 * input[name="question[]"]의 사용자 입력을 처리하는 함수
+	 */
+	function onkeyupQuestion(inputElement) {
+		questionTrimStart(inputElement);
+		questionLengthCheck(inputElement);
+	}
+	
+	/**
+	 * input[name="question[]"]의 앞을 trim해준다.
+	 */
+	function questionTrimStart(inputElement) {
+// 		if(inputElement.value != inputElement.value.trimStart()){
+// 			alert("첫 글자 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+// 		}
+// 		inputElement.value = inputElement.value.trimStart();
+
+		const trimStart = inputElement.value.trimStart();
+		const isValid = (inputElement.value == trimStart);
+		if (isValid) {
+			return; // early return
+		}
+		
+		inputElement.value = trimStart;
+		alert("첫 글자 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+	}
+	
+	/**
+	 * input[name="question[]"]의 길이를 확인하고, 처리한다.
+	 */
+	function questionLengthCheck(inputElement) {
+		const isValid = (inputElement.value.length <= 50);
+		if (isValid) {
+			return; // early return
+		}
+		
+		inputElement.value = inputElement.value.substring(0, 50); //글자수 자르는 곳인가
+		setTimeout(function(){alert("질문은 50자로 이내로 제한됩니다.")}, 100);
+	}
+	
+   	
+    	
    	function onclickDelete() {
    		const sur_seq = ${sur_seq};
    		if(confirm('삭제하시겠습니까?')){
@@ -334,7 +397,7 @@
                	<c:forEach items="${list}" var="item" >
                	    <div class="research">
                        <p>
-                      	 <pre>질문: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> style="width: 680px;" id="test02" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this);"/></pre>
+                      	 <pre>질문: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></pre>
                        	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
                        </p>
 					</div>
