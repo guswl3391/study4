@@ -44,7 +44,28 @@
  		// validate
  		if(isConfirm==false){
  			return false; //early return
- 		}
+ 		} /* else if(document.form.radio.value.trim() == undefined){
+			alert("시작일은 필수 입력입니다.");
+			return document.form.radio.focus();
+		}  */
+ 		
+		const list = document.querySelectorAll('input[name="answer[]"]');
+		
+		for(let i=0; i<list.length; i++){
+			const input = list[i];
+			console.log(`(${i}) input.value:`, input.value);
+			
+			const isValid =(input.value > '');
+			if(isValid){
+				continue;
+				
+			}
+			
+			alert('체크하세요.');
+			input.focus();
+			return;
+			
+		}
  		
  		document.form.submit();
  		
@@ -66,9 +87,43 @@
 	    });
 	});
  	
- 	
- 	
- 	
+	
+ 	function invalidItem(){
+/*  		if($("input[name="radio[]"]:radio:checked").length < 1) {
+ 			alert("선택하세요");
+ 			return false; 
+ 			}  */
+ 			
+ 		if($("input[class='radioButton']:radio:checked").length < 1){
+            alert("선택하지 않은 답이 있습니다.");
+            e.preventDefault();
+        }	
+ 	} 
+	
+	
+/*  	$(".radioButton").on("click", function() {
+ 		var radios = $(":radio:nth-child()");
+ 			for(var i = 0; i < radios.length; i++) {
+ 				var $this = $(radios[i]); 
+ 				
+			for(var i=1; i<=10; i++){
+			   $('input:radio[class='radioButton']:checked').length();
+			}
+
+	 			if($(":radio[class='radioButton']:checked").length<1){
+	                    alert("선택하지 않은 답이 있습니다.");
+	                    e.preventDefault();
+	            }	 
+  			if(!$this.is(":checked")) {
+ 				alert('필수 입력입니다.');
+ 				$this.focus();
+ 			return;
+ 			}
+ 		}
+ 	}); 
+
+
+ 	 */
  	
 
 </script>
@@ -246,8 +301,9 @@
                 <td class="tl"><fmt:formatDate value="${surveyVO.sur_sat_date}"/></td>
                 <th>종료일</th>
                 <td class="tl"><fmt:formatDate value="${surveyVO.sur_end_date}"/></td>
-                <th>결과확인</th>
-                <td class="tl"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></td>
+                <td class="tl" colspan="2"></td>
+                <!-- <th>결과확인</th>
+                <td class="tl"><img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기" /></td> -->
               </tr>
               <tr>
                 <th>문항수</th>
@@ -257,6 +313,7 @@
                <td colspan="6" class="tl">
                
                	<c:forEach items="${list}" var="item" varStatus="status">
+				<!-- item: SurveyItemVO -->
                	<!-- forEach: items의 들어있는 개수만큼 반복적으로 출력한다. -->
                	<!-- 반복되면서 list의 item을 순서대로 가져와서 var 변수(여기서는 item)로 만들어줌! -->
                	<!-- var 변수를 가지고 잘하면 근사한 리스트가 완성됨! -->
@@ -269,26 +326,26 @@
                        
                         <ul>
 	                        <li>
-	                        	<input type="radio" id="radio1${item.suri_seq}" name="radio${item.suri_seq}" value="1" onchange="onchangeRadio(this);">
-					  <label for="radio1${item.suri_seq}">① 매우 그렇다</label>
+	                        	<input type="radio" id="radio1${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="1" onchange="onchangeRadio(this);">
+					  			<label for="radio1${item.suri_seq}">① ${item.question1}</label>
 	                        </li>
 	                        <li>
-	                        	<input type="radio" id="radio2${item.suri_seq}" name="radio${item.suri_seq}" value="2" onchange="onchangeRadio(this);">
-					  <label for="radio2${item.suri_seq}">② 조금 그렇다</label>
+	                        	<input type="radio" id="radio2${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="2" onchange="onchangeRadio(this);">
+					  			<label for="radio2${item.suri_seq}">② ${item.question2}</label>
 	                        </li>
 	                        <li>
-	                        	<input type="radio" id="radio3${item.suri_seq}" name="radio${item.suri_seq}" value="3" onchange="onchangeRadio(this);">
-					  <label for="radio3${item.suri_seq}">③ 그렇다</label>
+	                        	<input type="radio" id="radio3${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="3" onchange="onchangeRadio(this);">
+					 			 <label for="radio3${item.suri_seq}">③ ${item.question3}</label>
 	                        </li>
 	                        <li>
-	                         	<input type="radio" id="radio4${item.suri_seq}" name="radio${item.suri_seq}" value="4" onchange="onchangeRadio(this);">
-					  <label for="radio4${item.suri_seq}">④ 조금 아니다</label>
+	                         	<input type="radio" id="radio4${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="4" onchange="onchangeRadio(this);">
+					  			<label for="radio4${item.suri_seq}">④ ${item.question4}</label>
 	                        </li>
 	                        <li>
-	                        	<input type="radio" id="radio5${item.suri_seq}" name="radio${item.suri_seq}" value="5" onchange="onchangeRadio(this);">
-					  <label for="radio5${item.suri_seq}">⑤ 매우 아니다</label>
+	                        	<input type="radio" id="radio5${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="5" onchange="onchangeRadio(this);">
+					 			<label for="radio5${item.suri_seq}">⑤ ${item.question5}</label>
 	                        </li>
-	                        <li>선택사유 <input type="text" id="test01" name="choice_reason[]" value="" class="inp" style="width:200px;" /> </li>
+	                        <li>상세 사유: <input type="text" id="test01" name="choice_reason[]" placeholder="사유를 입력하세요. (선택)" value="" class="inp" style="width:200px;" /> </li>
                         </ul>
 					</div>
 					
