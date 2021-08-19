@@ -325,26 +325,36 @@
                        <input type="hidden" name="answer[]" value="">
                        
                         <ul>
-	                        <li>
-	                        	<input type="radio" id="radio1${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="1" onchange="onchangeRadio(this);">
-					  			<label for="radio1${item.suri_seq}">① ${item.question1}</label>
-	                        </li>
-	                        <li>
-	                        	<input type="radio" id="radio2${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="2" onchange="onchangeRadio(this);">
-					  			<label for="radio2${item.suri_seq}">② ${item.question2}</label>
-	                        </li>
-	                        <li>
-	                        	<input type="radio" id="radio3${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="3" onchange="onchangeRadio(this);">
-					 			 <label for="radio3${item.suri_seq}">③ ${item.question3}</label>
-	                        </li>
-	                        <li>
-	                         	<input type="radio" id="radio4${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="4" onchange="onchangeRadio(this);">
-					  			<label for="radio4${item.suri_seq}">④ ${item.question4}</label>
-	                        </li>
-	                        <li>
-	                        	<input type="radio" id="radio5${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="5" onchange="onchangeRadio(this);">
-					 			<label for="radio5${item.suri_seq}">⑤ ${item.question5}</label>
-	                        </li>
+                        	<c:if test="${not empty item.question1}">
+		                        <li>
+		                        	<input type="radio" id="radio1${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="1" onchange="onchangeRadio(this);">
+						  			<label for="radio1${item.suri_seq}">① ${item.question1}</label>
+		                        </li>
+	                        </c:if>
+	                        <c:if test="${not empty item.question2}">
+		                        <li>
+		                        	<input type="radio" id="radio2${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="2" onchange="onchangeRadio(this);">
+						  			<label for="radio2${item.suri_seq}">② ${item.question2}</label>
+		                        </li>
+	                        </c:if>
+	                        <c:if test="${not empty item.question3}">
+		                        <li>
+		                        	<input type="radio" id="radio3${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="3" onchange="onchangeRadio(this);">
+						 			 <label for="radio3${item.suri_seq}">③ ${item.question3}</label>
+		                        </li>
+	                        </c:if>
+	                        <c:if test="${not empty item.question4}">
+		                        <li>
+		                         	<input type="radio" id="radio4${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="4" onchange="onchangeRadio(this);">
+						  			<label for="radio4${item.suri_seq}">④ ${item.question4}</label>
+		                        </li>
+	                        </c:if>
+	                        <c:if test="${not empty item.question5}">
+		                        <li>
+		                        	<input type="radio" id="radio5${item.suri_seq}" class="radioButton" name="radio${item.suri_seq}" value="5" onchange="onchangeRadio(this);">
+						 			<label for="radio5${item.suri_seq}">⑤ ${item.question5}</label>
+		                        </li>
+	                        </c:if>
 	                        <li>상세 사유: <input type="text" id="test01" name="choice_reason[]" placeholder="사유를 입력하세요. (선택)" value="" class="inp" style="width:200px;" /> </li>
                         </ul>
 					</div>
