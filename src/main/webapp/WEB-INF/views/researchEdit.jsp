@@ -52,10 +52,26 @@
 		div.classList.add('research');
 		n++; //현재 문항 갯수를 1씩 증가
 		const innerHTML = `
-			<p>
-         	 <pre>질문: <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/>" style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
-          	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
-         	</p>
+			 <p>
+         	 	<pre>`+n+`.문항 : <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/> placeholder="질문을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
+          	  	<input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
+             </p>
+           	 <p>
+   			         답 변 1: <input type="text" name="question1[]" value=<c:out value="${item.question1 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   			 </p>
+   			 <p>
+   				답 변 2: <input type="text" name="question2[]" value=<c:out value="${item.question2 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   			 </p>
+   			 <p>
+   				답 변 3: <input type="text" name="question3[]" value=<c:out value="${item.question3 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   			 </p>
+   			 <p>
+   				답 변 4: <input type="text" name="question4[]" value=<c:out value="${item.question4 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   			 </p>
+   			 <p>
+   				답 변 5: <input type="text" name="question5[]" value=<c:out value="${item.question5 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   			 </p>
+   			 <br/>
 		`;
 		div.innerHTML = innerHTML;
 		tdQuestion.append(div);
@@ -494,7 +510,7 @@
               <tr>
                 <th>문항수</th>
                 <td colspan="5" class="tl">
-                <input type="button" value="문항 추가" onclick="onclickAddQuestion();" />
+                <input type="button" value="문항 추가" onclick="onclickAddQuestion();" />*최대 10개
                 </td>
                 </tr>
               <tr>
@@ -502,9 +518,26 @@
                	<c:forEach items="${list}" var="item" >
                	    <div class="research">
                        <p>
-                      	 <pre>질문: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></pre>
+                      	 <pre>1. 문항: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> class="inp" placeholder="질문을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></pre>
                        	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
                        </p>
+                       <br/>
+                       <p>
+					                 답 변 1: <input type="text" name="question1[]" value=<c:out value="${item.question1 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+				        </p>
+				        <p>
+		            		답 변 2: <input type="text" name="question2[]" value=<c:out value="${item.question2 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+				        </p>
+				        <p>
+			            	답 변 3: <input type="text" name="question3[]" value=<c:out value="${item.question3 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+				        </p>
+				        <p>
+			            	답 변 4: <input type="text" name="question4[]" value=<c:out value="${item.question4 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+				        </p>
+				        <p>
+			            	답 변 5: <input type="text" name="question5[]" value=<c:out value="${item.question5 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+				        </p>
+				        <br/>
 					</div>
 				</c:forEach>
                </td>

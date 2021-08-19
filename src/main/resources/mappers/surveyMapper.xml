@@ -53,10 +53,12 @@
 	    </selectKey>
 	    
 	    INSERT INTO TB_06_RSI(
-		    SUR_SEQ, SURI_SEQ, SURI_TITLE
+		    SUR_SEQ, SURI_SEQ, SURI_TITLE, QUESTION1, QUESTION2,
+            QUESTION3, QUESTION4, QUESTION5
 		)
 		VALUES (
-		    #{sur_seq}, #{suri_seq}, #{suri_title}
+		    #{sur_seq}, #{suri_seq}, #{suri_title}, #{question1}, #{question2}, 
+            #{question3}, #{question4}, #{question5}
 		)
    </insert>
    
@@ -82,6 +84,21 @@
 		    </if>
 		    <if test="suri_title != null">
 		        SURI_TITLE = #{suri_title},
+		    </if>
+            <if test="question1 != null">
+		        QUESTION1 = #{question1},
+		    </if>
+            <if test="question2 != null">
+		        QUESTION2 = #{question2},
+		    </if>
+            <if test="question3 != null">
+		        QUESTION3 = #{question3},
+		    </if>
+            <if test="question4 != null">
+		        QUESTION4 = #{question4},
+		    </if>
+            <if test="question5 != null">
+		        QUESTION5 = #{question5},
 		    </if>
 		</set>
 		WHERE

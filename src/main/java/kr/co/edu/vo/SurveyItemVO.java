@@ -15,18 +15,32 @@ public class SurveyItemVO {
 	 */
 	private int sur_seq;
 	private int suri_seq; // 문항 번호, 자동 생성
-	private String suri_title; // 질문 내용
+	private String suri_title; // 문항 내용
+	private String question1; // 답변 1
+	private String question2; // 답변 2
+	
+	private String question3; // 답변 3
+	private String question4; // 답변 4
+	private String question5; // 답변 5
+	
 	private List<SurveyAnswerVO> answerList; // 응답 목록
 
 	public SurveyItemVO() {
 		super();
 	}
 
-	public SurveyItemVO(int sur_seq, int suri_seq, String suri_title) {
+	public SurveyItemVO(int sur_seq, int suri_seq, String suri_title, String question1, String question2, 
+			String question3, String question4, String question5) {
 		super();
 		this.sur_seq = sur_seq;
 		this.suri_seq = suri_seq;
 		this.suri_title = suri_title;
+		this.question1 = question1;
+		this.question2 = question2;
+		
+		this.question3 = question3;
+		this.question4 = question4;
+		this.question5 = question5;
 	}
 
 	public int getSur_seq() {
@@ -55,6 +69,46 @@ public class SurveyItemVO {
 
 	public List<SurveyAnswerVO> getAnswerList() {
 		return answerList;
+	}
+
+	public String getQuestion1() {
+		return question1;
+	}
+
+	public void setQuestion1(String question1) {
+		this.question1 = question1;
+	}
+
+	public String getQuestion2() {
+		return question2;
+	}
+
+	public void setQuestion2(String question2) {
+		this.question2 = question2;
+	}
+
+	public String getQuestion3() {
+		return question3;
+	}
+
+	public void setQuestion3(String question3) {
+		this.question3 = question3;
+	}
+
+	public String getQuestion4() {
+		return question4;
+	}
+
+	public void setQuestion4(String question4) {
+		this.question4 = question4;
+	}
+
+	public String getQuestion5() {
+		return question5;
+	}
+
+	public void setQuestion5(String question5) {
+		this.question5 = question5;
 	}
 
 	public void setAnswerList(List<SurveyAnswerVO> answerList) {
