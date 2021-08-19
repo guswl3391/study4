@@ -46,6 +46,11 @@ public class SurveyServiceImpl implements SurveyService {
 	public List<SurveyItemVO> selectItemList(int sur_seq) {
 		return dao.selectItemList(sur_seq);
 	}
+	
+	@Override
+	public SurveyItemVO selectItemOne(SurveyItemVO surveyItemVO) {
+		return dao.selectItemOne(surveyItemVO);
+	}
 
 
 	@Override

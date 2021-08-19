@@ -31,6 +31,12 @@ public interface SurveyService {
 	 */
 	public List<SurveyItemVO> selectItemList(int sur_seq);
 	
+	/**
+	 * 
+	 * @param surveyItemVO
+	 * @return
+	 */
+	public SurveyItemVO selectItemOne(SurveyItemVO surveyItemVO);
 
 	/**
 	 * 설문조사 신규 등록하기

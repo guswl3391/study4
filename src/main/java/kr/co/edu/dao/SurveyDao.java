@@ -57,6 +57,13 @@ public interface SurveyDao {
 	public List<SurveyItemVO> selectItemList(int sur_seq);
 	
 	/**
+	 * 
+	 * @param surveyItemVO
+	 * @return
+	 */
+	public SurveyItemVO selectItemOne(SurveyItemVO surveyItemVO);
+	
+	/**
 	 * 설문 조사 각각의 문항들에 대한 정보를 업데이트 하기
 	 * @param surveyItemVO -> suri_title, sur_seq, suri_seq
 	 * @return

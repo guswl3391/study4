@@ -73,6 +73,16 @@
 		    rsi.SURI_SEQ ASC
 	</select>
 	
+	<select id="selectItemOne" parameterType="kr.co.edu.vo.SurveyItemVO" resultType="kr.co.edu.vo.SurveyItemVO">
+		SELECT
+			rsi.*
+		FROM
+			TB_06_RSI rsi
+		WHERE
+			rsi.SUR_SEQ = #{sur_seq}
+			AND rsi.SURI_SEQ = #{suri_seq}
+	</select>
+	
 	<update id="updateSurveyItem" parameterType="kr.co.edu.vo.SurveyItemVO">
 		UPDATE TB_06_RSI
 		<set>

@@ -55,6 +55,11 @@ public class SurveyDaoImpl implements SurveyDao {
 	public List<SurveyItemVO> selectItemList(int sur_seq) {
 		return sqlSession.selectList("surveyMapper.selectItemList", sur_seq);
 	}
+	
+	@Override
+	public SurveyItemVO selectItemOne(SurveyItemVO surveyItemVO) {
+		return sqlSession.selectOne("surveyMapper.selectItemOne", surveyItemVO);
+	}
 
 	@Override
 	public int updateSurveyItem(SurveyItemVO surveyItemVO) {
