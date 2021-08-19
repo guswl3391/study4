@@ -17,25 +17,95 @@
 <!-- w100% h450px -->
 <div class="pop">
   <div class="pop_box">
-    <h1>사유전체보기</h1>
+    <h1>사유전체보기: ${surveyItemVO.suri_title}</h1>
     <div class="pop_list">
       <div class="research_box">
-      	<c:forEach items="${itemList}" var="surveyItemVO">
-      		<h2>${surveyItemVO.suri_title}</h2>
-      		
-      		<ul class="research_list">
-      			<c:choose>
-                	<c:when test="${surveyItemVO.answerList.size() == 0}">
-                		<li>==사유가 없습니다.==</li>
-                	</c:when>
-                	<c:otherwise>
-	                	<c:forEach items="${surveyItemVO.answerList}" var="surveyAnswerVO">
-			      			<li>${surveyAnswerVO.choice_reason}</li>
-			      		</c:forEach>
-					</c:otherwise>
-                </c:choose>
-      		</ul>
-      	</c:forEach>
+		<h2>${surveyItemVO.question1}</h2>
+		<ul class="research_list">
+			<c:choose>
+               	<c:when test="${nestedList.get(0).size() == 0}">
+               		<li>==사유가 없습니다.==</li>
+               	</c:when>
+               	<c:otherwise>
+                	<c:forEach items="${nestedList.get(0)}" var="surveyAnswerVO">
+		      			<li>${surveyAnswerVO.choice_reason}</li>
+		      		</c:forEach>
+				</c:otherwise>
+             </c:choose>
+		</ul>
+		
+		<h2>${surveyItemVO.question2}</h2>
+		<ul class="research_list">
+			<c:choose>
+               	<c:when test="${nestedList.get(1).size() == 0}">
+               		<li>==사유가 없습니다.==</li>
+               	</c:when>
+               	<c:otherwise>
+                	<c:forEach items="${nestedList.get(1)}" var="surveyAnswerVO">
+		      			<li>${surveyAnswerVO.choice_reason}</li>
+		      		</c:forEach>
+				</c:otherwise>
+             </c:choose>
+		</ul>
+		
+		<h2>${surveyItemVO.question3}</h2>
+		<ul class="research_list">
+			<c:choose>
+               	<c:when test="${nestedList.get(2).size() == 0}">
+               		<li>==사유가 없습니다.==</li>
+               	</c:when>
+               	<c:otherwise>
+                	<c:forEach items="${nestedList.get(2)}" var="surveyAnswerVO">
+		      			<li>${surveyAnswerVO.choice_reason}</li>
+		      		</c:forEach>
+				</c:otherwise>
+             </c:choose>
+		</ul>
+		
+		<h2>${surveyItemVO.question4}</h2>
+		<ul class="research_list">
+			<c:choose>
+               	<c:when test="${nestedList.get(3).size() == 0}">
+               		<li>==사유가 없습니다.==</li>
+               	</c:when>
+               	<c:otherwise>
+                	<c:forEach items="${nestedList.get(3)}" var="surveyAnswerVO">
+		      			<li>${surveyAnswerVO.choice_reason}</li>
+		      		</c:forEach>
+				</c:otherwise>
+             </c:choose>
+		</ul>
+		
+		<h2>${surveyItemVO.question5}</h2>
+		<ul class="research_list">
+			<c:choose>
+               	<c:when test="${nestedList.get(4).size() == 0}">
+               		<li>==사유가 없습니다.==</li>
+               	</c:when>
+               	<c:otherwise>
+                	<c:forEach items="${nestedList.get(4)}" var="surveyAnswerVO">
+		      			<li>${surveyAnswerVO.choice_reason}</li>
+		      		</c:forEach>
+				</c:otherwise>
+             </c:choose>
+		</ul>
+		
+<%--    		<c:forEach begin="1" end="5" var="number" > --%>
+<%-- 			<h2>${surveyItemVO["question" + number]}</h2> --%>
+<!-- 			java.lang.NumberFormatException: For input string: "question" -->
+<!-- 			<ul class="research_list"> -->
+<%-- 				<c:choose> --%>
+<%-- 	               	<c:when test="${nestedList.get(number - 1).size() == 0}"> --%>
+<!-- 	               		<li>==사유가 없습니다.==</li> -->
+<%-- 	               	</c:when> --%>
+<%-- 	               	<c:otherwise> --%>
+<%-- 	                	<c:forEach items="${nestedList.get(number - 1)}" var="surveyAnswerVO"> --%>
+<%-- 			      			<li>${surveyAnswerVO.choice_reason}</li> --%>
+<%-- 			      		</c:forEach> --%>
+<%-- 					</c:otherwise> --%>
+<%-- 	             </c:choose> --%>
+<!-- 			</ul> -->
+<%--    		</c:forEach> --%>
       </div>
     </div>
     <p class="pt20"></p>

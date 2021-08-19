@@ -435,23 +435,33 @@ public class HomeController {
 	/**
 	 * 설문조사 상세 페이지 내 사유 전체 보기 popup
 	 * @param int sur_seq 제목 번호 {@link SurveyVO.sur_seq}
+	 * @param int suri_seq 문항 번호
 	 */
 	@RequestMapping(value = "/researchChoiceReasonPopup", method = RequestMethod.GET)
 	public void researchChoiceReasonPopup(
 			Model model,
 			HttpSession session,
-			int sur_seq
+//			int sur_seq,
+//			int suri_seq
+			SurveyItemVO surveyItemVOParameter
 	) {
-		// 설문조사 문항 리스트
-		List<SurveyItemVO> itemList = service.selectItemList(sur_seq);
+//		// 설문조사 문항 리스트
+//		List<SurveyItemVO> itemList = service.selectItemList(sur_seq);
+//		
+//		for(SurveyItemVO surveyItemVO : itemList) {
+//			// 상세 사유가 있는 답변을 가져온다.
+//			List<SurveyAnswerVO> answerList = service.selectSurveyAnswerChoiceReasonList(surveyItemVO);
+//			surveyItemVO.setAnswerList(answerList);
+//		}
 		
-		for(SurveyItemVO surveyItemVO : itemList) {
-			// 상세 사유가 있는 답변을 가져온다.
-			List<SurveyAnswerVO> answerList = service.selectSurveyAnswerChoiceReasonList(surveyItemVO);
-			surveyItemVO.setAnswerList(answerList);
-		}
+		SurveyItemVO surveyItemVO = service.selectItemOne(surveyItemVOParameter);
+		model.addAttribute("surveyItemVO", surveyItemVO);
 		
-		model.addAttribute("itemList", itemList);
+		List<List<SurveyAnswerVO>> nestedList = service.selectSurveyAnswerChoiceReasonList(surveyItemVOParameter);
+		model.addAttribute("nestedList", nestedList);
+		
+		// model.addAttribute("itemList", itemList);
+		
 	}
 	
 	

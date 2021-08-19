@@ -39,8 +39,8 @@
 	/*
 	 * 설문조사 상세 페이지 내 사유 전체 보기 popup
 	 */
-	function openPopup(sur_seq) {
-		var popUrl = '/researchChoiceReasonPopup?sur_seq=' + sur_seq;
+	function openPopup(sur_seq, suri_seq) {
+		var popUrl = '/researchChoiceReasonPopup?sur_seq=' + sur_seq + '&suri_seq=' + suri_seq;
 		var popName = 'researchChoiceReasonPopup';
 		var popOption = "top=50, left=10, width=700, height=600, status=no, menubar=no, toolbar=no, resizable=no";
         window.open(popUrl, popName, popOption); // chrome에서는 name을 안 적으면, 그냥 새 탭으로 연다!
@@ -61,7 +61,7 @@
 				
 				<c:forEach items="${resultList}" var="map" varStatus="status">
 					<p style="text-align: left;">
-					<b>${status.count}. ${map.suri_title}</b>
+					<b>${status.count}. ${map.suri_title}</b> <span class="gray_l"><a href="#" class="gray_r" onclick="openPopup(${sur_seq}, ${map.suri_seq}); return false;">사유보기</a></span>
 					</p>
 					<br/>
 					<div style="display: flex;">
@@ -101,7 +101,7 @@
 			<p class="pt20"></p>
 			<div class="pop_btn">
 				<span class="blue_l"><a href="#" class="blue_r" onclick="window.close();">닫기</a></span> 
-				<span class="gray_l"><a href="#" class="gray_r" onclick="openPopup(${sur_seq}); return false;">사유보기</a></span>
+				<%-- <span class="gray_l"><a href="#" class="gray_r" onclick="openPopup(${sur_seq}); return false;">사유보기</a></span> --%>
 			</div>
 		</div>
 
