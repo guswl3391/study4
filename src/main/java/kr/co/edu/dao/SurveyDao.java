@@ -82,7 +82,7 @@ public interface SurveyDao {
 	 * @param surveyItemVO -> sur_seq, suri_seq
 	 * @return
 	 */
-	public List<SurveyAnswerVO> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO);
+	public List<List<SurveyAnswerVO>> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO);
 	
 	/**
 	 * 

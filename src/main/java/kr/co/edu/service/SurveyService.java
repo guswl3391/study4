@@ -59,7 +59,7 @@ public interface SurveyService {
 	 * @param surveyItemVO -> sur_seq, suri_seq
 	 * @return
 	 */
-	public List<SurveyAnswerVO> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO);
+	public List<List<SurveyAnswerVO>> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO);
 	
 	/**
 	 * 설문 조사 제목과 상세 정보들 업데이트 하기

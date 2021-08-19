@@ -72,8 +72,33 @@ public class SurveyDaoImpl implements SurveyDao {
 	}
 	
 	@Override
-	public List<SurveyAnswerVO> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO) {
-		return sqlSession.selectList("surveyMapper.selectSurveyAnswerChoiceReasonList", surveyItemVO);
+	public List<List<SurveyAnswerVO>> selectSurveyAnswerChoiceReasonList(SurveyItemVO surveyItemVO) {
+		// return sqlSession.selectList("surveyMapper.selectSurveyAnswerChoiceReasonList", surveyItemVO);
+		
+		List<List<SurveyAnswerVO>> nestedList = new ArrayList<List<SurveyAnswerVO>>();
+		
+		List<SurveyAnswerVO> selectList = sqlSession.selectList("surveyMapper.selectSurveyAnswerChoiceReasonList", surveyItemVO); 
+		// 통째 구운 마른오징어: answer 1~5까지 다 있다!
+		// -> 우리는 이걸 answer별로 찢어주고 싶다-> 왜? 그러면 view에 넣어서 그리기 짱편하다!
+		
+		
+		for (int answer = 1; answer <= 5; answer++) {
+			List<SurveyAnswerVO> list = new ArrayList<SurveyAnswerVO>();
+		
+			// full scan
+			for (SurveyAnswerVO surveyAnswerVO : selectList) {
+				boolean isMatch = (answer == surveyAnswerVO.getAnswer());
+				if (isMatch) {
+					list.add(surveyAnswerVO);
+				}
+			}
+			
+			nestedList.add(list);
+		}
+		
+		
+		
+		return nestedList;
 	}
 
 	@Override
