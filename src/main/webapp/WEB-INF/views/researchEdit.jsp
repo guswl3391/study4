@@ -53,7 +53,7 @@
 		n++; //현재 문항 갯수를 1씩 증가
 		const innerHTML = `
 			 <p>
-         	 	<pre>`+n+`.문항 : <input type="text" name="suri_title[]" value="" placeholder="문항을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
+         	 	<pre><span class="number">`+n+`</span>.문항 : <input type="text" name="suri_title[]" value="" placeholder="문항을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
           	  	<input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
              </p>
            	 <p>
@@ -87,7 +87,15 @@
     	const div = pre.parentElement;
     	div.remove();
     	n--; //현재 문항 갯수를 1씩 감소
-    }            
+    	
+    	// span.number를 새로 매겨준다 (중간에가 삭제로 인해 빠질 수 있으므로!)
+    	const list = document.querySelectorAll('#tdQuestion span.number');
+    	for (let i = 0; i < list.length; i++) {
+    	  const span = list[i];
+    	  const number = (i + 1);
+    	  span.innerText = number;
+    	}
+    }
                 
    	function onclickSubmit() {
    		
@@ -543,7 +551,7 @@
                	<c:forEach items="${list}" var="item" >
                	    <div class="research">
                        <p>
-                      	 <pre>1. 문항: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> class="inp" placeholder="질문을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></pre>
+                      	 <pre><span class="number">1</span>. 문항: <input type="text" name="suri_title[]" value=<c:out value="${item.suri_title }"/> class="inp" placeholder="질문을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/></pre>
                        	 <input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
                        </p>
                        <br/>
