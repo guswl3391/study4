@@ -108,6 +108,29 @@
 		} */
 		
 		
+		const list = document.querySelectorAll('input[name="suri_title[]"]');
+		
+		for(let i=0; i<list.length; i++){
+			const input = list[i];
+			console.log(`(${i}) input.value:`, input.value);
+			
+			const isValid =(input.value > '');
+			if(isValid){
+				continue;
+				
+			}
+			
+			alert('질문은 필수 입력입니다. 입력하세요.');
+			input.focus();
+			return;
+			
+		}
+		
+		
+		
+		
+		
+		
 		form.submit();
 
    	}
