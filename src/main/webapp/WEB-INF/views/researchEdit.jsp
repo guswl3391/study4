@@ -53,23 +53,23 @@
 		n++; //현재 문항 갯수를 1씩 증가
 		const innerHTML = `
 			 <p>
-         	 	<pre>`+n+`.문항 : <input type="text" name="suri_title[]" value="<c:out value="${item.suri_title }"/> placeholder="질문을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
+         	 	<pre>`+n+`.문항 : <input type="text" name="suri_title[]" value="" placeholder="문항을 입력하세요." style="width: 680px;" id="test02" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);" /> <input type="button" value=" - " onclick="onclickDeleteQuestion(this);" /></pre>
           	  	<input type="hidden" name="suri_seq[]" value="${item.suri_seq }" />
              </p>
            	 <p>
-   			         답 변 1: <input type="text" name="question1[]" value=<c:out value="${item.question1 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   			         답 변 1: <input type="text" name="question1[]" value="" placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
    			 </p>
    			 <p>
-   				답 변 2: <input type="text" name="question2[]" value=<c:out value="${item.question2 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   				답 변 2: <input type="text" name="question2[]" value="" placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
    			 </p>
    			 <p>
-   				답 변 3: <input type="text" name="question3[]" value=<c:out value="${item.question3 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   				답 변 3: <input type="text" name="question3[]" value="" placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
    			 </p>
    			 <p>
-   				답 변 4: <input type="text" name="question4[]" value=<c:out value="${item.question4 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   				답 변 4: <input type="text" name="question4[]" value="" placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
    			 </p>
    			 <p>
-   				답 변 5: <input type="text" name="question5[]" value=<c:out value="${item.question5 }"/> placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
+   				답 변 5: <input type="text" name="question5[]" value="" placeholder="답변을 입력하세요." class="inp" style="width: 680px;" onkeyup="onkeyupQuestion(this);" onchange="onkeyupQuestion(this);"/>
    			 </p>
    			 <br/>
 		`;
@@ -180,7 +180,7 @@
    	
     	
    	function onclickDelete() {
-   		const sur_seq = ${sur_seq};
+   		const sur_seq = ${surveyVO.sur_seq}; //모델에 sur_seq가 있기를 기대했으나.. 없어서 오류가 나고 있음..
    		if(confirm('삭제하시겠습니까?')){
    			location.href="/researchDelete?sur_seq=" + sur_seq;
    		}
@@ -194,7 +194,8 @@
    			} 
    		}
    	
-
+	
+   	/* datepicker 세팅 */
 	$(function(){
 	    $("#date2").datepicker({
 	        showOn: "both",
@@ -204,6 +205,7 @@
 	    });
 	});
 
+	/* datepicker 세팅 */
 	$(function(){
 	    $("#date3").datepicker({
 	        showOn: "both",
@@ -329,7 +331,7 @@
 	            $(this).val($(this).val().substring(0, 50));  //글자수 자르는 곳인가
 	            $('#test_cnt_01').html("(50 / 50)");
 
-	            setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
+	            // setTimeout(function(){alert("제목은 50자로 이내로 제한됩니다.")}, 100);
 	        }
 	    });
 	});
