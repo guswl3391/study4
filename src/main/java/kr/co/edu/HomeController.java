@@ -165,6 +165,27 @@ public class HomeController {
 
 		return "researchView";
 	}
+	
+	
+	/**
+	 * 
+	 * 
+	 * @param sur_seq -> 설문조사 제목 번호 {@link SurveyVO}
+	 */
+	@RequestMapping(value = "/researchDone", method = RequestMethod.GET)
+	public String researchDone(int sur_seq, Model model) {
+
+		SurveyVO surveyVO = service.selectSurvey(sur_seq);
+		model.addAttribute("surveyVO", surveyVO);
+
+		List<SurveyItemVO> list = service.selectItemList(sur_seq);
+		model.addAttribute("list", list);
+
+		return "researchDone";
+	}
+
+	
+	
 
 	/**
 	 * 참여자가 응답을 서버에 전송하는 기능
