@@ -147,13 +147,18 @@ public class SurveyDaoImpl implements SurveyDao {
 		for (Map<String, Object> item1 : list1) {
 			Integer suri_seq = ((BigDecimal) item1.get("SURI_SEQ")).intValue();
 			String suri_title = (String) item1.get("SURI_TITLE");
+			String question1 = (String) item1.get("QUESTION1");
+			String question2 = (String) item1.get("QUESTION2");
+			String question3 = (String) item1.get("QUESTION3");
+			String question4 = (String) item1.get("QUESTION4");
+			String question5 = (String) item1.get("QUESTION5");
 			
 			List<String> nameList = new ArrayList<String>();
-			nameList.add("매우 그렇다");
-			nameList.add("조금 그렇다");
-			nameList.add("그렇다");
-			nameList.add("조금 아니다");
-			nameList.add("매우 아니다");
+			nameList.add(question1);
+			nameList.add(question2);
+			nameList.add(question3);
+			nameList.add(question4);
+			nameList.add(question5);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("suri_seq", suri_seq);

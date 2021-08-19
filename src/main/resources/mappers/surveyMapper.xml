@@ -204,7 +204,12 @@
 	<select id="selectResultBySurSeq" resultType="Map" parameterType="int">
 		SELECT
 		    rsi.suri_seq,
-		    rsi.suri_title
+		    rsi.suri_title,
+		    rsi.question1,
+		    rsi.question2,
+		    rsi.question3,
+		    rsi.question4,
+		    rsi.question5
 		FROM
 		    TB_06_RSI rsi
 		WHERE

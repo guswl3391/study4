@@ -76,16 +76,22 @@
 			            </div>
 				        
 				        <div style="flex: 4;">
-				        	<br/><br/><br/>
-				            <p>① 매우 그렇다: ${map['1']}명</p>
-				            <br/>
-				            <p>② 조금 그렇다: ${map['2']}명</p>
-				            <br/>
-				            <p>③ 그　 렇　다: ${map['3']}명</p>
-				            <br/>
-				            <p>④ 조금 아니다: ${map['4']}명</p>
-				            <br/>
-				            <p>⑤ 매우 아니다: ${map['5']}명</p>
+				        	<br/><br/>
+<%-- 				            <p>① 매우 그렇다: ${map['1']}명</p> --%>
+<!-- 				            <br/> -->
+<%-- 				            <p>② 조금 그렇다: ${map['2']}명</p> --%>
+<!-- 				            <br/> -->
+<%-- 				            <p>③ 그　 렇　다: ${map['3']}명</p> --%>
+<!-- 				            <br/> -->
+<%-- 				            <p>④ 조금 아니다: ${map['4']}명</p> --%>
+<!-- 				            <br/> -->
+<%-- 				            <p>⑤ 매우 아니다: ${map['5']}명</p> --%>
+							<c:forEach items="${map.nameList}" var="name" varStatus="nameVarStatus">
+								<c:if test="${not empty name}">
+									<br />
+						            <p>${nameVarStatus.count} ${name}: ${map[Integer.toString(nameVarStatus.count)]}명</p>
+								</c:if>
+				            </c:forEach>
 				        </div>
 				    </div>
 				    
