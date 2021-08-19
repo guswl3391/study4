@@ -25,7 +25,7 @@
 	function searchPopup(sur_seq){
 		var popUrl = '/researchPopup?sur_seq=' + sur_seq;
 		var popName = 'researchPopup';
-		var popOption = "top=50, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
+		var popOption = "top=50, left=10, width=630, height=600, status=no, menubar=no, toolbar=no, resizable=no";
         window.open(popUrl, popName, popOption); // chrome에서는 name을 안 적으면, 그냥 새 탭으로 연다!
 	}
 	
@@ -211,7 +211,8 @@
 	              <c:forEach items="${list}" var="item">
 					<tr>
 		                <td>${item.rnum}</td>
-		                <td class="tl"><a href="/researchEdit?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
+		                <td class="tl" style="max-width: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+		                <a href="/researchEdit?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
 		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
 		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 		                <td>${item.finish_yn}</td>
@@ -230,17 +231,19 @@
 		               <c:choose>
 		                	<c:when test="${'Y' eq item.answer_yn }">
 								<td class="tl">
-									<c:out value="==이미 참여한 설문조사입니다.==" escapeXml="true"/>
+									<a href="/researchDone?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}" escapeXml="true"/></a>
 								</td>
 		                	</c:when>
 		                	<c:when test="${'Y' eq item.finish_yn }">
-								<td class="tl">
-									<a href="#" onclick="alert('종료된 설문조사입니다.'); return false;"><c:out value="${item.sur_title}"/></a>
+								<td class="tl" style="max-width: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+									<a href="/researchDone?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}" escapeXml="true"/></a>
+									<%-- <a href="#" onclick="alert('종료된 설문조사입니다.'); return false;"><c:out value="${item.sur_title}"/></a> --%>
 									<%-- <c:out value="==종료된 설문조사입니다.==" escapeXml="true"/> --%>
 								</td>
 		                	</c:when>
 		                	<c:otherwise>
-		                		<td class="tl"><a href="/researchView?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
+		                		<td class="tl" style="max-width: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+		                		<a href="/researchView?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}"/></a></td>
 							</c:otherwise>
 		                </c:choose>
 		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
@@ -273,7 +276,8 @@
 	              <c:forEach items="${list}" var="item">
 					<tr>
 		                <td>${item.rnum}</td>
-              		    <td class="tl"><c:out value="${item.sur_title}"/></td>
+              		    <td class="tl" style="max-width: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+              		    <c:out value="${item.sur_title}"/></td>
 		                <td><fmt:formatDate value="${item.sur_sat_date}"/></td>                
 		                <td><fmt:formatDate value="${item.sur_end_date}"/></td>
 		                <td>${item.finish_yn}</td>
@@ -283,14 +287,14 @@
 		                <c:choose>
 		                	<c:when test="${'Y' eq item.finish_yn}">
 		                		<td>
-		                			<a href="#" onclick="searchPopup(${item.sur_seq}); return false;">
+		                			<%-- <a href="#" onclick="searchPopup(${item.sur_seq}); return false;"> --%>
 		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
 	                				</a>
                 				</td>
 		                	</c:when>
 		                	<c:otherwise>
 								<td>
-		                			<a href="#" onclick="alert('마감일 이후에 결과 보기가 가능합니다.');">
+		                			<!-- <a href="#" onclick="alert('마감일 이후에 결과 보기가 가능합니다.');"> -->
 		                				<img src="/resources/images/sub/btn/btn_view.gif" alt="결과보기"/>
 	                				</a>
                 				</td>
