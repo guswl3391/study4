@@ -32,6 +32,34 @@ public class SurveyItemVO {
 	public SurveyItemVO(int sur_seq, int suri_seq, String suri_title, String question1, String question2, 
 			String question3, String question4, String question5) {
 		super();
+		
+		// backward: 중간 중간 비어있을 수 있으므로, 뒤에서부터 당겨온다.
+		if (isQuestionEmpty(question4)) {
+			question4 = question5;
+			question5 = "";
+		}
+		
+		if (isQuestionEmpty(question3)) {
+			question3 = question4;
+			question4 = question5;
+			question5 = "";
+		}
+		
+		if (isQuestionEmpty(question2)) {
+			question2 = question3;
+			question3 = question4;
+			question4 = question5;
+			question5 = "";
+		}
+		
+		if (isQuestionEmpty(question1)) {
+			question1 = question2;
+			question2 = question3;
+			question3 = question4;
+			question4 = question5;
+			question5 = "";
+		}
+		
 		this.sur_seq = sur_seq;
 		this.suri_seq = suri_seq;
 		this.suri_title = suri_title;
@@ -41,6 +69,10 @@ public class SurveyItemVO {
 		this.question3 = question3;
 		this.question4 = question4;
 		this.question5 = question5;
+	}
+	
+	private boolean isQuestionEmpty(String question) {
+		return (question == null || question.length() == 0);
 	}
 
 	public int getSur_seq() {
