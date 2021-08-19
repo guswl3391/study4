@@ -22,8 +22,6 @@ public class SurveyItemVO {
 	private String question3; // 답변 3
 	private String question4; // 답변 4
 	private String question5; // 답변 5
-	
-	private List<SurveyAnswerVO> answerList; // 응답 목록
 
 	public SurveyItemVO() {
 		super();
@@ -99,10 +97,6 @@ public class SurveyItemVO {
 		this.suri_title = suri_title;
 	}
 
-	public List<SurveyAnswerVO> getAnswerList() {
-		return answerList;
-	}
-
 	public String getQuestion1() {
 		return question1;
 	}
@@ -141,9 +135,5 @@ public class SurveyItemVO {
 
 	public void setQuestion5(String question5) {
 		this.question5 = question5;
-	}
-
-	public void setAnswerList(List<SurveyAnswerVO> answerList) {
-		this.answerList = answerList;
 	}
 }
