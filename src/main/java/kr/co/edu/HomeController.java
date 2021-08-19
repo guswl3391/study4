@@ -130,7 +130,15 @@ public class HomeController {
 
 	// 게시글 작성 부분 -> 끝나면 메인으로
 	@RequestMapping(value = "/write", method = { RequestMethod.POST })
-	public String write(SurveyVO surveyVO, @RequestParam("question[]") List<String> questionList) {
+	public String write(
+			SurveyVO surveyVO, 
+			@RequestParam("suri_title[]") List<String> suriTitleList,
+			@RequestParam("question1[]") List<String> question1List,
+			@RequestParam("question2[]") List<String> question2List,
+			@RequestParam("question3[]") List<String> question3List,
+			@RequestParam("question4[]") List<String> question4List,
+			@RequestParam("question5[]") List<String> question5List
+		) {
 		// title에 인코딩 이슈 있음 -> 해결
 
 		// 1. 제목 등록하기
@@ -140,9 +148,21 @@ public class HomeController {
 		int sur_seq = surveyVO.getSur_seq();
 
 		// 3. 문항들 등록하기
-		for (String question : questionList) {
+		for (int index = 0; index < suriTitleList.size(); index++) {
 			int suri_seq = 0; // INSERT
-			SurveyItemVO surveyItemVO = new SurveyItemVO(sur_seq, suri_seq, question);
+			String suri_title = suriTitleList.get(index);
+			String question1 = question1List.get(index);
+			String question2 = question2List.get(index);
+			String question3 = question3List.get(index);
+			String question4 = question4List.get(index);
+			String question5 = question5List.get(index);
+
+			/*
+			 * 	public SurveyItemVO(int sur_seq, int suri_seq, String suri_title, String question1, String question2, 
+					String question3, String question4, String question5)
+			 */
+			SurveyItemVO surveyItemVO = new SurveyItemVO(sur_seq, suri_seq, suri_title, question1, question2,
+					question3, question4, question5);
 			service.insertSurveyItem(surveyItemVO, surveyVO);
 		}
 
