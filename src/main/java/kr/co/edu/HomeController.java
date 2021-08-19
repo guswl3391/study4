@@ -320,8 +320,16 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String edit(SurveyVO surveyVO, Model model, @RequestParam("suri_title[]") List<String> suriTitle,
-			@RequestParam(name="suri_seq[]", required = false) List<Integer> suriSeq // List<int>는 에러난다. 안 된다. 그 이유는.. 일단 생략!
+	public String edit(
+			SurveyVO surveyVO, 
+			Model model, 
+			@RequestParam("suri_title[]") List<String> suriTitle,
+			@RequestParam(name="suri_seq[]", required = false) List<Integer> suriSeq, // List<int>는 에러난다. 안 된다. 그 이유는.. 일단 생략!
+			@RequestParam("question1[]") List<String> question1List,
+			@RequestParam("question2[]") List<String> question2List,
+			@RequestParam("question3[]") List<String> question3List,
+			@RequestParam("question4[]") List<String> question4List,
+			@RequestParam("question5[]") List<String> question5List
 	) {
 
 		// 1. ServeyVO 업데이트 하기
@@ -345,11 +353,20 @@ public class HomeController {
 			// 2. null일 때에는 0이 되도록 한다. (삼항연산자를 쓰면 간단하다) 
 			int sur_seq = surveyVO.getSur_seq();
 
-			SurveyItemVO surveyItemVO = new SurveyItemVO();
-			surveyItemVO.setSuri_title(suri_title); // 문항제목은 여기서 세팅 중
-			surveyItemVO.setSuri_seq(suri_seq);
-			// 여기서 에러 나는 중-> int로 바꿔 주었으니 괜찮을 것이다..
-			surveyItemVO.setSur_seq(sur_seq);
+			// SurveyItemVO surveyItemVO = new SurveyItemVO();
+//			surveyItemVO.setSuri_title(suri_title); // 문항제목은 여기서 세팅 중
+//			surveyItemVO.setSuri_seq(suri_seq);
+//			// 여기서 에러 나는 중-> int로 바꿔 주었으니 괜찮을 것이다..
+//			surveyItemVO.setSur_seq(sur_seq);
+			
+			String question1 = question1List.get(i);
+			String question2 = question2List.get(i);
+			String question3 = question3List.get(i);
+			String question4 = question4List.get(i);
+			String question5 = question5List.get(i);
+			
+			SurveyItemVO surveyItemVO = new SurveyItemVO(sur_seq, suri_seq, suri_title, question1, question2,
+					question3, question4, question5);
 
 			boolean isUpdate = (suri_seq > 0);
 			if (isUpdate) {
