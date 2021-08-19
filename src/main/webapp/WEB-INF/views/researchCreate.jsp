@@ -114,7 +114,7 @@
 			alert("시작일은 필수 입력입니다.");
 			return document.form.sur_sat_date.focus();
 		} else if(document.form.sur_end_date.value.trim() == ""){
-			alert("완료일은 필수 입력입니다.");
+			alert("종료일은 필수 입력입니다.");
 			return document.form.sur_end_date.focus();
 		} 
 		
@@ -130,7 +130,7 @@
 				
 			}
 			
-			alert('질문은 필수 입력입니다. 입력하세요.');
+			alert('문항은 필수 입력입니다. 입력하세요.');
 			input.focus();
 			return;
 			
