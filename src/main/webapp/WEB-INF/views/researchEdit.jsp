@@ -128,13 +128,20 @@
 				
 			}
 			
-			alert('질문은 필수 입력입니다. 입력하세요.');
+			alert('문항은 필수 입력입니다. 입력하세요.');
 			input.focus();
 			return;
 			
 		}
 		
+		// - [ ] 각 문항별로 답변 갯수 카운팅 기능 - [ ] 0, 1개: 에러!
 		
+		if (validateQuestionNumber() == false) {
+			// 검증 실패!
+			alert('답변은 반드시 2개 이상 작성해야 합니다.');
+			// 등등
+			return; // early return: 검증 실패했으므로, form.submit()되지 않는다.
+		}
 		
 		
 		
@@ -142,6 +149,45 @@
 		form.submit();
 
    	}
+   	
+   	function validateQuestionNumber() {
+		const list1 = document.querySelectorAll('input[name="question1[]"]');
+		const list2 = document.querySelectorAll('input[name="question2[]"]');
+		const list3 = document.querySelectorAll('input[name="question3[]"]');
+		const list4 = document.querySelectorAll('input[name="question4[]"]');
+		const list5 = document.querySelectorAll('input[name="question5[]"]');
+		
+		const length = list1.length; // 문항의 갯수
+		
+		// scan
+		for (let n = 1; n <= length; n++) { // n: 각 문항의 번호
+			const index = (n - 1); // index는 0부터 시작하므로 문항의 번호에서 1을 뺴줘야 한다!
+			let number = 0;
+			
+			const question1 = list1[index];
+			number += (question1.value > '') ? 1 : 0;
+			
+			const question2 = list2[index];
+			number += (question2.value > '') ? 1 : 0;
+			
+			const question3 = list3[index];
+			number += (question3.value > '') ? 1 : 0;
+			
+			const question4 = list4[index];
+			number += (question4.value > '') ? 1 : 0;
+			
+			const question5 = list5[index];
+			number += (question5.value > '') ? 1 : 0;
+			
+			const isValid = (number >= 2); // 2개 이상이어야 함. 중간 중간 떨어져 있는 것은 괜찮다.
+			if (isValid == false) {
+				return false; // early return (for): 더 볼 것도 없다. 이미 여기서 이제 에러인 것이다!
+			}
+		}
+		
+		// scan을 했으나 털어서 먼지 하나 안 나왔다-> 검증 완료!
+		return true;
+	}
    	
    	
 
