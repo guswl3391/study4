@@ -34,7 +34,7 @@
 		const div = ul.parentElement;
 		const input = div.querySelector('input[name="answer[]"]');
 		input.value = value;
-	}
+	}7
 
 	 
  	function onclickSubmit() {
@@ -106,9 +106,9 @@
 	 * @param sur_seq 제목 번호 
 	 */
 	function searchPopup(sur_seq){
-		var popUrl = '/researchPopup?sur_seq=' + sur_seq;
+		var popUrl = '/researchPopup?sur_seq=' + sur_seq; // + '&suri_seq=' + suri_seq
 		var popName = 'researchPopup';
-		var popOption = "top=50, left=10, width=630, height=600, status=no, menubar=no, toolbar=no, resizable=no";
+		var popOption = "top=50, left=10, width=600, height=600, status=no, menubar=no, toolbar=no, resizable=no";
         window.open(popUrl, popName, popOption); // chrome에서는 name을 안 적으면, 그냥 새 탭으로 연다!
 	}
 	
