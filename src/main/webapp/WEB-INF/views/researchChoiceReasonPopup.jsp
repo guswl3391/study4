@@ -17,10 +17,10 @@
 <!-- w100% h450px -->
 <div class="pop">
   <div class="pop_box">
-    <h1>사유전체보기: ${surveyItemVO.suri_title}</h1>
+    <h1>사유 보기: ${surveyItemVO.suri_title}</h1>
     <div class="pop_list">
       <div class="research_box">
-		<h2>${surveyItemVO.question1}</h2>
+		<h2>1. 문항: ${surveyItemVO.question1}</h2>
 		<ul class="research_list">
 			<c:choose>
                	<c:when test="${nestedList.get(0).size() == 0}">
@@ -34,7 +34,7 @@
              </c:choose>
 		</ul>
 		
-		<h2>${surveyItemVO.question2}</h2>
+		<h2>2. 문항: ${surveyItemVO.question2}</h2>
 		<ul class="research_list">
 			<c:choose>
                	<c:when test="${nestedList.get(1).size() == 0}">
@@ -48,7 +48,7 @@
              </c:choose>
 		</ul>
 		
-		<h2>${surveyItemVO.question3}</h2>
+		<h2>3. 문항: ${surveyItemVO.question3}</h2>
 		<ul class="research_list">
 			<c:choose>
                	<c:when test="${nestedList.get(2).size() == 0}">
@@ -62,7 +62,7 @@
              </c:choose>
 		</ul>
 		
-		<h2>${surveyItemVO.question4}</h2>
+		<h2>4. 문항: ${surveyItemVO.question4}</h2>
 		<ul class="research_list">
 			<c:choose>
                	<c:when test="${nestedList.get(3).size() == 0}">
@@ -76,7 +76,16 @@
              </c:choose>
 		</ul>
 		
-		<h2>${surveyItemVO.question5}</h2>
+		
+ 		<%--<c:choose>
+               	<c:when test="${surveyItemVO.question5 == 0}">
+               	</c:when>
+               	<c:otherwise>
+		      			<h2>5. 문항: ${surveyItemVO.question5}</h2>
+				</c:otherwise>
+             </c:choose> --%>
+		
+		<h2>5. 문항: ${surveyItemVO.question5}</h2>
 		<ul class="research_list">
 			<c:choose>
                	<c:when test="${nestedList.get(4).size() == 0}">
