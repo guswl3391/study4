@@ -230,7 +230,7 @@
 		                <td>${item.rnum}</td>
 		               <c:choose>
 		                	<c:when test="${'Y' eq item.answer_yn }">
-								<td class="tl">
+								<td class="tl" style="max-width: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 									<a href="/researchDone?sur_seq=${item.sur_seq}"><c:out value="${item.sur_title}" escapeXml="true"/></a>
 								</td>
 		                	</c:when>
