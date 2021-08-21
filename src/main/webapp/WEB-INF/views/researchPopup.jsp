@@ -61,11 +61,11 @@
 				
 				<c:forEach items="${resultList}" var="map" varStatus="status">
 					<p style="text-align: left;">
-					<b>${status.count}. ${map.suri_title}</b> <span class="gray_l"><a href="#" class="gray_r" onclick="openPopup(${sur_seq}, ${map.suri_seq}); return false;">사유보기</a></span>
+					<b>${status.count}. ${map.suri_title}</b> 
 					</p>
 					<br/>
 					<div style="display: flex;">
-						<div class="graph">
+						<div class="graph" >
 							<c:forEach items="${map.nameList}" var="name" varStatus="nameVarStatus">
 					            <div class="question">
 					                <div style="height: ${(map.maxAnswer > 0) ? (1 - (map[Integer.toString(nameVarStatus.count)] / map.maxAnswer)) * 100 : 100}%;"></div>
@@ -75,8 +75,10 @@
 				            </c:forEach>
 			            </div>
 				        
-				        <div style="flex: 4;">
-				        	<br/><br/>
+				        <div style="flex: 4; text-align:left; padding: 5px; display:table-cell;">
+				        	<br/>
+				        	<span class="gray_l"><a href="#" class="gray_r" onclick="openPopup(${sur_seq}, ${map.suri_seq}); return false;"><input type="button" value="사유보기"/></a></span>
+				        	<br/>
 <%-- 				            <p>① 매우 그렇다: ${map['1']}명</p> --%>
 <!-- 				            <br/> -->
 <%-- 				            <p>② 조금 그렇다: ${map['2']}명</p> --%>
@@ -89,7 +91,7 @@
 							<c:forEach items="${map.nameList}" var="name" varStatus="nameVarStatus">
 								<c:if test="${not empty name}">
 									<br />
-						            <p>${nameVarStatus.count} ${name}: ${map[Integer.toString(nameVarStatus.count)]}명</p>
+						            <p>${nameVarStatus.count}. ${name}: ${map[Integer.toString(nameVarStatus.count)]}명</p>
 								</c:if>
 				            </c:forEach>
 				        </div>
