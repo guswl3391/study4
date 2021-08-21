@@ -255,7 +255,8 @@
 	        showOn: "both",
 	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
 	        buttonImageOnly: true,
-	        buttonText: "Select date"
+	        buttonText: "Select date",
+	        minDate: 0
 	    });
 	});
 
@@ -265,7 +266,8 @@
 	        showOn: "both",
 	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
 	        buttonImageOnly: true,
-	        buttonText: "Select date"
+	        buttonText: "Select date",
+	        minDate: 0
 	    });
 	});
 	
@@ -327,6 +329,7 @@
 	function onchangeEndDate() {
 		const inputStartDate = document.getElementById('date2');
 		const inputEndDate = document.getElementById('date3');
+		
 		
 // 		1. 시작일은 있지만, 마감일은 아직 없다.-> 그냥 지나간다!-> bypass-> early return
 // 		2. 마감일은 있지만, 시작일은 아직 없다.-> 그냥 지나간다!-> bypass-> early return
