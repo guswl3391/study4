@@ -205,7 +205,8 @@
 	        showOn: "both",
 	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
 	        buttonImageOnly: true,
-	        buttonText: "Select date"
+	        buttonText: "Select date",
+	        minDate: 0
 	    });
 	});
 
@@ -214,7 +215,8 @@
 	        showOn: "both",
 	        buttonImage: "/resources/images/sub/btn/ico_data.gif",
 	        buttonImageOnly: true,
-	        buttonText: "Select date"
+	        buttonText: "Select date",
+	        minDate: 0
 	    });
 	});
 	
